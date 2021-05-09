@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment(): Fragment() {
+abstract class BaseFragment<VM: BaseViewModel>: Fragment() {
+
+    private lateinit var viewModel: VM
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
