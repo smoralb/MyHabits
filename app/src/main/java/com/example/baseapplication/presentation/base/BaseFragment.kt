@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import org.koin.android.viewmodel.ext.android.viewModel
 
-abstract class BaseFragment<VM: BaseViewModel>: Fragment() {
+abstract class BaseFragment<VM: BaseViewModel>(): Fragment() {
 
-    private lateinit var viewModel: VM
+    abstract val viewModel: VM
 
     @LayoutRes
     abstract fun getLayoutRes(): Int

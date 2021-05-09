@@ -6,8 +6,11 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.baseapplication.R
 import com.example.baseapplication.presentation.base.BaseFragment
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FirstFragment : BaseFragment<FirstViewModel>() {
+
+    override val viewModel: FirstViewModel by viewModel()
 
     override fun getLayoutRes() = R.layout.fragment_first
 
