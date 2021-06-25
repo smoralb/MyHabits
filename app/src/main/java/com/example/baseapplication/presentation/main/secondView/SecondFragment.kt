@@ -6,13 +6,11 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.baseapplication.R
 import com.example.baseapplication.presentation.base.BaseFragment
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SecondFragment : BaseFragment<SecondViewModel>() {
+class SecondFragment : BaseFragment(R.layout.fragment_second) {
 
-    override val viewModel: SecondViewModel by viewModel()
-
-    override fun getLayoutRes() = R.layout.fragment_second
+    private val viewModel by viewModel<SecondViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
