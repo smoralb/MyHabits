@@ -5,7 +5,7 @@ import com.example.baseapplication.presentation.base.BaseViewModel
 
 class FirstViewModel : BaseViewModel() {
 
-    val firstViewModelText: MutableLiveData<String> = MutableLiveData("Hello first fragment")
+    var firstViewModelText: MutableLiveData<String> = MutableLiveData("")
 
     internal fun initialize() {
         firstViewModelText.value = "Hello first fragment"
