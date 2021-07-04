@@ -1,4 +1,4 @@
-package com.example.baseapplication.presentation
+package com.example.baseapplication
 
 import android.app.Application
 import com.example.baseapplication.presentation.di.presentationModule
@@ -10,11 +10,10 @@ class BaseApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        // Start Koin
         startKoin{
             androidLogger()
             androidContext(this@BaseApplication)
-            modules(presentationModule)
+            modules(listOf(presentationModule))
         }
     }
 }
