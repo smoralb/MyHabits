@@ -10,5 +10,4 @@ class SampleDataRepositoryImpl(private val remoteSource: SampleDataRemoteSource)
 
     override suspend fun getSampleData(): Result<SampleDataModel> = remoteSource.getSampleData()
 
-
 }

@@ -19,8 +19,12 @@ class FirstViewModel(
     private fun getSampleData() {
         execute {
             getSampleDataUseCase(GetSampleDataUseCase.Params("sampleId")).fold(
-                handleSuccess = { firstViewModelText.value = it.id },
-                handleError = {}
+                handleSuccess = {
+                    firstViewModelText.value = it.name
+                                },
+                handleError = {
+                    firstViewModelText.value = "Error"
+                }
             )
         }
     }

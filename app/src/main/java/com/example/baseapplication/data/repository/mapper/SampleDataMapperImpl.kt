@@ -6,8 +6,9 @@ import com.example.baseapplication.domain.model.SampleDataModel
 class SampleDataMapperImpl: SampleDataMapper {
 
     override fun toDomainModel(entity: SampleApiResponseEntity?): SampleDataModel {
-        return SampleDataModel(
-            id = entity?.whatEverID.orEmpty()
-        )
+            return SampleDataModel(
+                name = entity?.sampleChildResponseEntity?.first()?.name.orEmpty(),
+                url = entity?.sampleChildResponseEntity?.first()?.image.orEmpty()
+            )
     }
 }

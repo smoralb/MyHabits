@@ -13,7 +13,7 @@ sealed class Result<out S> {
 
     fun fold(
         handleSuccess: (S) -> Unit,
-        handleError: (Error) -> Any
+        handleError: (Error) -> Unit
     ) {
         when (this) {
             is Success -> handleSuccess(value)

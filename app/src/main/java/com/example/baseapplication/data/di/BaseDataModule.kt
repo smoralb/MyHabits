@@ -1,23 +1,31 @@
 package com.example.baseapplication.data.di
 
-import com.example.baseapplication.EMPTY_STRING
 import com.example.baseapplication.data.SampleApi
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+const val BASE_URL = "https://pokeapi.co"
+
 val dataModule = module {
 
+    fun provideMoshiInstance(): Moshi {
+        return Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+    }
+
     fun provideHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().build()
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
 
     fun provideRetrofit(factory: Moshi, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            // Place base url when exists any API
-            .baseUrl(EMPTY_STRING)
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(factory))
             .client(client)
             .build()
@@ -26,6 +34,8 @@ val dataModule = module {
     fun provideApiInstance(retrofit: Retrofit): SampleApi {
         return retrofit.create(SampleApi::class.java)
     }
+
+    factory { provideMoshiInstance() }
 
     factory { provideHttpClient() }
 
