@@ -7,6 +7,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 
 val presentationModule = module {
 
-    viewModel { FirstViewModel() }
+    viewModel { FirstViewModel(get()) }
     viewModel { SecondViewModel() }
 }

@@ -1,6 +1,26 @@
 package com.example.baseapplication.data.core
 
-sealed class Result<out T> {
-    data class Success<out T>(val value: T): Result<T>()
-    data class Error(val code: Int? = null, val error: ErrorResponse? = null): Result<Nothing>()
+sealed class Result<out S> {
+    data class Success<out S>(val value: S) : Result<S>()
+    data class Error(val code: Int? = null, val error: ErrorResponse? = null) : Result<Nothing>()
+
+    val isSuccess
+        get() = this is Success
+
+    val isError
+        get() = this is Error
+
+
+    fun fold(
+        handleSuccess: (S) -> Unit,
+        handleError: (Error) -> Any
+    ) {
+        when (this) {
+            is Success -> handleSuccess(value)
+            is Error -> handleError(Error(code, error))
+        }
+    }
 }
+
+
+
