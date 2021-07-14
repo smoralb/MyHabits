@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.baseapplication.EMPTY_STRING
 import com.example.baseapplication.domain.core.execute
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
-import com.example.baseapplication.presentation.base.BaseViewModel
+import com.example.core.presentation.base.BaseViewModel
 
 class FirstViewModel(
     private val getSampleDataUseCase: GetSampleDataUseCase

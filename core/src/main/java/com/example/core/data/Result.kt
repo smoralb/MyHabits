@@ -1,8 +1,8 @@
-package com.example.baseapplication.data.core
+package com.example.core.data
 
 sealed class Result<out S> {
     data class Success<out S>(val value: S) : Result<S>()
-    data class Error(val code: Int? = null, val error: ErrorResponse? = null) : Result<Nothing>()
+    data class Error(val code: Int? = null, val error: String? = null) : Result<Nothing>()
 
     val isSuccess
         get() = this is Success

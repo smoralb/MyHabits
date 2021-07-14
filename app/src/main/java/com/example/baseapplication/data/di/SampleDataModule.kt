@@ -1,5 +1,6 @@
 package com.example.baseapplication.data.di
 
+import com.example.baseapplication.data.SampleApi
 import com.example.baseapplication.data.repository.SampleDataRepository
 import com.example.baseapplication.data.repository.SampleDataRepositoryImpl
 import com.example.baseapplication.data.repository.mapper.SampleDataMapper
@@ -16,5 +17,6 @@ val sampleDataModule = module {
 
     single<SampleDataRepository> { SampleDataRepositoryImpl(get()) }
 
+    single { get<Retrofit>().create(SampleApi::class.java) }
 
 }
