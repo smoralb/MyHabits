@@ -10,15 +10,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseActivity(
+    @LayoutRes private val layoutRes: Int,
     private val hastOptionsMenu: Boolean = false
 ) : AppCompatActivity() {
 
-    @LayoutRes
-    abstract fun getLayoutRes(): Int
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layoutRes)
         setSupportActionBar(findViewById(R.id.toolbar))
 
         if (hastOptionsMenu) {

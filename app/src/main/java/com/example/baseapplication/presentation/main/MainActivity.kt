@@ -4,9 +4,9 @@ import android.os.Bundle
 import com.example.baseapplication.R
 import com.example.baseapplication.presentation.base.BaseActivity
 
-class MainActivity : BaseActivity(hastOptionsMenu = true) {
-
-    override fun getLayoutRes() = R.layout.activity_main
+class MainActivity : BaseActivity(
+    layoutRes = R.layout.activity_main,
+    hastOptionsMenu = true) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
