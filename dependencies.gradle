@@ -1,0 +1,56 @@
+ext {
+    versions = [
+            compile_sdk_version      : "29",
+            buil_tools_version       : "29.0.3",
+            min_sdk_version          : "22",
+            target_sdk_version       : "29",
+            java_version             : JavaVersion.VERSION_1_8.toString(),
+            koin_version             : '2.2.3',
+            koin_viewmodel_version   : "2.2.2",
+            core_ktx_version         : "1.3.2",
+            app_compat_version       : "1.2.0",
+            material_version         : "1.3.0",
+            constraint_version       : "1.3.0",
+            fragment_version         : "2.3.5",
+            navigation_version       : "2.3.5",
+            jUnit_version            : "4.12",
+            jUnit_test_version       : "1.1.2",
+            espresso_version         : "3.3.0",
+            retrofit_version         : "2.9.0",
+            okhttp3_version          : "4.9.1",
+            okhttp_loggin_interceptor: "4.9.1",
+            moshi_version            : "1.12.0",
+            moshi_converter_version  : "2.4.0"
+    ]
+
+    koin = [
+            koin_dependency          : "io.insert-koin:koin-android:${versions.koin_version}",
+            koin_viewmodel_dependency: "io.insert-koin:koin-androidx-viewmodel:${versions.koin_viewmodel_version}"
+    ]
+
+    basic = [
+            core_ktx_dependency  : "androidx.core:core-ktx:${versions.core_ktx_version}",
+            app_compat_dependency: "androidx.appcompat:appcompat:${versions.app_compat_version}",
+            material_dependency  : "com.google.android.material:material:${versions.material_version}",
+            constraint_dependency: "androidx.constraintlayout:constraintlayout:${versions.constraint_version}"
+    ]
+
+    navigation = [
+            navigation_dependency: "androidx.navigation:navigation-ui-ktx:${versions.navigation_version}",
+            fragment_dependency  : "androidx.navigation:navigation-fragment-ktx:${versions.fragment_version}"
+    ]
+
+    testing = [
+            jUnit_dependency     : "junit:junit:${versions.jUnit_version}",
+            jUnit_test_dependency: "androidx.test.ext:junit:${versions.jUnit_test_version}",
+            espresso_dependency  : "androidx.test.espresso:espresso-core:${versions.espresso_version}"
+    ]
+
+    network = [
+            retrofit_dependency       : "com.squareup.retrofit2:retrofit:${versions.retrofit_version}",
+            okhttp3_dependency        : "com.squareup.okhttp3:okhttp:${versions.okhttp3_version}",
+            okhttp_loggin_interceptor : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_loggin_interceptor}",
+            moshi_dependency          : "com.squareup.moshi:moshi-kotlin:${versions.moshi_version}",
+            moshi_converter_dependency: "com.squareup.retrofit2:converter-moshi:${versions.moshi_converter_version}"
+    ]
+}

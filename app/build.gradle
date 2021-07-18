@@ -1,24 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
+    buildToolsVersion versions.buil_tools_version
 
     defaultConfig {
         applicationId "com.example.baseapplication"
-        minSdkVersion 22
-        targetSdkVersion 29
+        minSdkVersion Integer.parseInt(versions.min_sdk_version)
+        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    dataBinding {
-        enabled true
     }
 
     buildTypes {
@@ -30,10 +26,6 @@ android {
             dataBinding true
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -41,16 +33,31 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$core_ktx_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "com.google.android.material:material:$material_version"
+    implementation basic.core_ktx_dependency
+    implementation basic.app_compat_dependency
+    implementation basic.material_dependency
+    implementation basic.constraint_dependency
+    //Koin
+    implementation koin.koin_dependency
+    implementation koin.koin_viewmodel_dependency
     //Navigation
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$fragment_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation navigation.navigation_dependency
+    implementation navigation.fragment_dependency
     //Testing
+<<<<<<< HEAD
     testImplementation "junit:junit:$jUnit_version"
     androidTestImplementation "androidx.test.ext:junit:$jUnit_test_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+=======
+    implementation testing.jUnit_dependency
+    implementation testing.jUnit_test_dependency
+    implementation testing.espresso_dependency
+    //Retrofit, okhttp3, moshi
+    implementation network.retrofit_dependency
+    implementation network.okhttp3_dependency
+    implementation network.okhttp_loggin_interceptor
+    implementation network.moshi_dependency
+    implementation network.moshi_converter_dependency
+
+>>>>>>> develop
 }
