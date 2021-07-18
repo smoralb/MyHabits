@@ -1,25 +1,19 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
-apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
+    buildToolsVersion versions.buil_tools_version
 
     defaultConfig {
-        minSdkVersion 22
-        targetSdkVersion 29
+        minSdkVersion Integer.parseInt(versions.min_sdk_version)
+        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-
-    dataBinding {
-        enabled true
     }
 
     buildTypes {
@@ -31,11 +25,6 @@ android {
             dataBinding true
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -43,22 +32,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    //Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
-    //okhttp
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_loggin_interceptor"
+    implementation basic.core_ktx_dependency
+    implementation basic.app_compat_dependency
+    implementation basic.material_dependency
+    implementation basic.constraint_dependency
     //Koin
-    implementation "io.insert-koin:koin-android:$koin_version"
-    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_viewmodel_version"
-
+    implementation koin.koin_dependency
+    implementation koin.koin_viewmodel_dependency
+    //Navigation
+    implementation navigation.navigation_dependency
+    implementation navigation.fragment_dependency
+    //Testing
+    implementation testing.jUnit_dependency
+    implementation testing.jUnit_test_dependency
+    implementation testing.espresso_dependency
+    //Retrofit, okhttp3, moshi
+    implementation network.retrofit_dependency
+    implementation network.okhttp3_dependency
+    implementation network.okhttp_loggin_interceptor
+    implementation network.moshi_dependency
+    implementation network.moshi_converter_dependency
 }
