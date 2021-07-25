@@ -8,6 +8,7 @@ import com.example.baseapplication.data.repository.mapper.SampleDataMapperImpl
 import com.example.baseapplication.data.source.SampleDataRemoteSource
 import com.example.baseapplication.data.source.SampleDataRemoteSourceImpl
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val sampleDataModule = module {
 

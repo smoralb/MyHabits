@@ -17,4 +17,36 @@
         <item name="android:windowBackground">@drawable/view_splash_screen</item>
     </style>
 
+    <style name="TextSmall">
+        <item name="android:textSize">@dimen/text_s</item>
+    </style>
+
+    <style name="TextSmall.Bold" parent="TextSmall">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextMedium">
+        <item name="android:textSize">@dimen/text_m</item>
+    </style>
+
+    <style name="TextMedium.Bold" parent="TextMedium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLarge">
+        <item name="android:textSize">@dimen/text_l</item>
+    </style>
+
+    <style name="TextLarge.Bold" parent="TextLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextHeading">
+        <item name="android:textSize">@dimen/text_xl</item>
+    </style>
+
+    <style name="TextHeading.Bold" parent="TextHeading">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

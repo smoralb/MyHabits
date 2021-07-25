@@ -1,10 +1,11 @@
 package com.example.baseapplication.presentation.main.firstView.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.baseapplication.BR
 import com.example.baseapplication.R
 import com.example.core.presentation.adapters.BaseAdapter
 
-class FirstFragmentAdapter : BaseAdapter<SampleDataItems>(DiffCallBack) {
+class FirstFragmentAdapter : BaseAdapter<SampleDataItems>(BR.item, DiffCallBack) {
 
     object DiffCallBack : DiffUtil.ItemCallback<SampleDataItems>() {
         override fun areItemsTheSame(oldItem: SampleDataItems, newItem: SampleDataItems): Boolean {

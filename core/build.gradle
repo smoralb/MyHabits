@@ -52,4 +52,7 @@ dependencies {
     api network.okhttp_loggin_interceptor
     api network.moshi_dependency
     api network.moshi_converter_dependency
+    //Coil
+    implementation coil.coil_dependency
+
 }
