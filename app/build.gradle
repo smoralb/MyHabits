@@ -32,26 +32,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation basic.core_ktx_dependency
-    implementation basic.app_compat_dependency
-    implementation basic.material_dependency
-    implementation basic.constraint_dependency
-    //Koin
-    implementation koin.koin_dependency
-    implementation koin.koin_viewmodel_dependency
-    //Navigation
-    implementation navigation.navigation_dependency
-    implementation navigation.fragment_dependency
-    //Testing
-    implementation testing.jUnit_dependency
-    implementation testing.jUnit_test_dependency
-    implementation testing.espresso_dependency
-    //Retrofit, okhttp3, moshi
-    implementation network.retrofit_dependency
-    implementation network.okhttp3_dependency
-    implementation network.okhttp_loggin_interceptor
-    implementation network.moshi_dependency
-    implementation network.moshi_converter_dependency
-
+    implementation project (':core')
 }

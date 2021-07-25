@@ -1,11 +1,11 @@
-package com.example.baseapplication.presentation.base
+package com.example.core.presentation.base
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.example.baseapplication.R
+import com.example.core.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,6 +17,7 @@ abstract class BaseActivity(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutRes)
+        /*
         setSupportActionBar(findViewById(R.id.toolbar))
 
         if (hastOptionsMenu) {
@@ -24,9 +25,9 @@ abstract class BaseActivity(
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             }
-        }
+        }*/
     }
-
+/*
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -41,5 +42,5 @@ abstract class BaseActivity(
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
+    }*/
 }

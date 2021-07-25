@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
+    buildToolsVersion versions.buil_tools_version
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(versions.min_sdk_version)
+        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        buildFeatures {
+            dataBinding true
+        }
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api basic.core_ktx_dependency
+    api basic.app_compat_dependency
+    api basic.material_dependency
+    api basic.constraint_dependency
+    //Koin
+    api koin.koin_dependency
+    api koin.koin_viewmodel_dependency
+    //Navigation
+    api navigation.navigation_dependency
+    api navigation.fragment_dependency
+    //Testing
+    api testing.jUnit_dependency
+    api testing.jUnit_test_dependency
+    api testing.espresso_dependency
+    //Retrofit, okhttp3, moshi
+    api network.retrofit_dependency
+    api network.okhttp3_dependency
+    api network.okhttp_loggin_interceptor
+    api network.moshi_dependency
+    api network.moshi_converter_dependency
+    //Coil
+    implementation coil.coil_dependency
+
+}

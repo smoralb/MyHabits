@@ -1,6 +1,5 @@
-package com.example.baseapplication.data.di
+package com.example.core.data.di
 
-import com.example.baseapplication.data.SampleApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -31,16 +30,10 @@ val dataModule = module {
             .build()
     }
 
-    fun provideApiInstance(retrofit: Retrofit): SampleApi {
-        return retrofit.create(SampleApi::class.java)
-    }
-
     factory { provideMoshiInstance() }
 
     factory { provideHttpClient() }
 
     factory { provideRetrofit(get(), get()) }
-
-    single { provideApiInstance(get()) }
 
 }

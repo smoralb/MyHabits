@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems.SampleDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/ivSampleData"
+            android:layout_width="@dimen/width_item_image_view"
+            android:layout_height="@dimen/height_item_image_view"
+            android:layout_margin="@dimen/margin_item_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resource="@{item.url}" />
+
+        <TextView
+            style="@style/TextLarge.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_item_title"
+            android:text="@{item.name}"
+            app:layout_constraintLeft_toRightOf="@+id/ivSampleData"
+            app:layout_constraintTop_toTopOf="@+id/ivSampleData"
+            tools:text="@string/item_view_sample_data_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
