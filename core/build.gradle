@@ -32,24 +32,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation basic.core_ktx_dependency
-    implementation basic.app_compat_dependency
-    implementation basic.material_dependency
-    implementation basic.constraint_dependency
+    api basic.core_ktx_dependency
+    api basic.app_compat_dependency
+    api basic.material_dependency
+    api basic.constraint_dependency
     //Koin
-    implementation koin.koin_dependency
-    implementation koin.koin_viewmodel_dependency
+    api koin.koin_dependency
+    api koin.koin_viewmodel_dependency
     //Navigation
-    implementation navigation.navigation_dependency
-    implementation navigation.fragment_dependency
+    api navigation.navigation_dependency
+    api navigation.fragment_dependency
     //Testing
-    implementation testing.jUnit_dependency
-    implementation testing.jUnit_test_dependency
-    implementation testing.espresso_dependency
+    api testing.jUnit_dependency
+    api testing.jUnit_test_dependency
+    api testing.espresso_dependency
     //Retrofit, okhttp3, moshi
-    implementation network.retrofit_dependency
-    implementation network.okhttp3_dependency
-    implementation network.okhttp_loggin_interceptor
-    implementation network.moshi_dependency
-    implementation network.moshi_converter_dependency
+    api network.retrofit_dependency
+    api network.okhttp3_dependency
+    api network.okhttp_loggin_interceptor
+    api network.moshi_dependency
+    api network.moshi_converter_dependency
 }
