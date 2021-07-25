@@ -1,4 +1,4 @@
-package com.example.baseapplication.presentation.core.extensions
+package com.example.core.extensions
 
 import androidx.lifecycle.MutableLiveData
 

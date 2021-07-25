@@ -8,6 +8,6 @@ class GetSampleDataUseCaseImpl(
     private val repository: SampleDataRepository
 ) : GetSampleDataUseCase {
 
-    override suspend fun invoke(params: GetSampleDataUseCase.Params): com.example.core.data.Result<SampleDataModel> =
+    override suspend fun invoke(params: GetSampleDataUseCase.Params): Result<SampleDataModel> =
         repository.getSampleData()
 }

@@ -2,7 +2,7 @@ package com.example.baseapplication.presentation.main.firstView.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.baseapplication.R
-import com.example.baseapplication.presentation.core.adapters.BaseAdapter
+import com.example.core.presentation.adapters.BaseAdapter
 
 class FirstFragmentAdapter : BaseAdapter<SampleDataItems>(DiffCallBack) {
 

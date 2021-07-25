@@ -8,10 +8,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.example.baseapplication.BR
 
 abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel>(
-    @LayoutRes val layoutResID: Int
+    @LayoutRes val layoutResID: Int,
+    val viewModelReference: Int
 ) : Fragment() {
 
     private var _binding: DB? = null
@@ -29,7 +29,7 @@ abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel>(
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutResID, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.setVariable(BR.viewModel, viewModel)
+        binding.setVariable(viewModelReference, viewModel)
         return binding.root
     }
 

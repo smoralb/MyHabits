@@ -1,4 +1,4 @@
-package com.example.baseapplication.presentation.core.adapters
+package com.example.core.presentation.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

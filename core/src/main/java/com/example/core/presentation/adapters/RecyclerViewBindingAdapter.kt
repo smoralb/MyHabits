@@ -1,7 +1,6 @@
-package com.example.baseapplication.presentation.core.adapters
+package com.example.core.presentation.adapters
 
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
