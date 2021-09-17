@@ -5,5 +5,5 @@ import com.example.baseapplication.domain.model.SampleDataModel
 
 interface SampleDataRepository {
 
-    suspend fun getSampleData(): Result<SampleDataModel>
+    suspend fun getSampleData(): Result<List<SampleDataModel>>
 }

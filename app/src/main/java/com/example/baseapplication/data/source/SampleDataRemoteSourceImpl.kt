@@ -10,7 +10,7 @@ class SampleDataRemoteSourceImpl(
     private val api: SampleApi,
     private val mapper: SampleDataMapper) : SampleDataRemoteSource {
 
-    override suspend fun getSampleData(): Result<SampleDataModel> {
+    override suspend fun getSampleData(): Result<List<SampleDataModel>> {
         return safeApiCall(
             { api.getSampleData() },
             { entity -> mapper.toDomainModel(entity) }

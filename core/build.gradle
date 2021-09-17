@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
+apply plugin: "de.mannodermaus.android-junit5"
 
 android {
     compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
@@ -28,31 +29,24 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    packagingOptions {
+        exclude "**/attach_hotspot_windows.dll"
+        exclude "META-INF/**"
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    api basic.core_ktx_dependency
-    api basic.app_compat_dependency
-    api basic.material_dependency
-    api basic.constraint_dependency
+    api basic.values()
     //Koin
-    api koin.koin_dependency
-    api koin.koin_viewmodel_dependency
+    api koin.values()
     //Navigation
-    api navigation.navigation_dependency
-    api navigation.fragment_dependency
-    //Testing
-    api testing.jUnit_dependency
-    api testing.jUnit_test_dependency
-    api testing.espresso_dependency
+    api navigation.values()
     //Retrofit, okhttp3, moshi
-    api network.retrofit_dependency
-    api network.okhttp3_dependency
-    api network.okhttp_loggin_interceptor
-    api network.moshi_dependency
-    api network.moshi_converter_dependency
+    api network.values()
     //Coil
-    implementation coil.coil_dependency
-
+    implementation coil.values()
+    //Testing
+    api testing.values()
 }

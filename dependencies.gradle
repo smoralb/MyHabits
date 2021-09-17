@@ -2,7 +2,7 @@ ext {
     versions = [
             compile_sdk_version      : "29",
             buil_tools_version       : "29.0.3",
-            min_sdk_version          : "22",
+            min_sdk_version          : "26",
             target_sdk_version       : "29",
             java_version             : JavaVersion.VERSION_1_8.toString(),
             koin_version             : '2.2.3',
@@ -21,7 +21,13 @@ ext {
             okhttp_loggin_interceptor: "4.9.1",
             moshi_version            : "1.12.0",
             moshi_converter_version  : "2.4.0",
-            coil_version             : "1.3.0"
+            coil_version             : "1.3.0",
+            jupiter_version          : "5.7.1",
+            mockito_version          : "3.2.0",
+            mockito_jupiter          : "3.8.0",
+            mockito_core             : "3.2.4",
+            coroutines_version       : "1.5.2",
+            core_testing             : "2.1.0"
     ]
 
     koin = [
@@ -42,9 +48,14 @@ ext {
     ]
 
     testing = [
-            jUnit_dependency     : "junit:junit:${versions.jUnit_version}",
-            jUnit_test_dependency: "androidx.test.ext:junit:${versions.jUnit_test_version}",
-            espresso_dependency  : "androidx.test.espresso:espresso-core:${versions.espresso_version}"
+            jupiter_api          : "org.junit.jupiter:junit-jupiter-api:${versions.jupiter_version}",
+            jupiter_engine       : "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter_version}",
+            jupiter_parameterized: "org.junit.jupiter:junit-jupiter-params:${versions.jupiter_version}",
+            mockito_kotlin       : "org.mockito.kotlin:mockito-kotlin:${versions.mockito_version}",
+            mockito_jupiter      : "org.mockito:mockito-junit-jupiter:${versions.mockito_jupiter}",
+            mockito_core         : "org.mockito:mockito-core:${versions.mockito_core}",
+            coroutines_test      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines_version}",
+            core_ktx_testing     : "androidx.arch.core:core-testing:${versions.core_testing}",
     ]
 
     network = [

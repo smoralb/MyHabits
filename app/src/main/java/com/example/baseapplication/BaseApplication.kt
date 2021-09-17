@@ -9,11 +9,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-/**
- * TODO: this should be moved to String extension file when is created
- */
-const val EMPTY_STRING = ""
-
 class BaseApplication: Application() {
 
     override fun onCreate() {

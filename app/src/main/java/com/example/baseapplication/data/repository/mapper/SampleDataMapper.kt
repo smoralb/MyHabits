@@ -5,5 +5,5 @@ import com.example.baseapplication.domain.model.SampleDataModel
 
 interface SampleDataMapper {
 
-    fun toDomainModel(entity: SampleApiResponseEntity?): SampleDataModel
+    fun toDomainModel(entity: SampleApiResponseEntity?): List<SampleDataModel>
 }
