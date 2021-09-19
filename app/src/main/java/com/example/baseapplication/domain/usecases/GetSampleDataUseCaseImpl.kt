@@ -1,7 +1,7 @@
 package com.example.baseapplication.domain.usecases
 
 import com.example.core.data.Result
-import com.example.baseapplication.data.repository.SampleDataRepository
+import com.example.baseapplication.domain.repository.SampleDataRepository
 import com.example.baseapplication.domain.model.SampleDataModel
 
 class GetSampleDataUseCaseImpl(

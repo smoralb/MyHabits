@@ -1,4 +1,4 @@
-package com.example.baseapplication.data.repository
+package com.example.baseapplication.domain.repository
 
 import com.example.core.data.Result
 import com.example.baseapplication.domain.model.SampleDataModel

@@ -1,7 +1,7 @@
 package com.example.baseapplication.data
 
 import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
-import com.example.baseapplication.data.repository.SampleDataRepository
+import com.example.baseapplication.domain.repository.SampleDataRepository
 import com.example.baseapplication.data.repository.SampleDataRepositoryImpl
 import com.example.baseapplication.data.source.SampleDataRemoteSource
 import com.example.core.test.BaseUnitTest
