@@ -13,7 +13,7 @@ class FirstViewModel(
 
     var firstViewModelText: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
 
-    init {
+    fun initialize() {
         getSampleData()
     }
 

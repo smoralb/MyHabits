@@ -23,9 +23,11 @@ ext {
             moshi_converter_version  : "2.4.0",
             coil_version             : "1.3.0",
             jupiter_version          : "5.7.1",
+            jupiter_vintage          : "5.7.1",
             mockito_version          : "3.2.0",
             mockito_jupiter          : "3.8.0",
-            mockito_core             : "3.2.4",
+            mockito_core             : "3.4.0",
+            mockito_inline           : "3.4.0",
             coroutines_version       : "1.5.2",
             core_testing             : "2.1.0"
     ]
@@ -50,10 +52,12 @@ ext {
     testing = [
             jupiter_api          : "org.junit.jupiter:junit-jupiter-api:${versions.jupiter_version}",
             jupiter_engine       : "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter_version}",
-            jupiter_parameterized: "org.junit.jupiter:junit-jupiter-params:${versions.jupiter_version}",
+            jupiter_parameterized: "org.junit.jupiter:junit-jupiter-params:${versions.jupiter_vintage}",
+            jupiter_vintage      : "org.junit.vintage:junit-vintage-engine:${versions.jupiter_version}",
             mockito_kotlin       : "org.mockito.kotlin:mockito-kotlin:${versions.mockito_version}",
             mockito_jupiter      : "org.mockito:mockito-junit-jupiter:${versions.mockito_jupiter}",
             mockito_core         : "org.mockito:mockito-core:${versions.mockito_core}",
+            mockito_inline       : "org.mockito:mockito-inline:${versions.mockito_inline}",
             coroutines_test      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines_version}",
             core_ktx_testing     : "androidx.arch.core:core-testing:${versions.core_testing}",
     ]

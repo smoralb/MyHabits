@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdkVersion Integer.parseInt(versions.min_sdk_version)
         targetSdkVersion Integer.parseInt(versions.target_sdk_version)
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,17 +21,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         buildFeatures {
+            viewBinding true
             dataBinding true
         }
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    compileOptions {
+        sourceCompatibility versions.java_version
+        targetCompatibility versions.java_version
     }
-
+    kotlinOptions {
+        jvmTarget = versions.java_version
+    }
     packagingOptions {
         exclude "**/attach_hotspot_windows.dll"
         exclude "META-INF/**"
     }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
 
 dependencies {

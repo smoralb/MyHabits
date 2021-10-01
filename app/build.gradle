@@ -23,8 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         buildFeatures {
+            viewBinding true
             dataBinding true
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -33,6 +38,10 @@ android {
         exclude "**/attach_hotspot_windows.dll"
         exclude "META-INF/**"
     }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
 
 dependencies {
