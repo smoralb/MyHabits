@@ -6,10 +6,8 @@ import com.example.baseapplication.presentation.mocks.SAMPLE_NAME
 import com.example.baseapplication.presentation.mocks.sampleResponseModelValidMock
 import com.example.core.data.Result
 import com.example.core.test.BaseViewModelUnitTest
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
@@ -28,8 +26,7 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
     private lateinit var viewModel: FirstViewModel
 
     @BeforeEach
-    fun setUpA() {
-        Dispatchers.setMain(Dispatchers.Unconfined)
+    fun setUp() {
         viewModel = FirstViewModel(getSampleDataUseCase)
     }
 

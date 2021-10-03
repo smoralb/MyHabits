@@ -7,8 +7,14 @@ import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
+/**
+ * JUnit5 extension to be bale to test LiveData objects
+ */
 class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
 
+    /**
+     * sets a delegate before each test that updates Livedata immediately on the calling thread
+     */
     @SuppressLint("RestrictedApi")
     override fun beforeEach(context: ExtensionContext?) {
         ArchTaskExecutor.getInstance()
@@ -21,6 +27,9 @@ class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
             })
     }
 
+    /**
+     * Remove delegate after each test, to avoid influencing other tests
+     */
     @SuppressLint("RestrictedApi")
     override fun afterEach(context: ExtensionContext?) {
         ArchTaskExecutor.getInstance().setDelegate(null)

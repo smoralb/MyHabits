@@ -1,4 +1,4 @@
-package com.example.baseapplication.domain.core
+package com.example.core.extensions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,7 +1,7 @@
 package com.example.baseapplication.presentation.main.firstView
 
 import androidx.lifecycle.MutableLiveData
-import com.example.baseapplication.domain.core.execute
+import com.example.core.extensions.execute
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.core.extensions.EMPTY_STRING
 import com.example.core.extensions.update
