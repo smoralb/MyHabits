@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
 /**
- * JUnit5 extension to be bale to test LiveData objects
+ * JUnit5 extension to be able to test LiveData objects
  */
 class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
 

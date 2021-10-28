@@ -5,22 +5,24 @@ buildscript {
         kotlin_version = "1.5.20"
         gradle_version = '7.0.2'
         jUnit5_version = "1.7.1.1"
+        jacoco_version = "0.8.7"
     }
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$jUnit5_version"
+        classpath "org.jacoco:org.jacoco.core:$jacoco_version"
     }
 }
 
 allprojects {
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
     }
 }
 
