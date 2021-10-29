@@ -14,6 +14,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     buildTypes {
         debug {
 
@@ -21,10 +26,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        buildFeatures {
-            viewBinding true
-            dataBinding true
         }
     }
     compileOptions {
@@ -38,8 +39,4 @@ android {
         exclude "**/attach_hotspot_windows.dll"
         exclude "META-INF/**"
     }
-}
-
-jacoco {
-    toolVersion = "0.8.7"
 }
