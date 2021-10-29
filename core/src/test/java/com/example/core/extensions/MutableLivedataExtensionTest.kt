@@ -1,9 +1,7 @@
-package com.example.core.extenstions
+package com.example.core.extensions
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.example.core.extensions.EMPTY_STRING
-import com.example.core.extensions.update
 import com.example.core.test.BaseUnitTest
 import org.junit.Rule
 import org.junit.Test
