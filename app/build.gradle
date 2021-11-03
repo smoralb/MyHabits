@@ -4,6 +4,4 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project (':core')
-    //Testing
-    testImplementation testing.values()
 }
