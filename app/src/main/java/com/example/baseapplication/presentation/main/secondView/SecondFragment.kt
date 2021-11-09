@@ -6,9 +6,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.baseapplication.BR
 import com.example.baseapplication.R
 import com.example.baseapplication.databinding.FragmentSecondBinding
+import com.example.core.presentation.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SecondFragment : com.example.core.presentation.base.BaseFragment<FragmentSecondBinding, SecondViewModel>
+class SecondFragment : BaseFragment<SecondViewState, FragmentSecondBinding, SecondViewModel>
     (R.layout.fragment_second, BR.viewModel) {
 
     override val viewModel by viewModel<SecondViewModel>()

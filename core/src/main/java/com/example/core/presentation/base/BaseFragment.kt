@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<DB: ViewDataBinding, VM: BaseViewModel>(
+abstract class BaseFragment<S: BaseState, DB: ViewDataBinding, out VM: BaseViewModel<S>>(
     @LayoutRes val layoutResID: Int,
-    val viewModelReference: Int
+    private val viewModelReference: Int
 ) : Fragment() {
 
     private var _binding: DB? = null
