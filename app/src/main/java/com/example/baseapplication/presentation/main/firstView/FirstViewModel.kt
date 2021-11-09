@@ -17,6 +17,10 @@ class FirstViewModel(
         getSampleData()
     }
 
+    fun navigateToSecondView() {
+        _viewState.postValue(FirstViewState.NavigateToSecondFragment)
+    }
+
     private fun getSampleData() {
         _viewState.postValue(FirstViewState.Loading)
         execute {

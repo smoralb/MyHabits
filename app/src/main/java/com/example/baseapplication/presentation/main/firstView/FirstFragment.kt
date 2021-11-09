@@ -27,9 +27,7 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
             is FirstViewState.Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is FirstViewState.HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is FirstViewState.NavigateToSecondFragment -> {
-                binding.buttonFirst.setOnClickListener {
                     findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-                }
             }
         }
     }
