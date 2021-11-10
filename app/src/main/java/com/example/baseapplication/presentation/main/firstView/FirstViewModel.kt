@@ -18,20 +18,20 @@ class FirstViewModel(
     }
 
     fun navigateToSecondView() {
-        _viewState.postValue(FirstViewState.NavigateToSecondFragment)
+        _viewState update FirstViewState.NavigateToSecondFragment
     }
 
     private fun getSampleData() {
-        _viewState.postValue(FirstViewState.Loading)
+        _viewState update FirstViewState.Loading
         execute {
             getSampleDataUseCase(GetSampleDataUseCase.Params("sampleId")).fold(
                 handleSuccess = {
                     firstViewModelText update it.first().name
-                    _viewState.postValue(FirstViewState.HideLoading)
+                    _viewState update FirstViewState.HideLoading
                 },
                 handleError = {
                     firstViewModelText update "Error"
-                    _viewState.postValue(FirstViewState.HideLoading)
+                    _viewState update FirstViewState.HideLoading
                 }
             )
         }
