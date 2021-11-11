@@ -35,7 +35,7 @@ proguard/
 # Gradle files
 .gradle
 gradlew
-gradle.bat
+gradlew.bat
 gradle.properties
 
 # Android Studio
