@@ -10,8 +10,8 @@ interface FirstFragmentMapper {
 class FirstFragmentMapperImpl : FirstFragmentMapper {
 
     override fun mapItems(model: SampleDataModel) = SampleDataItems.SampleDataItem(
-        name = model.name,
-        url = model.url
+        name = "",
+        url = ""
     )
 
 }

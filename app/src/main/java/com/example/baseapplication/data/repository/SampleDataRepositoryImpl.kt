@@ -7,6 +7,6 @@ import com.example.baseapplication.domain.repository.SampleDataRepository
 
 class SampleDataRepositoryImpl(private val remoteSource: SampleDataRemoteSource): SampleDataRepository {
 
-    override suspend fun getSampleData(): Result<List<SampleDataModel>> = remoteSource.getSampleData()
+    override suspend fun getSampleData(): Result<SampleDataModel> = remoteSource.getSampleData()
 
 }

@@ -1,9 +1,9 @@
 package com.example.baseapplication.domain.usecases
 
-import com.example.core.domain.UseCase
 import com.example.baseapplication.domain.model.SampleDataModel
+import com.example.core.domain.UseCase
 
-interface GetSampleDataUseCase: UseCase<GetSampleDataUseCase.Params, List<SampleDataModel>> {
+interface GetSampleDataUseCase: UseCase<GetSampleDataUseCase.Params, SampleDataModel> {
 
     data class Params(val sameDataID: String)
 }

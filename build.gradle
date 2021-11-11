@@ -1,7 +1,7 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
-    ext{
+    ext {
         kotlin_version = "1.5.20"
         gradle_version = '7.0.2'
         jUnit5_version = "1.7.1.1"

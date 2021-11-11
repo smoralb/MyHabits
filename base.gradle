@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion Integer.parseInt(versions.min_sdk_version)
         targetSdkVersion Integer.parseInt(versions.target_sdk_version)
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", API_KEY)
     }
 
     buildFeatures {

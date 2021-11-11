@@ -26,7 +26,7 @@ class FirstViewModel(
         execute {
             getSampleDataUseCase(GetSampleDataUseCase.Params("sampleId")).fold(
                 handleSuccess = {
-                    firstViewModelText update it.first().name
+                    firstViewModelText update it.results.first().bookDetails.first().title
                     _viewState update FirstViewState.HideLoading
                 },
                 handleError = {
