@@ -1,30 +1,29 @@
 package com.example.core.presentation.adapters
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T>(
-    val itemVariable: Int,
-    diffCallback: DiffUtil.ItemCallback<T>) :
-    ListAdapter<T, BaseViewHolder<T>>(diffCallback) {
+abstract class BaseAdapter<T: BaseItem, VH: BaseViewHolder<T>>(private val itemVariable: Int) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding =
-            DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, viewType, parent, false)
-        return BaseViewHolder(itemVariable, binding)
-    }
+    var items = listOf<T>()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            if (value.isNotEmpty()) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
+    abstract fun updateData(newItems: List<T>)
 
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) =
-        holder.bind(getItem(position))
+        holder.bind(items[position])
+
+    override fun getItemCount() = items.size
 }
 
-class BaseViewHolder<T>(
+open class BaseViewHolder<T>(
     private val itemVariableId: Int,
     private val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {

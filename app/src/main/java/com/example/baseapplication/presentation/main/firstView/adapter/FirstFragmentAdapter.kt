@@ -1,23 +1,59 @@
 package com.example.baseapplication.presentation.main.firstView.adapter
 
-import androidx.recyclerview.widget.DiffUtil
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.example.baseapplication.BR
 import com.example.baseapplication.R
-import com.example.core.presentation.adapters.BaseAdapter
+import com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems.Companion.ITEM_TYPE
+import com.example.core.presentation.adapters.BaseItem
 
-class FirstFragmentAdapter : BaseAdapter<SampleDataItems>(BR.item, DiffCallBack) {
+class FirstFragmentAdapter : RecyclerView.Adapter<FirstFragmentAdapter.FirstFragmentViewHolder>() {
 
-    object DiffCallBack : DiffUtil.ItemCallback<SampleDataItems>() {
-        override fun areItemsTheSame(oldItem: SampleDataItems, newItem: SampleDataItems): Boolean {
-            return oldItem.name == newItem.name
+    private var itemViewModels: List<BaseItem> = emptyList()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstFragmentViewHolder =
+        when (viewType) {
+            ITEM_TYPE -> createItemViewHolder(parent)
+            else -> throw IllegalArgumentException()
         }
-
-        override fun areContentsTheSame(oldItem: SampleDataItems, newItem: SampleDataItems) =
-            oldItem == newItem
-    }
 
     override fun getItemViewType(position: Int) =
-        when (getItem(position)) {
-            is SampleDataItems.SampleDataItem -> R.layout.item_sample_data
+        when (itemViewModels[position]) {
+            is SampleDataItems.SampleDataItem -> ITEM_TYPE
+            else -> throw IllegalArgumentException()
         }
+
+    override fun getItemCount(): Int = itemViewModels.size
+
+    override fun onBindViewHolder(holder: FirstFragmentViewHolder, position: Int) {
+        holder.bind(itemViewModels[position])
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateItems(items: List<SampleDataItems.SampleDataItem>) {
+        itemViewModels = items
+        notifyDataSetChanged()
+    }
+
+    private fun createItemViewHolder(parent: ViewGroup) =
+        FirstFragmentViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_sample_data,
+                parent,
+                false
+            )
+        )
+
+    class FirstFragmentViewHolder(private val binding: ViewDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(itemViewModel: BaseItem) {
+            binding.setVariable(BR.item, itemViewModel)
+            binding.executePendingBindings()
+        }
+    }
 }
