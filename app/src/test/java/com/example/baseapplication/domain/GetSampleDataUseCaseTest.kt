@@ -1,6 +1,6 @@
 package com.example.baseapplication.domain
 
-import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
+import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
 import com.example.baseapplication.domain.mocks.getSampleDataUseCaseParamsMock
 import com.example.baseapplication.domain.repository.SampleDataRepository
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
@@ -35,7 +35,7 @@ class GetSampleDataUseCaseTest : BaseUnitTest() {
 
     @TestFactory
     fun `GetSampleDataUseCase should return `() = listOf(
-        Result.Success(sampleResponseModelValidMock),
+        Result.Success(sampleResponseChildModelMock),
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {

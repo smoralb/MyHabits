@@ -1,29 +1,34 @@
 package com.example.baseapplication.presentation.mocks
 
-import com.example.baseapplication.domain.model.SampleDataModel
+import com.example.baseapplication.domain.model.SampleChildDetailsModel
+import com.example.baseapplication.domain.model.SampleChildModel
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.core.extensions.EMPTY_STRING
 
-const val SAMPLE_NAME = "SampleName"
-private const val SAMPLE_IMAGE_URL = "imageURL"
+const val SAMPLE_TITLE = "SAMPLE TITLE"
+private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"
+private const val SAMPLE_PUBLISHER = "SAMPLE PUBLISHER"
 
 /**
  * MODEL
  */
 
-internal val sampleResponseModelValidMock = listOf(
-    SampleDataModel(
-        name = SAMPLE_NAME,
-        url = SAMPLE_IMAGE_URL
+//region Valid Models
+
+internal val sampleResponseChildDetailsModelMock =
+    SampleChildDetailsModel(
+        title = SAMPLE_TITLE,
+        description = SAMPLE_DESCRIPTION,
+        publisher = SAMPLE_PUBLISHER
+    )
+
+internal val sampleResponseChildModelMock = SampleChildModel(
+    bookDetails = listOf(
+        sampleResponseChildDetailsModelMock
     )
 )
 
-internal val sampleResponseModelEmptyMock = listOf(
-    SampleDataModel(
-        name = EMPTY_STRING,
-        url = EMPTY_STRING
-    )
-)
+//endregion
 
 /**
  * PARAMS

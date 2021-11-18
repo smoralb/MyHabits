@@ -1,8 +1,8 @@
 package com.example.baseapplication.data.source
 
 import com.example.baseapplication.data.SampleApi
-import com.example.baseapplication.data.mocks.sampleResponseEntityValidMock
-import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
+import com.example.baseapplication.data.mocks.sampleApiResponseValidEntityMock
+import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
 import com.example.baseapplication.data.repository.mapper.SampleDataMapper
 import com.example.core.extensions.EMPTY_STRING
 import com.example.core.test.BaseUnitTest
@@ -39,7 +39,7 @@ class SampleDataRemoteSourceImplTest : BaseUnitTest() {
 
     @TestFactory
     fun `Call api should return result`() = listOf(
-        Response.success(sampleResponseEntityValidMock),
+        Response.success(sampleApiResponseValidEntityMock),
         Response.error(500, EMPTY_STRING.toResponseBody())
     ).map { testCase ->
         DynamicTest.dynamicTest(" $testCase") {
@@ -47,7 +47,7 @@ class SampleDataRemoteSourceImplTest : BaseUnitTest() {
 
                 whenever(api.getSampleData()).thenReturn(testCase)
                 if (testCase.isSuccessful)
-                    whenever(mapper.toDomainModel(any())).thenReturn(sampleResponseModelValidMock)
+                    whenever(mapper.toDomainModel(any())).thenReturn(sampleResponseChildModelMock)
 
                 val result = remoteSource.getSampleData()
 
