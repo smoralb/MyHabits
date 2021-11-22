@@ -15,7 +15,12 @@ class FirstViewModel(
 ) : BaseViewModel<FirstViewState>() {
 
     val firstViewModelText: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
-    val itemList: MutableLiveData<List<SampleDataItems.SampleDataItem>> = MutableLiveData(emptyList())
+    val itemList: MutableLiveData<List<SampleDataItems.SampleDataItem>> =
+        MutableLiveData(emptyList())
+
+    private val onItemClickListener: () -> Unit = {
+        _viewState update FirstViewState.Loading
+    }
 
     fun initialize() {
         getSampleData()
@@ -28,9 +33,9 @@ class FirstViewModel(
     private fun getSampleData() {
         _viewState update FirstViewState.Loading
         execute {
-            getSampleDataUseCase(GetSampleDataUseCase.Params("sampleId")).fold(
+            getSampleDataUseCase(Unit).fold(
                 handleSuccess = {
-                    itemList update mapper.mapItems(it.bookDetails)
+                    itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
                     _viewState update FirstViewState.HideLoading
                 },
                 handleError = {

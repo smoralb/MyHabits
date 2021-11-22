@@ -3,11 +3,10 @@ package com.example.core.presentation.adapters
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-
-abstract class BaseAdapter<T: BaseItem, VH: BaseViewHolder<T>>(private val itemVariable: Int) : RecyclerView.Adapter<BaseViewHolder<T>>() {
+@SuppressLint("NotifyDataSetChanged")
+abstract class BaseAdapter<T: BaseItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<T>()
-        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             if (value.isNotEmpty()) {
                 field = value
@@ -17,8 +16,8 @@ abstract class BaseAdapter<T: BaseItem, VH: BaseViewHolder<T>>(private val itemV
 
     abstract fun updateData(newItems: List<T>)
 
-    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) =
-        holder.bind(items[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
+        (holder as BaseViewHolder<BaseItem>).bind(items[position])
 
     override fun getItemCount() = items.size
 }

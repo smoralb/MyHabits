@@ -1,3 +1,6 @@
 package com.example.core.presentation.adapters
 
-open class BaseItem()
+open interface BaseItem {
+
+    fun onItemClick(itemId: Int?)
+}
