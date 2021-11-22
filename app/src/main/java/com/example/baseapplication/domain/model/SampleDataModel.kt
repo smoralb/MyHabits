@@ -5,6 +5,7 @@ data class SampleChildModel(
 )
 
 data class SampleChildDetailsModel(
+    val isbn: String,
     val title: String,
     val description: String,
     val publisher: String

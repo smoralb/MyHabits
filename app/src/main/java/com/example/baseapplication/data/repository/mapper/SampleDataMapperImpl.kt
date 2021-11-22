@@ -17,9 +17,9 @@ class SampleDataMapperImpl : SampleDataMapper {
 
     private fun mapToChildrenDetails(entity: SampleApiChildDetailsEntity?): SampleChildDetailsModel =
         SampleChildDetailsModel(
+            isbn = entity?.isbn.orEmpty(),
             title = entity?.title.orEmpty(),
             description = entity?.description.orEmpty(),
             publisher = entity?.publisher.orEmpty()
         )
-
 }
