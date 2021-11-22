@@ -1,9 +1,10 @@
-package com.example.baseapplication.data
+package com.example.baseapplication.domain
 
-import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
-import com.example.baseapplication.domain.repository.SampleDataRepository
 import com.example.baseapplication.data.repository.SampleDataRepositoryImpl
 import com.example.baseapplication.data.source.SampleDataRemoteSource
+import com.example.baseapplication.domain.mocks.sampleResponseChildModelMock
+import com.example.baseapplication.domain.repository.SampleDataRepository
+import com.example.core.data.Result
 import com.example.core.test.BaseUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -16,7 +17,6 @@ import org.mockito.Mock
 import org.mockito.kotlin.clearInvocations
 import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
-import com.example.core.data.Result
 
 @ExperimentalCoroutinesApi
 class SampleDataRepositoryTest: BaseUnitTest() {
@@ -33,7 +33,7 @@ class SampleDataRepositoryTest: BaseUnitTest() {
 
     @TestFactory
     fun `repository should call remote source and return `() = listOf(
-        Result.Success(sampleResponseModelValidMock),
+        Result.Success(sampleResponseChildModelMock),
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase as result") {
@@ -43,7 +43,7 @@ class SampleDataRepositoryTest: BaseUnitTest() {
 
                 if (testCase.isSuccess) {
                     assertTrue(result.isSuccess)
-                    assertEquals((result as Result.Success).value, sampleResponseModelValidMock)
+                    assertEquals((result as Result.Success).value, sampleResponseChildModelMock)
                 } else {
                     assertTrue(result.isError)
                 }

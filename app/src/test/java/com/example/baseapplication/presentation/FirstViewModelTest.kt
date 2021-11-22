@@ -2,8 +2,9 @@ package com.example.baseapplication.presentation
 
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.baseapplication.presentation.main.firstView.FirstViewModel
-import com.example.baseapplication.presentation.mocks.SAMPLE_NAME
-import com.example.baseapplication.presentation.mocks.sampleResponseModelValidMock
+import com.example.baseapplication.presentation.main.firstView.mapper.FirstFragmentMapper
+import com.example.baseapplication.presentation.mocks.SAMPLE_TITLE
+import com.example.baseapplication.presentation.mocks.sampleResponseChildModelMock
 import com.example.core.data.Result
 import com.example.core.test.BaseViewModelUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -23,16 +24,19 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
     @Mock
     private lateinit var getSampleDataUseCase: GetSampleDataUseCase
 
+    @Mock
+    private lateinit var mapper: FirstFragmentMapper
+
     private lateinit var viewModel: FirstViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = FirstViewModel(getSampleDataUseCase)
+        viewModel = FirstViewModel(getSampleDataUseCase, mapper)
     }
 
     @TestFactory
     fun `getSampleData should return sample data `() = listOf(
-        Result.Success(sampleResponseModelValidMock),
+        Result.Success(sampleResponseChildModelMock),
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {
@@ -42,7 +46,7 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
                 viewModel.initialize()
 
                 when (testCase.isSuccess) {
-                    true -> assertEquals(viewModel.firstViewModelText.value, SAMPLE_NAME)
+                    true -> assertEquals(viewModel.firstViewModelText.value, SAMPLE_TITLE)
                     else -> assertEquals(viewModel.firstViewModelText.value, "Error")
                 }
             }

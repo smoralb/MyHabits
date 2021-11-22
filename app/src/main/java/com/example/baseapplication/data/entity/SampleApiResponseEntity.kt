@@ -7,6 +7,12 @@ data class SampleApiResponseEntity(
 )
 
 data class SampleApiResponseChildEntity(
-    @Json(name = "name") val name: String?,
-    @Json(name = "url") val image: String?
+    @Json(name = "book_details") val bookDetails: List<SampleApiChildDetailsEntity>?
+)
+
+data class SampleApiChildDetailsEntity(
+    @Json(name = "title") val title: String?,
+    @Json(name = "description") val description: String?,
+    @Json(name = "publisher") val publisher: String?,
+    @Json(name = "primary_isbn13") val isbn: String?
 )

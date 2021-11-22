@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.baseapplication.BR
 import com.example.baseapplication.R
 import com.example.baseapplication.databinding.FragmentFirstBinding
+import com.example.baseapplication.presentation.main.firstView.adapter.FirstFragmentAdapter
 import com.example.core.presentation.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,6 +17,7 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvBookList.adapter = FirstFragmentAdapter()
         with(viewModel) {
             initialize()
             viewState.observeForever { checkViewState(it) }

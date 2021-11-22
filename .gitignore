@@ -34,10 +34,13 @@ proguard/
 
 # Gradle files
 .gradle
+gradlew.bat
+gradle.properties
 
 # Android Studio
 /*/build/
 /*/local.properties
+/*/gradle.properties
 /*/out
 /*/*/build
 /*/*/production

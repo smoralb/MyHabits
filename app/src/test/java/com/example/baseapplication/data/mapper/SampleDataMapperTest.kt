@@ -1,9 +1,11 @@
 package com.example.baseapplication.data.mapper
 
-import com.example.baseapplication.data.mocks.sampleResponseEntityNullMock
-import com.example.baseapplication.data.mocks.sampleResponseEntityValidMock
+import com.example.baseapplication.data.mocks.sampleApiResponseChildDetailsListNullEntityMock
+import com.example.baseapplication.data.mocks.sampleApiResponseNullEntityMock
+import com.example.baseapplication.data.mocks.sampleApiResponseValidEntityMock
+import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
+import com.example.baseapplication.data.mocks.sampleResponseModelEmptyListMock
 import com.example.baseapplication.data.mocks.sampleResponseModelEmptyMock
-import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
 import com.example.baseapplication.data.repository.mapper.SampleDataMapper
 import com.example.baseapplication.data.repository.mapper.SampleDataMapperImpl
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -22,9 +24,9 @@ class SampleDataMapperTest {
 
     @TestFactory
     fun `mapper should map entity`() = listOf(
-        sampleResponseEntityValidMock to sampleResponseModelValidMock,
-        sampleResponseEntityValidMock.copy(sampleChildResponseEntity = null) to emptyList(),
-        sampleResponseEntityNullMock to sampleResponseModelEmptyMock
+        sampleApiResponseValidEntityMock to sampleResponseChildModelMock,
+        sampleApiResponseNullEntityMock to sampleResponseModelEmptyListMock,
+        sampleApiResponseChildDetailsListNullEntityMock to sampleResponseModelEmptyMock
     ).map { testcase ->
         DynamicTest.dynamicTest(" to model ${testcase.second}") {
             val result = mapper.toDomainModel(testcase.first)

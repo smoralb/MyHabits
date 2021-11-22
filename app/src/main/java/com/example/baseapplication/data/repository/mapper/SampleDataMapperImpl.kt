@@ -1,16 +1,25 @@
 package com.example.baseapplication.data.repository.mapper
 
+import com.example.baseapplication.data.entity.SampleApiChildDetailsEntity
 import com.example.baseapplication.data.entity.SampleApiResponseEntity
-import com.example.baseapplication.domain.model.SampleDataModel
+import com.example.baseapplication.domain.model.SampleChildDetailsModel
+import com.example.baseapplication.domain.model.SampleChildModel
 
 class SampleDataMapperImpl : SampleDataMapper {
 
-    override fun toDomainModel(entity: SampleApiResponseEntity?): List<SampleDataModel> =
-        entity?.sampleChildResponseEntity?.map {
-            SampleDataModel(
-                name = it.name.orEmpty(),
-                url = it.image.orEmpty()
+    override fun toDomainModel(entity: SampleApiResponseEntity?): SampleChildModel =
+        entity?.sampleChildResponseEntity?.first().let { section ->
+            SampleChildModel(
+                bookDetails = section?.bookDetails?.map { mapToChildrenDetails(it) }.orEmpty()
             )
-        }.orEmpty()
+        }
 
+
+    private fun mapToChildrenDetails(entity: SampleApiChildDetailsEntity?): SampleChildDetailsModel =
+        SampleChildDetailsModel(
+            isbn = entity?.isbn.orEmpty(),
+            title = entity?.title.orEmpty(),
+            description = entity?.description.orEmpty(),
+            publisher = entity?.publisher.orEmpty()
+        )
 }

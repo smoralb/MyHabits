@@ -1,6 +1,12 @@
 package com.example.baseapplication.domain.model
 
-data class SampleDataModel(
-    val name: String,
-    val url: String
+data class SampleChildModel(
+    val bookDetails: List<SampleChildDetailsModel>
+)
+
+data class SampleChildDetailsModel(
+    val isbn: String,
+    val title: String,
+    val description: String,
+    val publisher: String
 )
