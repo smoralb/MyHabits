@@ -1,6 +1,6 @@
 package com.example.habits.presentation.main.firstView.adapter
 
-import androidx.databinding.BindingAdapter
+import android.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.presentation.adapters.BaseAdapter
 import com.example.core.presentation.adapters.BaseItem
