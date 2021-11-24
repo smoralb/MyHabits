@@ -29,8 +29,7 @@ ext {
             mockito_core             : "3.4.0",
             mockito_inline           : "3.4.0",
             coroutines_test_version  : "1.5.2",
-            core_testing             : "2.1.0",
-            room_version             : "2.3.0"
+            core_testing             : "2.1.0"
     ]
 
     koin = [
@@ -73,10 +72,5 @@ ext {
 
     coil = [
             coil_dependency: "io.coil-kt:coil:${versions.coil_version}"
-    ]
-
-    room = [
-            room_runtime : "androidx.room:room-runtime:${versions.room_version}",
-            room_compiler: "androidx.room:room-compiler:${versions.room_version}"
     ]
 }

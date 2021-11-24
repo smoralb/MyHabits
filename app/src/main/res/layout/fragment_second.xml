@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.habits.presentation.main.secondView.SecondFragment">
+        tools:context="com.example.baseapplication.presentation.main.secondView.SecondFragment">
 
         <TextView
             android:id="@+id/textview_second"
