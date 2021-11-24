@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.habits.presentation.main.firstView.FirstViewModel" />
+            type="com.example.baseapplication.presentation.main.firstView.FirstViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.habits.presentation.main.firstView.FirstFragment">
+        tools:context="com.example.baseapplication.presentation.main.firstView.FirstFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_bookList"

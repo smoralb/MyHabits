@@ -8,7 +8,6 @@ android {
     buildToolsVersion versions.buil_tools_version
 
     defaultConfig {
-        applicationId "com.example.habits"
         minSdkVersion Integer.parseInt(versions.min_sdk_version)
         targetSdkVersion Integer.parseInt(versions.target_sdk_version)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
