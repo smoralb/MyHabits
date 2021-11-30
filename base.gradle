@@ -3,6 +3,10 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
 apply plugin: "de.mannodermaus.android-junit5"
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
     buildToolsVersion versions.buil_tools_version
@@ -11,7 +15,7 @@ android {
         minSdkVersion Integer.parseInt(versions.min_sdk_version)
         targetSdkVersion Integer.parseInt(versions.target_sdk_version)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_KEY", API_KEY)
+        buildConfigField("String", "API_KEY", apikeyProperties['API_KEY'])
     }
 
     buildFeatures {

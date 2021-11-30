@@ -18,7 +18,7 @@ class FirstViewModel(
     val itemList: MutableLiveData<List<SampleDataItems.SampleDataItem>> =
         MutableLiveData(emptyList())
 
-    private val onItemClickListener: () -> Unit = {
+    private val onItemClickListener: (String) -> Unit = {
         _viewState update FirstViewState.Loading
     }
 
