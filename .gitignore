@@ -40,6 +40,7 @@ gradlew.bat
 # Android Studio
 /*/build/
 /*/local.properties
+/*/apikey.properties
 /*/out
 /*/*/build
 /*/*/production
