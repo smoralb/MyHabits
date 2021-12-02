@@ -10,9 +10,8 @@
         android:name="com.example.baseapplication.presentation.main.firstView.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/toSecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
@@ -20,9 +19,11 @@
         android:name="com.example.baseapplication.presentation.main.secondView.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
-
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/toFirstFragment"
+            app:destination="@+id/FirstFragment" />
+        <argument
+            android:name="isbn"
+            app:argType="string" />
     </fragment>
 </navigation>

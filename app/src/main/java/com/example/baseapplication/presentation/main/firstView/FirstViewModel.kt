@@ -19,15 +19,11 @@ class FirstViewModel(
         MutableLiveData(emptyList())
 
     private val onItemClickListener: (String) -> Unit = {
-        _viewState update FirstViewState.Loading
+        _viewState update FirstViewState.NavigateToSecondFragment(isbn = it)
     }
 
     fun initialize() {
         getSampleData()
-    }
-
-    fun navigateToSecondView() {
-        _viewState update FirstViewState.NavigateToSecondFragment
     }
 
     private fun getSampleData() {

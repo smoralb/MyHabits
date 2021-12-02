@@ -12,4 +12,9 @@
     <!-- Item sample data -->
     <dimen name="margin_item_image_view">14dp</dimen>
     <dimen name="margin_start_item_title">14dp</dimen>
+
+    <!-- Second fragment -->
+    <dimen name="margin_top_item_title">14dp</dimen>
+    <dimen name="margin_item_description">14dp</dimen>
+    <dimen name="margin_item_publisher">14dp</dimen>
 </resources>

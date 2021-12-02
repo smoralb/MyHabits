@@ -10,7 +10,7 @@ sealed class SampleDataItems : BaseItem {
         val publisher: String,
         val onItemClickListener: (String) -> Unit
     ) : SampleDataItems() {
-        override fun onItemClick(itemId: String?) {
+        override fun onItemClick() {
             onItemClickListener(isbn)
         }
     }

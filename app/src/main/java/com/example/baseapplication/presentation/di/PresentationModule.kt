@@ -12,5 +12,5 @@ val presentationModule = module {
     factory<FirstFragmentMapper> { FirstFragmentMapperImpl() }
 
     viewModel { FirstViewModel(get(), get()) }
-    viewModel { SecondViewModel() }
+    viewModel { SecondViewModel(get()) }
 }
