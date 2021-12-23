@@ -1,8 +1,7 @@
-package com.example.baseapplication.data
+package com.example.baseapplication.data.repository
 
 import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
 import com.example.baseapplication.domain.repository.SampleDataRepository
-import com.example.baseapplication.data.repository.SampleDataRepositoryImpl
 import com.example.baseapplication.data.source.SampleDataRemoteSource
 import com.example.core.test.BaseUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +18,7 @@ import org.mockito.kotlin.whenever
 import com.example.core.data.Result
 
 @ExperimentalCoroutinesApi
-class SampleDataRepositoryTest: BaseUnitTest() {
+class SampleDataRepositoryImplTest: BaseUnitTest() {
 
     @Mock
     private lateinit var remoteSource: SampleDataRemoteSource
