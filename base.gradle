@@ -1,0 +1,42 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: "kotlin-kapt"
+apply plugin: "de.mannodermaus.android-junit5"
+
+android {
+    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
+    buildToolsVersion versions.buil_tools_version
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(versions.min_sdk_version)
+        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    buildTypes {
+        debug {
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility versions.java_version
+        targetCompatibility versions.java_version
+    }
+    kotlinOptions {
+        jvmTarget = versions.java_version
+    }
+    packagingOptions {
+        exclude "**/attach_hotspot_windows.dll"
+        exclude "META-INF/**"
+    }
+}

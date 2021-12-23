@@ -1,0 +1,162 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+ext.excludes = [
+        // Databinding
+        '**/databinding/*',
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        '**/*test*.*',
+        'android/**/*.*',
+        // Koin
+        '**/di/*',
+        '**/*Module*.*',
+        // kotlin
+        '**/*MapperImpl*.*',
+        '**/*$ViewInjector*.*',
+        '**/*$ViewBinder*.*',
+        '**/BuildConfig.*',
+        '**/*Component*.*',
+        '**/*BR*.*',
+        '**/Manifest*.*',
+        '**/*$Lambda$*.*',
+        '**/*Companion*.*',
+        '**/*Module*.*',
+        '**/*Dagger*.*',
+        '**/*Hilt*.*',
+        '**/*MembersInjector*.*',
+        '**/*_MembersInjector.class',
+        '**/*_Factory*.*',
+        '**/*_Provide*Factory*.*',
+        '**/*Extensions*.*',
+        // Views
+        '**/*Activity.*',
+        '**/*Fragment.*',
+        '**/*Adapter.*',
+        '**/*Application.*',
+        '**/Params'
+]
+
+project.afterEvaluate {
+    /*
+    Application variants are the buildtypes for modules that are applications (In my case: app)
+    These application variants are related to buildTypes. In this case, debug and release.
+     */
+    println("Has application variants? => ${android.hasProperty("applicationVariants").toString().capitalize()}")
+    if (android.hasProperty("applicationVariants")) {
+        android.applicationVariants.all { variant ->
+            println("Application variant\n" +
+                    "  |_Name => ${variant.name.toString().capitalize()}")
+            createVariantCoverage(variant)
+        }
+    }
+    else {
+        /*
+        Application variants are the buildtypes for modules that are libraries (In my case: core)
+        These application variants are related to buildTypes. In this case, debug and release.
+        */
+        println("Has library variants? => ${android.hasProperty("libraryVariants").toString().capitalize()}")
+        if (android.hasProperty("libraryVariants")) {
+            android.libraryVariants.all { variant ->
+                println("Application variant\n" +
+                        "  |_Name => ${variant.name.toString().capitalize()}")
+                createVariantCoverage(variant)
+            }
+        }
+    }
+}
+
+def createVariantCoverage(variant) {
+    println("Create coverage for\n" +
+            "  |_Variant => ${variant.name.toString().capitalize()}")
+    def variantName = variant.name
+    println("Create task for\n" +
+            "  |_Variant => ${variant.name.toString().capitalize()}\n" +
+            "  |_Test name => test${variantName.capitalize()}UnitTest")
+    def testTaskName = "test${variantName.capitalize()}UnitTest"
+
+    // Add unit test coverage tasks
+    println("Creation of task to generate coverage\n" +
+            "  |_${testTaskName}Coverage")
+    tasks.create(name: "${testTaskName}Coverage", type: JacocoReport, dependsOn: "$testTaskName") {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports for the ${variantName.capitalize()} build."
+
+        reports {
+            html.enabled = true
+        }
+
+        /**
+         * dir: variant.javaCompileProvider.get().destinationDir are all the generated classes related to the build process
+         * excludes: This is the list of classes that we would like to exclude from all these classes by the java compiler
+         */
+        println("Java compiled classes' direction to exclude\n" +
+                "  |_${variant.javaCompileProvider.get().destinationDir}")
+        def javaClasses = fileTree(dir: variant.javaCompileProvider.get().destinationDir, excludes: project.excludes)
+        println("Kotlin compiled classes' direction to exclude\n" +
+                "  |_${buildDir}/tmp/kotlin-classes/${variantName}")
+        def kotlinClasses = fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}", excludes: project.excludes)
+        getClassDirectories().setFrom(files([javaClasses, kotlinClasses]))
+
+        println("Get Source code from directories\n" +
+                "  |_$project.projectDir/src/main/java\n" +
+                "  |_$project.projectDir/src/${variantName}/java if exists")
+        getSourceDirectories().setFrom(files([
+                "$project.projectDir/src/main/java",
+                "$project.projectDir/src/${variantName}/java",
+                "$project.projectDir/src/main/kotlin",
+                "$project.projectDir/src/${variantName}/kotlin"
+        ]))
+
+        println("Get Jacoco exec file where reports are done\n" +
+                "  |-> ${project.buildDir}/jacoco/${testTaskName}.exec")
+        getExecutionData().setFrom(files("${project.buildDir}/jacoco/${testTaskName}.exec"))
+
+        /*
+        TODO: Show code coverage percentage
+        if (variantName == "debug") {
+            def m = new File("${project.buildDir}/reports/tests/${testTaskName}/index.html").text =~ /Total[^%]*>(\d?\d?\d?%)/
+            if (m) {
+                println "Test coverage: ${m[0][1]}\n\n\n"
+            }
+        }
+        */
+    }
+
+    // Add unit test coverage verification tasks
+    tasks.create(name: "${testTaskName}CoverageVerification", type: JacocoCoverageVerification, dependsOn: "${testTaskName}Coverage") {
+        group = "Reporting"
+        description = "Verifies Jacoco coverage for the ${variantName.capitalize()} build."
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0
+                }
+            }
+            rule {
+                element = 'BUNDLE'
+                limit {
+                    counter = 'LINE'
+                    value = 'COVEREDRATIO'
+                    minimum = 0.10
+                }
+            }
+        }
+        def javaClasses = fileTree(dir: variant.javaCompileProvider.get().destinationDir, excludes: project.excludes)
+        def kotlinClasses = fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}", excludes: project.excludes)
+        getClassDirectories().setFrom(files([javaClasses, kotlinClasses]))
+        getSourceDirectories().setFrom(files([
+                "$project.projectDir/src/main/java",
+                "$project.projectDir/src/${variantName}/java",
+                "$project.projectDir/src/main/kotlin",
+                "$project.projectDir/src/${variantName}/kotlin"
+        ]))
+        getExecutionData().setFrom(files("${project.buildDir}/jacoco/${testTaskName}.exec"))
+    }
+}

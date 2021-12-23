@@ -1,61 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: "kotlin-kapt"
-apply plugin: "de.mannodermaus.android-junit5"
-
-android {
-    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
-    buildToolsVersion versions.buil_tools_version
-
-    defaultConfig {
-        minSdkVersion Integer.parseInt(versions.min_sdk_version)
-        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {d
-        debug {
-
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        buildFeatures {
-            viewBinding true
-            dataBinding true
-        }
-    }
-    compileOptions {
-        sourceCompatibility versions.java_version
-        targetCompatibility versions.java_version
-    }
-    kotlinOptions {
-        jvmTarget = versions.java_version
-    }
-    packagingOptions {
-        exclude "**/attach_hotspot_windows.dll"
-        exclude "META-INF/**"
-    }
-}
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-}
+apply from: "$project.rootDir/jacoco.gradle"
+apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api basic.values()
-    //Koin
     api koin.values()
-    //Navigation
     api navigation.values()
     //Retrofit, okhttp3, moshi
     api network.values()
-    //Coil
     implementation coil.values()
-    //Testing
     api testing.values()
 }

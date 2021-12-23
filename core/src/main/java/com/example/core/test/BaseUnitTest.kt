@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.jupiter.MockitoExtension
 
 @ExtendWith(MockitoExtension::class)
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 open class BaseUnitTest : TestCoroutineScope by TestCoroutineScope() {
 
     @Rule
