@@ -19,7 +19,7 @@ class FirstViewModel(
         MutableLiveData(emptyList())
 
     private val onItemClickListener: (String) -> Unit = {
-        _viewState update FirstViewState.NavigateToSecondFragment(isbn = it)
+        viewState update FirstViewState.NavigateToSecondFragment(isbn = it)
     }
 
     fun initialize() {
@@ -27,16 +27,16 @@ class FirstViewModel(
     }
 
     private fun getSampleData() {
-        _viewState update FirstViewState.Loading
+        viewState update FirstViewState.Loading
         execute {
             getSampleDataUseCase(Unit).fold(
                 handleSuccess = {
                     itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
-                    _viewState update FirstViewState.HideLoading
+                    viewState update FirstViewState.HideLoading
                 },
                 handleError = {
                     firstViewModelText update "Error"
-                    _viewState update FirstViewState.HideLoading
+                    viewState update FirstViewState.HideLoading
                 }
             )
         }
