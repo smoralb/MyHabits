@@ -32,7 +32,7 @@ class FirstViewModel(
             getSampleDataUseCase(Unit).fold(
                 handleSuccess = {
                     itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
-                    viewState update FirstViewState.HideLoading
+                    viewState update FirstViewState.HideLoadingSampleApiResponseEntityMocks
                 },
                 handleError = {
                     firstViewModelText update "Error"

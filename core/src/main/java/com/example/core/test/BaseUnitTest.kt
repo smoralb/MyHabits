@@ -11,11 +11,11 @@ import org.mockito.junit.jupiter.MockitoExtension
 @ExtendWith(MockitoExtension::class)
 @OptIn(ExperimentalCoroutinesApi::class)
 open class BaseUnitTest : TestCoroutineScope by TestCoroutineScope() {
-
+/*
     @Rule
     @JvmField
     val injectMocks = TestRule { statement, _ ->
         MockitoAnnotations.openMocks(this)
         statement
-    }
+    }*/
 }
