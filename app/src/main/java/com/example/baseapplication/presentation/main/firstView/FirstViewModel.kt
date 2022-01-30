@@ -2,6 +2,7 @@ package com.example.baseapplication.presentation.main.firstView
 
 import androidx.lifecycle.MutableLiveData
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
+import com.example.baseapplication.presentation.main.firstView.FirstViewState.HideLoading
 import com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems
 import com.example.baseapplication.presentation.main.firstView.mapper.FirstFragmentMapper
 import com.example.core.extensions.EMPTY_STRING
@@ -32,11 +33,11 @@ class FirstViewModel(
             getSampleDataUseCase(Unit).fold(
                 handleSuccess = {
                     itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
-                    viewState update FirstViewState.HideLoadingSampleApiResponseEntityMocks
+                    viewState update HideLoading
                 },
                 handleError = {
                     firstViewModelText update "Error"
-                    viewState update FirstViewState.HideLoading
+                    viewState update HideLoading
                 }
             )
         }

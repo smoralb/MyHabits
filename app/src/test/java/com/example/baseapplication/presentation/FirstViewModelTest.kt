@@ -3,8 +3,8 @@ package com.example.baseapplication.presentation
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.baseapplication.presentation.main.firstView.FirstViewModel
 import com.example.baseapplication.presentation.main.firstView.FirstViewState
+import com.example.baseapplication.presentation.main.firstView.FirstViewState.HideLoading
 import com.example.baseapplication.presentation.main.firstView.mapper.FirstFragmentMapper
-import com.example.baseapplication.presentation.mocks.SAMPLE_TITLE
 import com.example.baseapplication.presentation.mocks.sampleResponseChildModelMock
 import com.example.core.data.Result
 import com.example.core.test.BaseViewModelUnitTest
@@ -50,13 +50,14 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
 
                 when (testCase.isSuccess) {
                     true -> {
-                        verify(mapper.mapItems(any(), any()))
+                        verify(mapper).mapItems(any(), any())
+                        assertEquals(HideLoading, viewModel.viewState.value)
                     }
                     else -> assertEquals(viewModel.firstViewModelText.value, "Error")
                 }
             }
-            assertTrue(viewModel.viewState.value == FirstViewState.HideLoading)
-            clearInvocations(getSampleDataUseCase)
+            assertTrue(viewModel.viewState.value == HideLoading)
+            clearInvocations(getSampleDataUseCase, mapper)
         }
     }
 
