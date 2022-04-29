@@ -7,7 +7,6 @@ import com.example.baseapplication.R
 import com.example.baseapplication.databinding.FragmentFirstBinding
 import com.example.baseapplication.presentation.main.firstView.adapter.FirstFragmentAdapter
 import com.example.core.presentation.base.BaseFragment
-import com.example.core.presentation.base.BaseState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstViewModel>

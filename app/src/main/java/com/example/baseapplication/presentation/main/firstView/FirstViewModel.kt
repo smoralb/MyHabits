@@ -1,5 +1,7 @@
 package com.example.baseapplication.presentation.main.firstView
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems
@@ -40,5 +42,9 @@ class FirstViewModel(
                 }
             )
         }
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        TODO("Not yet implemented")
     }
 }
