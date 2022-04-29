@@ -30,11 +30,10 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutResID, container, false)
-        binding.apply {
+        return _binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            binding.setVariable(viewModelReference, viewModel)
-        }
-        return binding.root
+            setVariable(viewModelReference, viewModel)
+        }?.root
     }
 
     override fun onDestroyView() {

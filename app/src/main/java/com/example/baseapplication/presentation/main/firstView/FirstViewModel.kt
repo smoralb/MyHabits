@@ -4,6 +4,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
+import com.example.baseapplication.presentation.main.firstView.FirstViewState.HideLoading
 import com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems
 import com.example.baseapplication.presentation.main.firstView.mapper.FirstFragmentMapper
 import com.example.core.extensions.EMPTY_STRING
@@ -21,7 +22,7 @@ class FirstViewModel(
         MutableLiveData(emptyList())
 
     private val onItemClickListener: (String) -> Unit = {
-        _viewState update FirstViewState.NavigateToSecondFragment(isbn = it)
+        viewState update FirstViewState.NavigateToSecondFragment(isbn = it)
     }
 
     fun initialize() {
@@ -29,16 +30,16 @@ class FirstViewModel(
     }
 
     private fun getSampleData() {
-        _viewState update FirstViewState.Loading
+        viewState update FirstViewState.Loading
         execute {
             getSampleDataUseCase(Unit).fold(
                 handleSuccess = {
                     itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
-                    _viewState update FirstViewState.HideLoading
+                    viewState update HideLoading
                 },
                 handleError = {
                     firstViewModelText update "Error"
-                    _viewState update FirstViewState.HideLoading
+                    viewState update HideLoading
                 }
             )
         }

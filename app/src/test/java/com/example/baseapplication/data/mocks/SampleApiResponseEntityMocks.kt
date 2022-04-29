@@ -10,6 +10,7 @@ import com.example.core.extensions.EMPTY_STRING
 private const val SAMPLE_TITLE = "SAMPLE TITLE"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"
 private const val SAMPLE_PUBLISHER = "SAMPLE PUBLISHER"
+private const val SAMPLE_ISBN = "SAMPLE ISBN"
 
 /* ENTITY */
 
@@ -18,7 +19,8 @@ private const val SAMPLE_PUBLISHER = "SAMPLE PUBLISHER"
 internal val sampleApiResponseChildDetailsEntityMock = SampleApiChildDetailsEntity(
     title = SAMPLE_TITLE,
     description = SAMPLE_DESCRIPTION,
-    publisher = SAMPLE_PUBLISHER
+    publisher = SAMPLE_PUBLISHER,
+    isbn = SAMPLE_ISBN
 )
 
 internal val sampleApiResponseValidEntityMock = SampleApiResponseEntity(
@@ -38,7 +40,8 @@ internal val sampleApiResponseValidEntityMock = SampleApiResponseEntity(
 internal val sampleApiResponseChildDetailsNullEntityMock = SampleApiChildDetailsEntity(
     title = null,
     description = null,
-    publisher = null
+    publisher = null,
+    isbn = null
 )
 
 internal val sampleApiResponseChildDetailsListNullEntityMock = SampleApiResponseEntity(
@@ -69,7 +72,8 @@ internal val sampleResponseChildDetailsModelMock =
     SampleChildDetailsModel(
         title = SAMPLE_TITLE,
         description = SAMPLE_DESCRIPTION,
-        publisher = SAMPLE_PUBLISHER
+        publisher = SAMPLE_PUBLISHER,
+        isbn = SAMPLE_ISBN
     )
 
 internal val sampleResponseChildModelMock = SampleChildModel(
@@ -86,7 +90,8 @@ internal val sampleResponseChildDetailsEmptyModelMock =
     SampleChildDetailsModel(
         title = EMPTY_STRING,
         description = EMPTY_STRING,
-        publisher = EMPTY_STRING
+        publisher = EMPTY_STRING,
+        isbn = EMPTY_STRING
     )
 
 internal val sampleResponseModelEmptyMock = SampleChildModel(

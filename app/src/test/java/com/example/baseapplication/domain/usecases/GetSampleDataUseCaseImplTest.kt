@@ -1,7 +1,6 @@
 package com.example.baseapplication.domain
 
 import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
-import com.example.baseapplication.domain.mocks.getSampleDataUseCaseParamsMock
 import com.example.baseapplication.domain.repository.SampleDataRepository
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
 import com.example.baseapplication.domain.usecases.GetSampleDataUseCaseImpl
@@ -42,7 +41,7 @@ class GetSampleDataUseCaseTest : BaseUnitTest() {
             runBlockingTest {
                 whenever(repositoryImpl.getSampleData()).thenReturn(testCase)
 
-                val result = useCase(getSampleDataUseCaseParamsMock)
+                val result = useCase(Unit)
 
                 assertEquals(result.isError, testCase.isError)
                 assertEquals(result.isSuccess, testCase.isSuccess)
