@@ -10,8 +10,4 @@ class SecondViewModelTest : BaseViewModelUnitTest() {
 
     private lateinit var viewModel: SecondViewModel
 
-    @BeforeEach
-    fun setUp() {
-        viewModel = SecondViewModel()
-    }
 }
