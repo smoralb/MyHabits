@@ -5,9 +5,9 @@ import android.view.View
 import com.example.baseapplication.BR
 import com.example.baseapplication.R
 import com.example.baseapplication.databinding.FragmentFirstBinding
+import com.example.baseapplication.presentation.main.firstView.FirstViewState.*
 import com.example.baseapplication.presentation.main.firstView.adapter.FirstFragmentAdapter
 import com.example.core.presentation.base.BaseFragment
-import com.example.core.presentation.base.BaseState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstViewModel>
@@ -26,9 +26,9 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
 
     private fun checkViewState(newState: FirstViewState) {
         when (newState) {
-            is FirstViewState.Loading -> binding.plItemsLoader.visibility = View.VISIBLE
-            is FirstViewState.HideLoading -> binding.plItemsLoader.visibility = View.GONE
-            is FirstViewState.NavigateToSecondFragment ->
+            is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
+            is HideLoading -> binding.plItemsLoader.visibility = View.GONE
+            is NavigateToSecondFragment ->
                 navigateTo(FirstFragmentDirections.toSecondFragment(newState.isbn))
         }
     }
