@@ -25,6 +25,11 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
      */
     val binding: DB get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.viewState.observeForever { checkViewState(it) }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,8 +44,11 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        viewModel.viewState.removeObservers(this)
     }
 
     fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
+
+    abstract fun checkViewState(state: S)
 
 }

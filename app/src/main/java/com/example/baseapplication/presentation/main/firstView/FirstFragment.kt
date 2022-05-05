@@ -18,18 +18,15 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvBookList.adapter = FirstFragmentAdapter()
-        with(viewModel) {
-            initialize()
-            viewState.observeForever { checkViewState(it) }
-        }
+        viewModel.initialize()
     }
 
-    private fun checkViewState(newState: FirstViewState) {
-        when (newState) {
+    override fun checkViewState(state: FirstViewState) {
+        when (state) {
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToSecondFragment ->
-                navigateTo(FirstFragmentDirections.toSecondFragment(newState.isbn))
+                navigateTo(FirstFragmentDirections.toSecondFragment(state.isbn))
         }
     }
 }

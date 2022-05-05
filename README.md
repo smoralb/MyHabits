@@ -48,13 +48,10 @@ For that, I have applied the Jacoco plugin in the `jacoco.gradle` file.
 
 ##FUTURE WORK
 
-- Code Coverage report
-    - Exclude classes not needed.
     - Add Sonar/Codecov and Bitrise.
-    - Show coverage report and build status in repository.
-
-- Check if there are unused dependencies.
-
+    - Improve documentation
+    - Check if there are unused dependencies.
+  
 References:
 
 - ListAdapter -> https://proandroiddev.com/android-data-binding-listadapter-9e72ce50e8c7

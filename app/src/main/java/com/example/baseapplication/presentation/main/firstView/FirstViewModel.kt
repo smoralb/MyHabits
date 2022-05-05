@@ -26,7 +26,7 @@ class FirstViewModel(
         getSampleData()
     }
 
-    private fun getSampleData() {s
+    private fun getSampleData() {
         _viewState update FirstViewState.Loading
         execute {
             getSampleDataUseCase(Unit).fold(

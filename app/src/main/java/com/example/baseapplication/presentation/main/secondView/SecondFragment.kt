@@ -17,12 +17,14 @@ class SecondFragment : BaseFragment<SecondViewState, FragmentSecondBinding, Seco
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(viewModel) {
-            init(args.isbn)
-        }
+        viewModel.init(args.isbn)
 
         binding.tbHeader.setNavigationOnClickListener {
             navigateTo(SecondFragmentDirections.toFirstFragment())
         }
+    }
+
+    override fun checkViewState(state: SecondViewState) {
+        // Nothing to do yet
     }
 }
