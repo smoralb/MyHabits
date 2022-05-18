@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.baseapplication.presentation.main.secondView.SecondViewModel" />
+            type="com.smb.myhabits.presentation.main.secondView.SecondViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.baseapplication.presentation.main.secondView.SecondFragment">
+        tools:context="com.smb.myhabits.presentation.main.secondView.SecondFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar"

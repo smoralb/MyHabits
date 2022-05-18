@@ -1,5 +1,6 @@
 package com.example.core.data
 
+import com.smb.core.data.Result
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 

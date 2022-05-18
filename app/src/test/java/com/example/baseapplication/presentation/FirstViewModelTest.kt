@@ -1,13 +1,13 @@
-package com.example.baseapplication.presentation
+package com.smb.myhabits.presentation
 
-import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
-import com.example.baseapplication.presentation.main.firstView.FirstViewModel
-import com.example.baseapplication.presentation.main.firstView.FirstViewState
-import com.example.baseapplication.presentation.main.firstView.FirstViewState.HideLoading
-import com.example.baseapplication.presentation.main.firstView.mapper.FirstFragmentMapper
-import com.example.baseapplication.presentation.mocks.sampleResponseChildModelMock
-import com.example.core.data.Result
-import com.example.core.test.BaseViewModelUnitTest
+import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
+import com.smb.myhabits.presentation.main.firstView.FirstViewModel
+import com.smb.myhabits.presentation.main.firstView.FirstViewState
+import com.smb.myhabits.presentation.main.firstView.FirstViewState.HideLoading
+import com.smb.myhabits.presentation.main.firstView.mapper.FirstFragmentMapper
+import com.smb.myhabits.presentation.mocks.sampleResponseChildModelMock
+import com.smb.core.data.Result
+import com.smb.core.test.BaseViewModelUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals

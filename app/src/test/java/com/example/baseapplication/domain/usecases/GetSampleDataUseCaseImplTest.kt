@@ -1,11 +1,11 @@
-package com.example.baseapplication.domain
+package com.smb.myhabits.domain
 
-import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
-import com.example.baseapplication.domain.repository.SampleDataRepository
-import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
-import com.example.baseapplication.domain.usecases.GetSampleDataUseCaseImpl
-import com.example.core.data.Result
-import com.example.core.test.BaseUnitTest
+import com.smb.myhabits.data.mocks.sampleResponseChildModelMock
+import com.smb.myhabits.domain.repository.SampleDataRepository
+import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
+import com.smb.myhabits.domain.usecases.GetSampleDataUseCaseImpl
+import com.smb.core.data.Result
+import com.smb.core.test.BaseUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals

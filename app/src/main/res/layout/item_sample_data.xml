@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.example.baseapplication.presentation.main.firstView.adapter.SampleDataItems.SampleDataItem" />
+            type="com.smb.myhabits.presentation.main.firstView.adapter.SampleDataItems.SampleDataItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

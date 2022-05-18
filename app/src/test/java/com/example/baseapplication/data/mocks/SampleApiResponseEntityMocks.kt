@@ -1,11 +1,11 @@
-package com.example.baseapplication.data.mocks
+package com.smb.myhabits.data.mocks
 
-import com.example.baseapplication.data.entity.SampleApiChildDetailsEntity
-import com.example.baseapplication.data.entity.SampleApiResponseChildEntity
-import com.example.baseapplication.data.entity.SampleApiResponseEntity
-import com.example.baseapplication.domain.model.SampleChildDetailsModel
-import com.example.baseapplication.domain.model.SampleChildModel
-import com.example.core.extensions.EMPTY_STRING
+import com.smb.myhabits.data.entity.SampleApiChildDetailsEntity
+import com.smb.myhabits.data.entity.SampleApiResponseChildEntity
+import com.smb.myhabits.data.entity.SampleApiResponseEntity
+import com.smb.myhabits.domain.model.SampleChildDetailsModel
+import com.smb.myhabits.domain.model.SampleChildModel
+import com.smb.core.extensions.EMPTY_STRING
 
 private const val SAMPLE_TITLE = "SAMPLE TITLE"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"

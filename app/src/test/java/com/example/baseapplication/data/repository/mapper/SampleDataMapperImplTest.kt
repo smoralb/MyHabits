@@ -1,9 +1,9 @@
-package com.example.baseapplication.data.repository.mapper
+package com.smb.myhabits.data.repository.mapper
 
-import com.example.baseapplication.data.mocks.sampleResponseEntityNullMock
-import com.example.baseapplication.data.mocks.sampleResponseEntityValidMock
-import com.example.baseapplication.data.mocks.sampleResponseModelEmptyMock
-import com.example.baseapplication.data.mocks.sampleResponseModelValidMock
+import com.smb.myhabits.data.mocks.sampleResponseEntityNullMock
+import com.smb.myhabits.data.mocks.sampleResponseEntityValidMock
+import com.smb.myhabits.data.mocks.sampleResponseModelEmptyMock
+import com.smb.myhabits.data.mocks.sampleResponseModelValidMock
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest

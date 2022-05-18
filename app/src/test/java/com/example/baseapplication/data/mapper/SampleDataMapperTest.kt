@@ -1,13 +1,13 @@
-package com.example.baseapplication.data.mapper
+package com.smb.myhabits.data.mapper
 
-import com.example.baseapplication.data.mocks.sampleApiResponseChildDetailsListNullEntityMock
-import com.example.baseapplication.data.mocks.sampleApiResponseNullEntityMock
-import com.example.baseapplication.data.mocks.sampleApiResponseValidEntityMock
-import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
-import com.example.baseapplication.data.mocks.sampleResponseModelEmptyListMock
-import com.example.baseapplication.data.mocks.sampleResponseModelEmptyMock
-import com.example.baseapplication.data.repository.mapper.SampleDataMapper
-import com.example.baseapplication.data.repository.mapper.SampleDataMapperImpl
+import com.smb.myhabits.data.mocks.sampleApiResponseChildDetailsListNullEntityMock
+import com.smb.myhabits.data.mocks.sampleApiResponseNullEntityMock
+import com.smb.myhabits.data.mocks.sampleApiResponseValidEntityMock
+import com.smb.myhabits.data.mocks.sampleResponseChildModelMock
+import com.smb.myhabits.data.mocks.sampleResponseModelEmptyListMock
+import com.smb.myhabits.data.mocks.sampleResponseModelEmptyMock
+import com.smb.myhabits.data.repository.mapper.SampleDataMapper
+import com.smb.myhabits.data.repository.mapper.SampleDataMapperImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest

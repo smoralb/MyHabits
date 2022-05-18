@@ -1,7 +1,7 @@
-package com.example.baseapplication.presentation
+package com.smb.myhabits.presentation
 
-import com.example.baseapplication.presentation.main.secondView.SecondViewModel
-import com.example.core.test.BaseViewModelUnitTest
+import com.smb.myhabits.presentation.main.secondView.SecondViewModel
+import com.smb.core.test.BaseViewModelUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.BeforeEach
 

@@ -2,7 +2,9 @@ package com.example.core.extensions
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.example.core.test.BaseUnitTest
+import com.smb.core.test.BaseUnitTest
+import com.smb.core.extensions.EMPTY_STRING
+import com.smb.core.extensions.update
 import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals

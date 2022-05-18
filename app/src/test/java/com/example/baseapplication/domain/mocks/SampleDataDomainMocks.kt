@@ -1,9 +1,7 @@
-package com.example.baseapplication.domain.mocks
+package com.smb.myhabits.domain.mocks
 
-import com.example.baseapplication.domain.model.SampleChildDetailsModel
-import com.example.baseapplication.domain.model.SampleChildModel
-import com.example.baseapplication.domain.usecases.GetSampleDataUseCase
-import com.example.core.extensions.EMPTY_STRING
+
+import com.smb.core.extensions.EMPTY_STRING
 
 private const val SAMPLE_TITLE = "SAMPLE TITLE"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"

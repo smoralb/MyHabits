@@ -1,11 +1,10 @@
-package com.example.baseapplication.data.source
+package com.smb.myhabits.data.source
 
-import com.example.baseapplication.data.SampleApi
-import com.example.baseapplication.data.mocks.sampleApiResponseValidEntityMock
-import com.example.baseapplication.data.mocks.sampleResponseChildModelMock
-import com.example.baseapplication.data.repository.mapper.SampleDataMapper
-import com.example.core.extensions.EMPTY_STRING
-import com.example.core.test.BaseUnitTest
+import com.smb.myhabits.data.mocks.sampleApiResponseValidEntityMock
+import com.smb.myhabits.data.mocks.sampleResponseChildModelMock
+import com.smb.myhabits.data.repository.mapper.SampleDataMapper
+import com.smb.core.extensions.EMPTY_STRING
+import com.smb.core.test.BaseUnitTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -25,7 +24,7 @@ import retrofit2.Response
 class SampleDataRemoteSourceImplTest : BaseUnitTest() {
 
     @Mock
-    private lateinit var api: SampleApi
+    private lateinit var api: com.smb.myhabits.data.SampleApi
 
     @Mock
     private lateinit var mapper: SampleDataMapper
