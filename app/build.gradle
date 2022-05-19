@@ -2,7 +2,10 @@ apply plugin: 'com.android.application'
 apply from: "$project.rootDir/jacoco.gradle"
 apply from: "$project.rootDir/base.gradle"
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'com.google.gms.google-services'
 
 dependencies {
     implementation project (':core')
+    implementation platform (firebase_bom.get("firebase_bom"))
+    implementation firebase_apps.values()
 }

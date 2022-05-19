@@ -1,76 +1,85 @@
 ext {
     versions = [
-            compile_sdk_version      : "30",
-            buil_tools_version       : "30.0.3",
-            min_sdk_version          : "26",
-            target_sdk_version       : "30",
-            java_version             : JavaVersion.VERSION_11.toString(),
-            koin_version             : '2.2.3',
-            koin_viewmodel_version   : "2.2.2",
-            core_ktx_version         : "1.3.2",
-            app_compat_version       : "1.2.0",
-            material_version         : "1.3.0",
-            constraint_version       : "1.3.0",
-            fragment_version         : "2.3.5",
-            navigation_version       : "2.3.5",
-            jUnit_version            : "4.12",
-            jUnit_test_version       : "1.1.2",
-            espresso_version         : "3.3.0",
-            retrofit_version         : "2.9.0",
-            okhttp3_version          : "4.9.1",
+            compile_sdk              : "30",
+            buil_tools               : "30.0.3",
+            min_sdk                  : "26",
+            target_sdk               : "30",
+            java                     : JavaVersion.VERSION_11.toString(),
+            koin                     : '2.2.3',
+            koin_viewmodel           : "2.2.2",
+            core_ktx                 : "1.3.2",
+            app_compat               : "1.2.0",
+            material                 : "1.3.0",
+            constraint               : "1.3.0",
+            fragment                 : "2.3.5",
+            navigation               : "2.3.5",
+            jUnit                    : "4.12",
+            jUnit_test               : "1.1.2",
+            espresso                 : "3.3.0",
+            retrofit                 : "2.9.0",
+            okhttp3                  : "4.9.1",
             okhttp_loggin_interceptor: "4.9.1",
-            moshi_version            : "1.12.0",
-            moshi_converter_version  : "2.4.0",
-            coil_version             : "1.3.0",
-            jupiter_version          : "5.7.1",
+            moshi                    : "1.12.0",
+            moshi_converter          : "2.4.0",
+            coil                     : "1.3.0",
+            jupiter                  : "5.7.1",
             jupiter_vintage          : "5.7.1",
-            mockito_version          : "3.2.0",
+            mockito                  : "3.2.0",
             mockito_jupiter          : "3.8.0",
             mockito_core             : "3.4.0",
             mockito_inline           : "3.4.0",
-            coroutines_test_version  : "1.5.2",
-            core_testing             : "2.1.0"
+            coroutines_test          : "1.5.2",
+            core_testing             : "2.1.0",
+            firebase_bom             : "30.0.1"
     ]
 
     koin = [
-            koin_dependency          : "io.insert-koin:koin-android:${versions.koin_version}",
-            koin_viewmodel_dependency: "io.insert-koin:koin-androidx-viewmodel:${versions.koin_viewmodel_version}"
+            koin          : "io.insert-koin:koin-android:${versions.koin}",
+            koin_viewmodel: "io.insert-koin:koin-androidx-viewmodel:${versions.koin_viewmodel}"
     ]
 
     basic = [
-            core_ktx_dependency  : "androidx.core:core-ktx:${versions.core_ktx_version}",
-            app_compat_dependency: "androidx.appcompat:appcompat:${versions.app_compat_version}",
-            material_dependency  : "com.google.android.material:material:${versions.material_version}",
-            constraint_dependency: "androidx.constraintlayout:constraintlayout:${versions.constraint_version}"
+            core_ktx  : "androidx.core:core-ktx:${versions.core_ktx}",
+            app_compat: "androidx.appcompat:appcompat:${versions.app_compat}",
+            material  : "com.google.android.material:material:${versions.material}",
+            constraint: "androidx.constraintlayout:constraintlayout:${versions.constraint}"
     ]
 
     navigation = [
-            navigation_dependency: "androidx.navigation:navigation-ui-ktx:${versions.navigation_version}",
-            fragment_dependency  : "androidx.navigation:navigation-fragment-ktx:${versions.fragment_version}"
+            navigation: "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+            fragment  : "androidx.navigation:navigation-fragment-ktx:${versions.fragment}"
     ]
 
     testing = [
-            jupiter_api          : "org.junit.jupiter:junit-jupiter-api:${versions.jupiter_version}",
-            jupiter_engine       : "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter_version}",
+            jupiter_api          : "org.junit.jupiter:junit-jupiter-api:${versions.jupiter}",
+            jupiter_engine       : "org.junit.jupiter:junit-jupiter-engine:${versions.jupiter}",
             jupiter_parameterized: "org.junit.jupiter:junit-jupiter-params:${versions.jupiter_vintage}",
-            jupiter_vintage      : "org.junit.vintage:junit-vintage-engine:${versions.jupiter_version}",
-            mockito_kotlin       : "org.mockito.kotlin:mockito-kotlin:${versions.mockito_version}",
+            jupiter_vintage      : "org.junit.vintage:junit-vintage-engine:${versions.jupiter}",
+            mockito_kotlin       : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
             mockito_jupiter      : "org.mockito:mockito-junit-jupiter:${versions.mockito_jupiter}",
             mockito_core         : "org.mockito:mockito-core:${versions.mockito_core}",
             mockito_inline       : "org.mockito:mockito-inline:${versions.mockito_inline}",
-            coroutines_test      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines_test_version}",
+            coroutines_test      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines_test}",
             core_ktx_testing     : "androidx.arch.core:core-testing:${versions.core_testing}",
     ]
 
     network = [
-            retrofit_dependency       : "com.squareup.retrofit2:retrofit:${versions.retrofit_version}",
-            okhttp3_dependency        : "com.squareup.okhttp3:okhttp:${versions.okhttp3_version}",
-            okhttp_loggin_interceptor : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_loggin_interceptor}",
-            moshi_dependency          : "com.squareup.moshi:moshi-kotlin:${versions.moshi_version}",
-            moshi_converter_dependency: "com.squareup.retrofit2:converter-moshi:${versions.moshi_converter_version}"
+            retrofit                 : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            okhttp3                  : "com.squareup.okhttp3:okhttp:${versions.okhttp3}",
+            okhttp_loggin_interceptor: "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_loggin_interceptor}",
+            moshi                    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
+            moshi_converter          : "com.squareup.retrofit2:converter-moshi:${versions.moshi_converter}"
     ]
 
     coil = [
-            coil_dependency: "io.coil-kt:coil:${versions.coil_version}"
+            coil: "io.coil-kt:coil:${versions.coil}"
+    ]
+
+    firebase_bom = [
+            firebase_bom: "com.google.firebase:firebase-bom:${versions.firebase_bom}"
+    ]
+
+    firebase_apps = [
+            firebase_firestore: 'com.google.firebase:firebase-firestore'
     ]
 }

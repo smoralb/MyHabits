@@ -9,12 +9,12 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    compileSdkVersion Integer.parseInt(versions.compile_sdk_version)
-    buildToolsVersion versions.buil_tools_version
+    compileSdkVersion Integer.parseInt(versions.compile_sdk)
+    buildToolsVersion versions.buil_tools
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(versions.min_sdk_version)
-        targetSdkVersion Integer.parseInt(versions.target_sdk_version)
+        minSdkVersion Integer.parseInt(versions.min_sdk)
+        targetSdkVersion Integer.parseInt(versions.target_sdk)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_KEY", apikeyProperties['API_KEY'])
     }
@@ -34,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility versions.java_version
-        targetCompatibility versions.java_version
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
     }
     kotlinOptions {
-        jvmTarget = versions.java_version
+        jvmTarget = versions.java
     }
     packagingOptions {
         exclude "**/attach_hotspot_windows.dll"
