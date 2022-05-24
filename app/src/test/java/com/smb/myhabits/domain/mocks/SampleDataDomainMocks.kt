@@ -1,12 +1,12 @@
 package com.smb.myhabits.domain.mocks
 
-
 import com.smb.core.extensions.EMPTY_STRING
+import com.smb.myhabits.domain.model.HabitListModel
+import com.smb.myhabits.domain.model.HabitModel
 
-private const val SAMPLE_TITLE = "SAMPLE TITLE"
+private const val SAMPLE_ID = "SAMPLE ID"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"
-private const val SAMPLE_PUBLISHER = "SAMPLE PUBLISHER"
-private const val SAMPLE_ISBN = "SAMPLE ISBN"
+private const val SAMPLE_NAME = "SAMPLE NAME"
 
 /**
  * MODEL
@@ -14,40 +14,33 @@ private const val SAMPLE_ISBN = "SAMPLE ISBN"
 
 //region Valid Models
 
-internal val sampleResponseChildDetailsModelMock =
-    SampleChildDetailsModel(
-        title = SAMPLE_TITLE,
-        description = SAMPLE_DESCRIPTION,
-        publisher = SAMPLE_PUBLISHER,
-        isbn = SAMPLE_ISBN
+internal val habitModelMock =
+    HabitModel(
+        id = SAMPLE_ID,
+        name = SAMPLE_NAME,
+        description = SAMPLE_DESCRIPTION
     )
 
-internal val sampleResponseChildModelMock = SampleChildModel(
-    bookDetails = listOf(
-        sampleResponseChildDetailsModelMock
-    )
+internal val habitListModelMock = HabitListModel(
+    habitList = listOf(habitModelMock)
 )
 
 //endregion
 
 //region Empty models
 
-internal val sampleResponseChildDetailsEmptyModelMock =
-    SampleChildDetailsModel(
-        title = EMPTY_STRING,
-        description = EMPTY_STRING,
-        publisher = EMPTY_STRING,
-        isbn = EMPTY_STRING
-    )
-
-internal val sampleResponseModelEmptyMock = SampleChildModel(
-    bookDetails = listOf(
-        sampleResponseChildDetailsEmptyModelMock
-    )
+internal val habitModelEmptyMock = HabitModel(
+    id = EMPTY_STRING,
+    name = EMPTY_STRING,
+    description = EMPTY_STRING
 )
 
-internal val sampleResponseModelEmptyListMock = SampleChildModel(
-    bookDetails = emptyList()
+internal val habitListEmptyChildModelMock = HabitListModel(
+    habitList = listOf(habitModelMock)
+)
+
+internal val habitListEmptyModelMock = HabitListModel(
+    habitList = emptyList()
 )
 
 //endregion

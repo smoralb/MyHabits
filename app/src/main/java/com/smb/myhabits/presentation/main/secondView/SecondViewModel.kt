@@ -19,17 +19,17 @@ class SecondViewModel(
 
     }
 
-    fun init(isbn: String) {
+    fun init(habitId: String) {
         execute {
             getSampleDataUseCase(Unit).fold(
                 handleError = {},
                 handleSuccess = {
-                    it.bookDetails.first { bookDetails ->
-                        bookDetails.isbn == isbn
+                    it.habitList.first() { habitModel ->
+                        habitModel.id == habitId
                     }.also { details ->
-                        title update details.title
-                        description update details.description
-                        publisher update details.publisher
+                        title update "NAME"
+                        description update "details.description"
+                        publisher update "details.name"
                     }
                 }
             )

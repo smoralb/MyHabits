@@ -11,4 +11,6 @@ dependencies {
     api network.values()
     implementation coil.values()
     api testing.values()
+    implementation platform (firebase_bom.get("firebase_bom"))
+    api firebase_apps.values()
 }

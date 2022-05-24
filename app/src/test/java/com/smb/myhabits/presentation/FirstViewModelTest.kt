@@ -1,15 +1,16 @@
 package com.smb.myhabits.presentation
 
+import com.smb.core.data.Result
+import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
 import com.smb.myhabits.presentation.main.firstView.FirstViewModel
 import com.smb.myhabits.presentation.main.firstView.FirstViewState
 import com.smb.myhabits.presentation.main.firstView.FirstViewState.HideLoading
 import com.smb.myhabits.presentation.main.firstView.mapper.FirstFragmentMapper
-import com.smb.myhabits.presentation.mocks.sampleResponseChildModelMock
-import com.smb.core.data.Result
-import com.smb.core.test.BaseViewModelUnitTest
+import com.smb.myhabits.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -39,24 +40,20 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
 
     @TestFactory
     fun `getSampleData should return sample data `() = listOf(
-        Result.Success(sampleResponseChildModelMock),
-        Result.Error()
+        Result.Success(presentationHabitListModelMock)
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {
-            runBlockingTest {
+            runTest {
                 whenever(getSampleDataUseCase(any())).thenReturn(testCase)
 
                 viewModel.initialize()
 
-                when (testCase.isSuccess) {
-                    true -> {
-                        verify(mapper).mapItems(any(), any())
-                        assertEquals(HideLoading, viewModel.viewState.value)
-                    }
-                    else -> assertEquals(viewModel.firstViewModelText.value, "Error")
+                assertTrue(viewModel.viewState.value == FirstViewState.Loading)
+                if (testCase.isSuccess) {
+                    verify(mapper).mapItems(any(), any())
                 }
+                assertEquals(HideLoading, viewModel.viewState.value)
             }
-            assertTrue(viewModel.viewState.value == HideLoading)
             clearInvocations(getSampleDataUseCase, mapper)
         }
     }

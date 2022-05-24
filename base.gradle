@@ -3,6 +3,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
 apply plugin: "de.mannodermaus.android-junit5"
 apply from: "$project.rootDir/dependencies.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")
 def apikeyProperties = new Properties()

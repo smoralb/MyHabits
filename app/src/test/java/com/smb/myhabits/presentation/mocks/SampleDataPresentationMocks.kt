@@ -1,14 +1,11 @@
 package com.smb.myhabits.presentation.mocks
 
-import com.smb.myhabits.domain.model.SampleChildDetailsModel
-import com.smb.myhabits.domain.model.SampleChildModel
-import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
-import com.smb.core.extensions.EMPTY_STRING
+import com.smb.myhabits.domain.model.HabitListModel
+import com.smb.myhabits.domain.model.HabitModel
 
-const val SAMPLE_TITLE = "SAMPLE TITLE"
+const val SAMPLE_ID = "SAMPLE ID"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"
-private const val SAMPLE_PUBLISHER = "SAMPLE PUBLISHER"
-private const val SAMPLE_ISBN = "SAMPLE ISBN"
+private const val SAMPLE_NAME = "SAMPLE NAME"
 
 /**
  * MODEL
@@ -16,18 +13,14 @@ private const val SAMPLE_ISBN = "SAMPLE ISBN"
 
 //region Valid Models
 
-internal val sampleResponseChildDetailsModelMock =
-    SampleChildDetailsModel(
-        title = SAMPLE_TITLE,
-        description = SAMPLE_DESCRIPTION,
-        publisher = SAMPLE_PUBLISHER,
-        isbn = SAMPLE_ISBN
-    )
+internal val presentationHabitModelMock = HabitModel(
+    id = SAMPLE_ID,
+    name = SAMPLE_NAME,
+    description = SAMPLE_DESCRIPTION
+)
 
-internal val sampleResponseChildModelMock = SampleChildModel(
-    bookDetails = listOf(
-        sampleResponseChildDetailsModelMock
-    )
+internal val presentationHabitListModelMock = HabitListModel(
+    habitList = listOf(presentationHabitModelMock)
 )
 
 //endregion

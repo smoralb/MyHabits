@@ -1,22 +1,23 @@
 package com.smb.myhabits.presentation.main.firstView.mapper
 
-import com.smb.myhabits.domain.model.SampleChildDetailsModel
+import com.smb.core.extensions.EMPTY_STRING
+import com.smb.myhabits.domain.model.HabitModel
 import com.smb.myhabits.presentation.main.firstView.adapter.SampleDataItems
 
 interface FirstFragmentMapper {
-    fun mapItems(model: List<SampleChildDetailsModel>, itemClickListener: (String) -> Unit)
+    fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit)
             : List<SampleDataItems.SampleDataItem>
 }
 
 class FirstFragmentMapperImpl : FirstFragmentMapper {
 
-    override fun mapItems(model: List<SampleChildDetailsModel>, itemClickListener: (String) -> Unit) =
+    override fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit) =
         model.map {
             SampleDataItems.SampleDataItem(
-                isbn = it.isbn,
-                title = it.title,
-                description = it.description,
-                publisher = it.publisher,
+                isbn = EMPTY_STRING,
+                title = it.name ?: "NAME",
+                description = it.description ?: "DESCRIPTION",
+                publisher = it.description ?: "DESCRIPTION",
                 onItemClickListener = itemClickListener
             )
         }
