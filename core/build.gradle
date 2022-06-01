@@ -4,13 +4,9 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    api basic.values()
-    api koin.values()
-    api navigation.values()
-    //Retrofit, okhttp3, moshi
-    api network.values()
+    implementation basic.values()
+    implementation navigation.values()
+    implementation koin.values()
     implementation coil.values()
-    api testing.values()
-    implementation platform (firebase_bom.get("firebase_bom"))
-    api firebase_apps.values()
+    implementation testing.values()
 }

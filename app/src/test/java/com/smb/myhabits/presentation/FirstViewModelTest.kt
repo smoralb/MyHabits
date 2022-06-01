@@ -9,9 +9,7 @@ import com.smb.myhabits.presentation.main.firstView.FirstViewState.HideLoading
 import com.smb.myhabits.presentation.main.firstView.mapper.FirstFragmentMapper
 import com.smb.myhabits.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
@@ -52,7 +50,7 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
                 if (testCase.isSuccess) {
                     verify(mapper).mapItems(any(), any())
                 }
-                assertEquals(HideLoading, viewModel.viewState.value)
+                assertTrue(viewModel.viewState.value is HideLoading)
             }
             clearInvocations(getSampleDataUseCase, mapper)
         }
