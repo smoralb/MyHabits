@@ -2,7 +2,6 @@ package com.smb.core.extensions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -10,5 +9,5 @@ import kotlinx.coroutines.launch
  * when the ViewModel is cleared
  */
 fun ViewModel.execute(useCase: suspend () -> Unit) {
-    viewModelScope.launch(Dispatchers.IO) { useCase() }
+    viewModelScope.launch { useCase() }
 }

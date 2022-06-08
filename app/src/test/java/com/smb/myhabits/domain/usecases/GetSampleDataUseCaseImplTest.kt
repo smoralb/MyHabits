@@ -5,7 +5,7 @@ import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
 import com.smb.myhabits.domain.mocks.habitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
@@ -36,7 +36,7 @@ class GetSampleDataUseCaseTest : BaseUnitTest() {
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {
-            runTest {
+            runBlockingTest {
                 whenever(repositoryImpl.getSampleData()).thenReturn(testCase)
 
                 val result = useCase(Unit)

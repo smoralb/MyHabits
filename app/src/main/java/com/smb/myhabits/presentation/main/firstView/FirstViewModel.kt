@@ -28,8 +28,8 @@ class FirstViewModel(
     }
 
     private fun getSampleData() {
-        _viewState update FirstViewState.Loading
         execute {
+            _viewState update FirstViewState.Loading
             getSampleDataUseCase(Unit).fold(
                 handleSuccess = { habitList ->
                     itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
