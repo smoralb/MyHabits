@@ -69,6 +69,7 @@ ext {
     ]
 
     firebase_apps = [
-            firebase_firestore: 'com.google.firebase:firebase-firestore'
+            firebase_firestore: 'com.google.firebase:firebase-firestore',
+            firebase_auth: 'com.google.firebase:firebase-auth-ktx'
     ]
 }

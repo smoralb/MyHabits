@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top_login_title">40dp</dimen>
+    <dimen name="margin_top_login_email">20dp</dimen>
+    <dimen name="margin_horizontal_email">20dp</dimen>
+    <dimen name="margin_horizontal">20dp</dimen>
+    <dimen name="margin_top_button">40dp</dimen>
+    <dimen name="text_size_login_title">24sp</dimen>
+</resources>

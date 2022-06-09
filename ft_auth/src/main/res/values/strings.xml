@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login fragment -->
+    <string name="login_fragment_title">Login</string>
+    <string name="login_fragment_email_hint">Email</string>
+    <string name="login_fragment_password_hint">Password</string>
+    <string name="login_fragment_login_text">Login</string>
+</resources>

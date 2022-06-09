@@ -1,0 +1,11 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+apply from: "$project.rootDir/base.gradle"
+
+dependencies {
+    implementation project(':core')
+    implementation basic.values()
+    implementation koin.values()
+}
