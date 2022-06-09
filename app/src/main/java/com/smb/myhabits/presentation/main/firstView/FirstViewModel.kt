@@ -1,6 +1,7 @@
 package com.smb.myhabits.presentation.main.firstView
 
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FirebaseFirestore
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
@@ -27,11 +28,11 @@ class FirstViewModel(
     }
 
     private fun getSampleData() {
-        _viewState update FirstViewState.Loading
         execute {
+            _viewState update FirstViewState.Loading
             getSampleDataUseCase(Unit).fold(
-                handleSuccess = {
-                    itemList update mapper.mapItems(it.bookDetails, onItemClickListener)
+                handleSuccess = { habitList ->
+                    itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
                     _viewState update FirstViewState.HideLoading
                 },
                 handleError = {

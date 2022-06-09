@@ -1,9 +1,9 @@
 package com.smb.myhabits.data.repository.mapper
 
-import com.smb.myhabits.data.entity.SampleApiResponseEntity
-import com.smb.myhabits.domain.model.SampleChildModel
+import com.google.firebase.firestore.QuerySnapshot
+import com.smb.myhabits.domain.model.HabitListModel
 
 interface SampleDataMapper {
 
-    fun toDomainModel(entity: SampleApiResponseEntity?): SampleChildModel
+    fun toDomainModel(entity: QuerySnapshot): HabitListModel
 }

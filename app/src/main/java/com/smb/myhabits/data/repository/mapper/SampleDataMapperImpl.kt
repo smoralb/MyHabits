@@ -1,25 +1,22 @@
 package com.smb.myhabits.data.repository.mapper
 
-import com.smb.myhabits.data.entity.SampleApiChildDetailsEntity
-import com.smb.myhabits.data.entity.SampleApiResponseEntity
-import com.smb.myhabits.domain.model.SampleChildDetailsModel
-import com.smb.myhabits.domain.model.SampleChildModel
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import com.smb.myhabits.domain.model.HabitListModel
+import com.smb.myhabits.domain.model.HabitModel
 
 class SampleDataMapperImpl : SampleDataMapper {
 
-    override fun toDomainModel(entity: SampleApiResponseEntity?): SampleChildModel =
-        entity?.sampleChildResponseEntity?.first().let { section ->
-            SampleChildModel(
-                bookDetails = section?.bookDetails?.map { mapToChildrenDetails(it) }.orEmpty()
+    override fun toDomainModel(entity: QuerySnapshot): HabitListModel =
+        HabitListModel(
+            habitList = toHabitModel(entity.documents)
+        )
+
+    private fun toHabitModel(documentSnapshot: MutableList<DocumentSnapshot>): List<HabitModel> =
+        documentSnapshot.map { doc ->
+            HabitModel(
+                name = doc["name"].toString(),
+                description = doc["description"].toString()
             )
         }
-
-
-    private fun mapToChildrenDetails(entity: SampleApiChildDetailsEntity?): SampleChildDetailsModel =
-        SampleChildDetailsModel(
-            isbn = entity?.isbn.orEmpty(),
-            title = entity?.title.orEmpty(),
-            description = entity?.description.orEmpty(),
-            publisher = entity?.publisher.orEmpty()
-        )
 }

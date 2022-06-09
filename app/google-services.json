@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "844155029768",
+    "firebase_url": "https://myhabits-ec4a2-default-rtdb.firebaseio.com",
+    "project_id": "myhabits-ec4a2",
+    "storage_bucket": "myhabits-ec4a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844155029768:android:e0fcab25c95cd0c18b04bd",
+        "android_client_info": {
+          "package_name": "com.smb.myhabits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844155029768-jos9raetsk8upd3p8kio720djdu7i7eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeOoItCfqK4_hcQKxcA6m_jYDXuA808iQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844155029768-jos9raetsk8upd3p8kio720djdu7i7eh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

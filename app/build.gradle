@@ -2,7 +2,15 @@ apply plugin: 'com.android.application'
 apply from: "$project.rootDir/jacoco.gradle"
 apply from: "$project.rootDir/base.gradle"
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project (':core')
+    implementation basic.values()
+    implementation navigation.values()
+    implementation koin.values()
+    implementation coil.values()
+    implementation testing.values()
+    implementation platform (firebase_bom.get("firebase_bom"))
+    implementation firebase_apps.values()
 }

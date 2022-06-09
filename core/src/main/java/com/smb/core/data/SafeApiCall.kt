@@ -1,7 +1,8 @@
 package com.smb.core.data
 
-import retrofit2.HttpException
-import retrofit2.Response
+import coil.network.HttpException
+import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.tasks.await
 
 /**
  * Here we can handle different types or errors retrieved from api and propagate them
@@ -9,16 +10,16 @@ import retrofit2.Response
  */
 
 suspend fun <T, R> safeApiCall(
-    apiCall: suspend () -> Response<T>,
+    apiCall: suspend () -> Task<T>,
     mapper: (T) -> R
 ): Result<R> {
-    val response: Response<T>
+    val response: T
     return try {
-        response = apiCall.invoke()
-        Result.Success(mapper(response.body()!!))
+        response = apiCall.invoke().await()
+        Result.Success(mapper(response))
     } catch (exception: Throwable) {
         when (exception) {
-            is HttpException -> Result.Error(exception.code(), exception.message())
+            is HttpException -> Result.Error()
             else -> Result.Error(null, null)
         }
     }

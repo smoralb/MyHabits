@@ -1,11 +1,9 @@
-package com.smb.myhabits.domain
+package com.smb.myhabits.domain.usecases
 
-import com.smb.myhabits.data.mocks.sampleResponseChildModelMock
 import com.smb.myhabits.domain.repository.SampleDataRepository
-import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
-import com.smb.myhabits.domain.usecases.GetSampleDataUseCaseImpl
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
+import com.smb.myhabits.domain.mocks.habitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -34,7 +32,7 @@ class GetSampleDataUseCaseTest : BaseUnitTest() {
 
     @TestFactory
     fun `GetSampleDataUseCase should return `() = listOf(
-        Result.Success(sampleResponseChildModelMock),
+        Result.Success(habitListModelMock),
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {

@@ -1,12 +1,13 @@
 package com.smb.myhabits.domain
 
-import com.smb.myhabits.data.repository.SampleDataRepositoryImpl
-import com.smb.myhabits.data.source.SampleDataRemoteSource
-import com.smb.myhabits.domain.mocks.sampleResponseChildModelMock
-import com.smb.myhabits.domain.repository.SampleDataRepository
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
+import com.smb.myhabits.data.repository.SampleDataRepositoryImpl
+import com.smb.myhabits.data.source.SampleDataRemoteSource
+import com.smb.myhabits.domain.mocks.habitListModelMock
+import com.smb.myhabits.domain.repository.SampleDataRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -19,7 +20,7 @@ import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class SampleDataRepositoryTest: BaseUnitTest() {
+class SampleDataRepositoryTest : BaseUnitTest() {
 
     @Mock
     private lateinit var remoteSource: SampleDataRemoteSource
@@ -33,20 +34,15 @@ class SampleDataRepositoryTest: BaseUnitTest() {
 
     @TestFactory
     fun `repository should call remote source and return `() = listOf(
-        Result.Success(sampleResponseChildModelMock),
-        Result.Error()
+        Result.Success(habitListModelMock)
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase as result") {
             runBlockingTest {
                 whenever(remoteSource.getSampleData()).thenReturn(testCase)
                 val result = repository.getSampleData()
 
-                if (testCase.isSuccess) {
-                    assertTrue(result.isSuccess)
-                    assertEquals((result as Result.Success).value, sampleResponseChildModelMock)
-                } else {
-                    assertTrue(result.isError)
-                }
+                assertTrue(result.isSuccess)
+                assertEquals((result as Result.Success).value, habitListModelMock)
                 verifyNoMoreInteractions(remoteSource)
                 clearInvocations(remoteSource)
             }
