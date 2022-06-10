@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Login -->
     <dimen name="margin_top_login_title">40dp</dimen>
-    <dimen name="margin_top_login_email">20dp</dimen>
-    <dimen name="margin_horizontal_email">20dp</dimen>
-    <dimen name="margin_horizontal">20dp</dimen>
-    <dimen name="margin_top_button">40dp</dimen>
     <dimen name="text_size_login_title">24sp</dimen>
+    <dimen name="margin_top_login_email">20dp</dimen>
+    <dimen name="margin_top_login_password">20dp</dimen>
+    <dimen name="margin_horizontal_login">20dp</dimen>
+    <dimen name="margin_top_login_button">40dp</dimen>
+    <dimen name="margin_top_create_account_link">20dp</dimen>
+    <!-- Sign up -->
+    <dimen name="margin_top_sign_up_title">40dp</dimen>
+    <dimen name="text_size_sign_up_title">24sp</dimen>
+    <dimen name="margin_top_sign_up_email">24dp</dimen>
+    <dimen name="margin_horizontal_sign_up">20dp</dimen>
+    <dimen name="margin_top_sign_up_button">40dp</dimen>
+    <dimen name="margin_top_has_account">20dp</dimen>
 </resources>

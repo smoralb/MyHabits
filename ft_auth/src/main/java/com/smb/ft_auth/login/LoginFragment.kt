@@ -4,6 +4,7 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_auth.BR
 import com.smb.ft_auth.R
 import com.smb.ft_auth.databinding.FragmentLoginBinding
+import com.smb.ft_auth.signup.SignUpState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewModel>(
@@ -12,7 +13,9 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
     override val viewModel: LoginViewModel by viewModel()
 
     override fun checkViewState(state: LoginState) {
-        TODO("Not yet implemented")
+        when (state) {
+            LoginState.NavigateToSignUp -> navigateTo(LoginFragmentDirections.goToSignUp())
+        }
     }
 
 

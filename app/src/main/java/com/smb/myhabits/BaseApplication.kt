@@ -1,6 +1,7 @@
 package com.smb.myhabits
 
 import android.app.Application
+import com.smb.ft_auth.di.presentationLoginModule
 import com.smb.myhabits.data.di.sampleDataModule
 import com.smb.myhabits.domain.di.baseDomainModule
 import com.smb.myhabits.presentation.di.presentationModule
@@ -16,7 +17,7 @@ class BaseApplication: Application() {
         startKoin{
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@BaseApplication)
-            modules(listOf(presentationModule, sampleDataModule, baseDomainModule))
+            modules(listOf(presentationModule, sampleDataModule, baseDomainModule, presentationLoginModule))
         }
     }
 }
