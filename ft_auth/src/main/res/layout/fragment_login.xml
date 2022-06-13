@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_create_account_link"
             android:text="@string/login_create_account"
+            android:onClick="@{() -> viewModel.navigateToSignUp()}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />

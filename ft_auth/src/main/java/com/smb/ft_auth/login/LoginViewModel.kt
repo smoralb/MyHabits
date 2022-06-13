@@ -6,7 +6,7 @@ import com.smb.ft_auth.login.LoginState.NavigateToSignUp
 
 class LoginViewModel : BaseViewModel<LoginState>() {
 
-    fun onCreateAccountClickListener () {
+    fun navigateToSignUp () {
         _viewState update NavigateToSignUp
     }
 }
