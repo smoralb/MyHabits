@@ -1,9 +1,9 @@
 package com.smb.core.extensions
 
-import android.util.Patterns
+import androidx.core.util.PatternsCompat
 
 fun String.isAValidEmail() =
-    this.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    this.isNotBlank() && PatternsCompat.EMAIL_ADDRESS.matcher(this).matches()
 
 
 fun String.isAValidPassword() =

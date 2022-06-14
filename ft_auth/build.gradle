@@ -10,6 +10,7 @@ dependencies {
     implementation basic.values()
     implementation koin.values()
     implementation navigation.values()
+    implementation testing.values()
     implementation platform (firebase_bom.get("firebase_bom"))
     implementation firebase_apps.values()
 }
