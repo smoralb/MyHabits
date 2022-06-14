@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.ft_auth.signup.SignUpViewModel" />
+            type="com.smb.ft_auth.presentation.signup.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_sign_up_email"
             android:hint="@string/sign_up_email_hint"
+            android:text="@={viewModel.email}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSignUp" />
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_login_password"
             android:hint="@string/sign_up_password_hint"
+            android:text="@={viewModel.password}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etEmail" />
@@ -50,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_sign_up_button"
+            android:onClick="@{() -> viewModel.createNewAccount()}"
             android:text="@string/sign_up_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -65,6 +68,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+        <ProgressBar
+            android:id="@+id/pILoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

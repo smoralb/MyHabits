@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.ft_auth.login.LoginViewModel" />
+            type="com.smb.ft_auth.presentation.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

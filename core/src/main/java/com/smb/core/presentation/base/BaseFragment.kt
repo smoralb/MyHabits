@@ -51,4 +51,6 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
 
     abstract fun checkViewState(state: S)
 
+
+
 }

@@ -1,4 +1,4 @@
-package com.smb.ft_auth.login
+package com.smb.ft_auth.presentation.login
 
 import com.smb.core.presentation.base.BaseState
 

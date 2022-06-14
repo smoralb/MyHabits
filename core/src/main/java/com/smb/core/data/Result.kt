@@ -2,7 +2,8 @@ package com.smb.core.data
 
 sealed class Result<out S> {
     data class Success<out S>(val value: S) : Result<S>()
-    data class Error(val code: Int? = null, val error: String? = null) : Result<Nothing>()
+    data class Error(val code: Int? = null, val error: String? = null, val errorId: Int? = null) :
+        Result<Nothing>()
 
     val isSuccess
         get() = this is Success
@@ -17,7 +18,7 @@ sealed class Result<out S> {
     ) {
         when (this) {
             is Success -> handleSuccess(value)
-            is Error -> handleError(Error(code, error))
+            is Error -> handleError(Error(code, error, errorId))
         }
     }
 }
