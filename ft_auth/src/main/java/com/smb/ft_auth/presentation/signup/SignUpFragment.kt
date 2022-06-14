@@ -23,17 +23,17 @@ class SignUpFragment : BaseFragment<SignUpState, FragmentSignupBinding, SignUpVi
         when (state) {
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
             is ShowError -> showToastResult(state.message)
-            is ShowSuccess -> showToastResult(R.string.sign_up_success)
+            is ShowSuccess -> showToastResult(getString(R.string.sign_up_success))
             is NavigateToLogin -> navigateTo(SignUpFragmentDirections.goToLogin())
         }
     }
 
-    private fun showToastResult(messageId: Int) {
+    private fun showToastResult(messageId: String) {
         hideKeyboard()
         binding.pILoading.visibility = GONE
         Toast.makeText(
             activity,
-            getString(messageId),
+            messageId,
             Toast.LENGTH_LONG
         ).show()
     }

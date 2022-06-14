@@ -3,7 +3,6 @@ package com.smb.ft_auth.data.source
 import com.google.firebase.auth.FirebaseAuth
 import com.smb.core.data.Result
 import com.smb.core.data.safeApiCall
-import kotlinx.coroutines.tasks.await
 
 class AuthRemoteDataSourceImpl(
     private val auth: FirebaseAuth
@@ -13,6 +12,8 @@ class AuthRemoteDataSourceImpl(
             apiCall = {
                 auth.createUserWithEmailAndPassword(email, password)
             },
-            mapper = {}
+            mapper = {
+                //Mapper not needed
+            }
         )
 }

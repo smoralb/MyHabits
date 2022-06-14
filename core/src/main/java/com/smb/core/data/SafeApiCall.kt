@@ -2,6 +2,7 @@ package com.smb.core.data
 
 import coil.network.HttpException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.coroutines.tasks.await
 
 /**
@@ -20,7 +21,8 @@ suspend fun <T, R> safeApiCall(
     } catch (exception: Throwable) {
         when (exception) {
             is HttpException -> Result.Error()
-            else -> Result.Error(null, null)
+            is FirebaseAuthUserCollisionException -> Result.Error(error = exception.localizedMessage)
+            else -> Result.Error(null)
         }
     }
 }

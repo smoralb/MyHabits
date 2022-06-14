@@ -5,6 +5,6 @@ import com.smb.core.presentation.base.BaseState
 sealed class SignUpState : BaseState() {
     object ShowLoading : SignUpState()
     object NavigateToLogin : SignUpState()
-    data class ShowError(val message: Int) : SignUpState()
+    data class ShowError(val message: String) : SignUpState()
     object ShowSuccess : SignUpState()
 }

@@ -10,9 +10,11 @@ import com.smb.ft_auth.presentation.signup.SignUpState.NavigateToLogin
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowError
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowLoading
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowSuccess
+import com.smb.ft_auth.presentation.signup.mapper.SignUpMapper
 
 class SignUpViewModel(
-    private val createAccountUseCase: CreateNewAccountUseCase
+    private val createAccountUseCase: CreateNewAccountUseCase,
+    private val mapper: SignUpMapper
 ) : BaseViewModel<SignUpState>() {
 
     val email: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
@@ -32,7 +34,7 @@ class SignUpViewModel(
                 )
             ).fold(
                 handleError = {
-                    _viewState update ShowError(it.errorId)
+                    _viewState update ShowError(mapper.checkErrorMessage(it))
                 },
                 handleSuccess = {
                     _viewState update ShowSuccess
