@@ -36,7 +36,7 @@ class SignUpViewModel(
             ).fold(
                 handleError = {
                     _viewState update HideLoading
-                    _viewState update ShowError(it.errorId ?: -1)
+                    _viewState update ShowError(it.errorId)
                 },
                 handleSuccess = {
                     _viewState update HideLoading

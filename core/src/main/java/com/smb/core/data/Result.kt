@@ -2,7 +2,7 @@ package com.smb.core.data
 
 sealed class Result<out S> {
     data class Success<out S>(val value: S) : Result<S>()
-    data class Error(val code: Int? = null, val error: String? = null, val errorId: Int? = null) :
+    data class Error(val code: Int? = null, val error: String? = null, val errorId: Int = -1) :
         Result<Nothing>()
 
     val isSuccess
