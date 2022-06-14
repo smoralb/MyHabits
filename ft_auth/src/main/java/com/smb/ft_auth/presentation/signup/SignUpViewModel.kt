@@ -6,8 +6,6 @@ import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_auth.domain.usecase.CreateNewAccountUseCase
-import com.smb.ft_auth.presentation.signup.SignUpState.HideKeyboard
-import com.smb.ft_auth.presentation.signup.SignUpState.HideLoading
 import com.smb.ft_auth.presentation.signup.SignUpState.NavigateToLogin
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowError
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowLoading
@@ -26,7 +24,6 @@ class SignUpViewModel(
 
     fun createNewAccount() {
         _viewState update ShowLoading
-        _viewState update HideKeyboard
         execute {
             createAccountUseCase(
                 CreateNewAccountUseCase.Params(
@@ -35,11 +32,9 @@ class SignUpViewModel(
                 )
             ).fold(
                 handleError = {
-                    _viewState update HideLoading
                     _viewState update ShowError(it.errorId)
                 },
                 handleSuccess = {
-                    _viewState update HideLoading
                     _viewState update ShowSuccess
                 }
             )

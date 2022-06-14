@@ -8,7 +8,6 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_auth.BR
 import com.smb.ft_auth.R
 import com.smb.ft_auth.databinding.FragmentSignupBinding
-import com.smb.ft_auth.presentation.signup.SignUpState.HideLoading
 import com.smb.ft_auth.presentation.signup.SignUpState.NavigateToLogin
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowError
 import com.smb.ft_auth.presentation.signup.SignUpState.ShowLoading
@@ -23,15 +22,15 @@ class SignUpFragment : BaseFragment<SignUpState, FragmentSignupBinding, SignUpVi
     override fun checkViewState(state: SignUpState) {
         when (state) {
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
-            is HideLoading -> binding.pILoading.visibility = GONE
             is ShowError -> showToastResult(state.message)
             is ShowSuccess -> showToastResult(R.string.sign_up_success)
             is NavigateToLogin -> navigateTo(SignUpFragmentDirections.goToLogin())
-            is SignUpState.HideKeyboard -> hideKeyboard()
         }
     }
 
     private fun showToastResult(messageId: Int) {
+        hideKeyboard()
+        binding.pILoading.visibility = GONE
         Toast.makeText(
             activity,
             getString(messageId),

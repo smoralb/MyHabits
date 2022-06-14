@@ -1,8 +1,10 @@
 package com.smb.core.data
 
+import com.example.core.R
+
 sealed class Result<out S> {
     data class Success<out S>(val value: S) : Result<S>()
-    data class Error(val code: Int? = null, val error: String? = null, val errorId: Int = -1) :
+    data class Error(val code: Int? = null, val error: String? = null, val errorId: Int = R.string.generic_error) :
         Result<Nothing>()
 
     val isSuccess
