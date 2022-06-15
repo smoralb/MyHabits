@@ -16,4 +16,14 @@ class AuthRemoteDataSourceImpl(
                 //Mapper not needed
             }
         )
+
+    override suspend fun login(email: String, password: String): Result<Unit> =
+        safeApiCall(
+            apiCall = {
+                auth.signInWithEmailAndPassword(email, password)
+            },
+            mapper = {
+                //Mapper not needed
+            }
+        )
 }

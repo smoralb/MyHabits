@@ -7,9 +7,9 @@ import com.smb.ft_auth.presentation.signup.mapper.SignUpMapperImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-val presentationLoginModule = module {
+val presentationAuthModule = module {
 
-    factory<LoginViewModel> { LoginViewModel() }
+    factory<LoginViewModel> { LoginViewModel(loginUseCase = get()) }
 
     single<SignUpMapper> { SignUpMapperImpl(context = androidContext()) }
 

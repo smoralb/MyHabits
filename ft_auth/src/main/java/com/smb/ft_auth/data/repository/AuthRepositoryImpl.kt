@@ -9,4 +9,7 @@ class AuthRepositoryImpl(
 ) : AuthRepository {
     override suspend fun createNewAccount(email: String, password: String): Result<Unit> =
         source.createNewAccount(email, password)
+
+    override suspend fun login(email: String, password: String): Result<Unit> =
+        source.login(email, password)
 }
