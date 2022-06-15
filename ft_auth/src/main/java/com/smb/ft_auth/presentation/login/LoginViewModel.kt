@@ -6,6 +6,7 @@ import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_auth.domain.usecase.LoginUseCase
+import com.smb.ft_auth.domain.usecase.RecoverPasswordUseCase
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToMainView
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToSignUp
 import com.smb.ft_auth.presentation.login.LoginState.ShowError
@@ -14,6 +15,7 @@ import com.smb.ft_auth.presentation.login.mapper.LoginMapper
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
+    private val recoverPassword: RecoverPasswordUseCase,
     private val mapper: LoginMapper
 ) : BaseViewModel<LoginState>() {
 
@@ -22,6 +24,20 @@ class LoginViewModel(
 
     fun navigateToSignUp() {
         _viewState update NavigateToSignUp
+    }
+
+    fun recoverPassword() {
+        _viewState update ShowLoading
+        execute {
+            recoverPassword(RecoverPasswordUseCase.Params("smoralber@gmail.com")).fold(
+                handleSuccess = {
+                    _viewState update LoginState.HideLoading
+                },
+                handleError = {
+                    _viewState update ShowError(mapper.checkErrorMessage(it))
+                }
+            )
+        }
     }
 
     fun login() {

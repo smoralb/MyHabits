@@ -7,11 +7,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.coroutines.tasks.await
 
-/**
- * Here we can handle different types or errors retrieved from api and propagate them
- * to the presentation layer
- */
-
 suspend fun <T, R> safeApiCall(
     apiCall: suspend () -> Task<T>,
     mapper: (T) -> R
@@ -26,7 +21,7 @@ suspend fun <T, R> safeApiCall(
             is FirebaseAuthUserCollisionException -> Result.Error(error = exception.localizedMessage)
             is FirebaseAuthInvalidUserException -> Result.Error(error = exception.localizedMessage)
             is FirebaseAuthInvalidCredentialsException -> Result.Error(error = exception.localizedMessage)
-            else -> Result.Error(null)
+            else -> Result.Error()
         }
     }
 }

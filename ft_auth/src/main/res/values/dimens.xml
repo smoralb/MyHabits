@@ -8,6 +8,7 @@
     <dimen name="margin_horizontal_login">20dp</dimen>
     <dimen name="margin_top_login_button">40dp</dimen>
     <dimen name="margin_top_create_account_link">20dp</dimen>
+    <dimen name="margin_top_forget_account_link">20dp</dimen>
     <!-- Sign up -->
     <dimen name="margin_top_sign_up_title">40dp</dimen>
     <dimen name="text_size_sign_up_title">24sp</dimen>

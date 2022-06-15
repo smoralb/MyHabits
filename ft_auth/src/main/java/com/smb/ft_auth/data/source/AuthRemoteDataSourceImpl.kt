@@ -26,4 +26,14 @@ class AuthRemoteDataSourceImpl(
                 //Mapper not needed
             }
         )
+
+    override suspend fun recoverPassword(email: String): Result<Unit> =
+        safeApiCall(
+            apiCall = {
+                auth.sendPasswordResetEmail(email)
+            },
+            mapper = {
+                //Mapper not needed
+            }
+        )
 }

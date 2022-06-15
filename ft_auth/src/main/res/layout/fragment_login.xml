@@ -70,6 +70,17 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
+        <TextView
+            android:id="@+id/tvForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_forget_account_link"
+            android:onClick="@{() -> viewModel.recoverPassword()}"
+            android:text="@string/login_forget_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+
         <ProgressBar
             android:id="@+id/pILoading"
             android:layout_width="wrap_content"

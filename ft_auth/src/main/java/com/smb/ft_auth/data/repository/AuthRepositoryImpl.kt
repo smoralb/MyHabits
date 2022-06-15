@@ -12,4 +12,7 @@ class AuthRepositoryImpl(
 
     override suspend fun login(email: String, password: String): Result<Unit> =
         source.login(email, password)
+
+    override suspend fun recoverPassword(email: String): Result<Unit> =
+        source.recoverPassword(email = email)
 }
