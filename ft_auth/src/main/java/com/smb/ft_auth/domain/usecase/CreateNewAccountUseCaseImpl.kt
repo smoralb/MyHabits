@@ -13,6 +13,6 @@ class CreateNewAccountUseCaseImpl(
         if (params.email.isAValidEmail()) {
             if (params.password.isAValidPassword()) {
                 repository.createNewAccount(params.email, params.password)
-            } else Result.Error(errorId = R.string.sign_up_incorrect_password)
-        } else Result.Error(errorId = R.string.sign_up_incorrect_mail)
+            } else Result.Error(errorId = R.string.auth_incorrect_password)
+        } else Result.Error(errorId = R.string.auth_incorrect_mail)
 }

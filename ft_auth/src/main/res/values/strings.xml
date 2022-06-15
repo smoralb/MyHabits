@@ -17,6 +17,7 @@
     <string name="sign_up_has_account">Do you have an account? Login</string>
     <string name="sign_up_success">User created successfully</string>
     <string name="sign_up_error">User cannot be created</string>
-    <string name="sign_up_incorrect_mail">The email is not correct</string>
-    <string name="sign_up_incorrect_password">The password is not correct</string>
+    <!-- Auth -->
+    <string name="auth_incorrect_mail">The email is not correct</string>
+    <string name="auth_incorrect_password">The password is not correct</string>
 </resources>
