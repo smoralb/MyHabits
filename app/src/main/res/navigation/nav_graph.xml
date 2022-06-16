@@ -21,9 +21,10 @@
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/toFirstFragment"
-            app:destination="@+id/FirstFragment" />
+            app:destination="@+id/auth_nav_graph" />
         <argument
             android:name="isbn"
             app:argType="string" />
     </fragment>
+    <include app:graph = "@navigation/auth_nav_graph"/>
 </navigation>

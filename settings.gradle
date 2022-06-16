@@ -1,2 +1,3 @@
 rootProject.name = "MyHabits"
 include ':core', ':app'
+include ':ft_auth'

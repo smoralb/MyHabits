@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login fragment -->
+    <string name="login_fragment_name">LoginFragment</string>
+    <string name="login_title">Login</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_text">Login</string>
+    <string name="login_create_account">Do not have an account? Create one</string>
+    <string name="login_forget_password">Forget password?</string>
+
+    <!-- Sign up fragment -->
+    <string name="signup_fragment_name">SignUpFragment</string>
+    <string name="sign_up_title">Sign up</string>
+    <string name="sign_up_email_hint">Email</string>
+    <string name="sign_up_password_hint">Password</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_has_account">Do you have an account? Login</string>
+    <string name="sign_up_success">User created successfully</string>
+    <string name="sign_up_error">User cannot be created</string>
+    <!-- Auth -->
+    <string name="auth_incorrect_mail">The email is not correct</string>
+    <string name="auth_incorrect_password">The password is not correct</string>
+</resources>

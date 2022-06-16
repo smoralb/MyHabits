@@ -2,12 +2,10 @@ package com.smb.core.data
 
 import coil.network.HttpException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import kotlinx.coroutines.tasks.await
-
-/**
- * Here we can handle different types or errors retrieved from api and propagate them
- * to the presentation layer
- */
 
 suspend fun <T, R> safeApiCall(
     apiCall: suspend () -> Task<T>,
@@ -20,7 +18,10 @@ suspend fun <T, R> safeApiCall(
     } catch (exception: Throwable) {
         when (exception) {
             is HttpException -> Result.Error()
-            else -> Result.Error(null, null)
+            is FirebaseAuthUserCollisionException -> Result.Error(error = exception.localizedMessage)
+            is FirebaseAuthInvalidUserException -> Result.Error(error = exception.localizedMessage)
+            is FirebaseAuthInvalidCredentialsException -> Result.Error(error = exception.localizedMessage)
+            else -> Result.Error()
         }
     }
 }
