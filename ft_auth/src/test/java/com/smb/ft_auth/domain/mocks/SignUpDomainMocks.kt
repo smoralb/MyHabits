@@ -9,3 +9,11 @@ data class CreateNewAccountDataMock(
     val password: String,
     val validPassword: Boolean
 )
+
+data class LoginDataMock(
+    val result: Result<Unit>,
+    val email: String,
+    val validEmail: Boolean,
+    val password: String,
+    val validPassword: Boolean
+)
