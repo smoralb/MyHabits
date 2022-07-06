@@ -2,12 +2,11 @@ package com.smb.myhabits.domain
 
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
-import com.smb.myhabits.data.repository.SampleDataRepositoryImpl
-import com.smb.myhabits.data.source.SampleDataRemoteSource
+import com.smb.ft_main.data.repository.SampleDataRepositoryImpl
+import com.smb.ft_main.data.source.SampleDataRemoteSource
 import com.smb.myhabits.domain.mocks.habitListModelMock
-import com.smb.myhabits.domain.repository.SampleDataRepository
+import com.smb.ft_main.domain.repository.SampleDataRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

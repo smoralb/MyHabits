@@ -21,4 +21,6 @@
     <!-- Auth -->
     <string name="auth_incorrect_mail">The email is not correct</string>
     <string name="auth_incorrect_password">The password is not correct</string>
+    <!-- Landing -->
+    <string name="landing_fragment_name">LandingFragment</string>
 </resources>

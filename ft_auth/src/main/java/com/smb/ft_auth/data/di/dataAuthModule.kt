@@ -8,6 +8,7 @@ import com.smb.ft_auth.domain.repository.AuthRepository
 import org.koin.dsl.module
 
 val dataAuthModule = module {
+    single<FirebaseAuth> { FirebaseAuth.getInstance() }
     single<AuthRepository> { AuthRepositoryImpl(source = get()) }
-    single<AuthRemoteDataSource> { AuthRemoteDataSourceImpl(auth = FirebaseAuth.getInstance()) }
+    single<AuthRemoteDataSource> { AuthRemoteDataSourceImpl(auth = get()) }
 }

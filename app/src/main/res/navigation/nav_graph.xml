@@ -3,28 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/fragmentLanding">
+
+    <include app:graph="@navigation/auth_nav_graph" />
+    <include app:graph="@navigation/main_nav_graph" />
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.smb.myhabits.presentation.main.firstView.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/fragmentLanding"
+        android:name="com.smb.myhabits.presentation.MainFragment"
+        android:label="@string/landing_fragment_name"
+        tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/toSecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.smb.myhabits.presentation.main.secondView.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+            android:id="@+id/navigateToLogin"
+            app:destination="@id/auth_nav_graph" />
         <action
-            android:id="@+id/toFirstFragment"
-            app:destination="@+id/auth_nav_graph" />
-        <argument
-            android:name="isbn"
-            app:argType="string" />
+            android:id="@+id/navigateToMain"
+            app:destination="@id/main_nav_graph" />
     </fragment>
-    <include app:graph = "@navigation/auth_nav_graph"/>
 </navigation>

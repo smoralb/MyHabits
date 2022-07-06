@@ -1,8 +1,10 @@
 package com.smb.myhabits.domain.usecases
 
-import com.smb.myhabits.domain.repository.SampleDataRepository
+import com.smb.ft_main.domain.repository.SampleDataRepository
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
+import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
+import com.smb.ft_main.domain.usecases.GetSampleDataUseCaseImpl
 import com.smb.myhabits.domain.mocks.habitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

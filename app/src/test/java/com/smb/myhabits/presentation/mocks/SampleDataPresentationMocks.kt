@@ -1,7 +1,7 @@
 package com.smb.myhabits.presentation.mocks
 
-import com.smb.myhabits.domain.model.HabitListModel
-import com.smb.myhabits.domain.model.HabitModel
+import com.smb.ft_main.domain.model.HabitListModel
+import com.smb.ft_main.domain.model.HabitModel
 
 const val SAMPLE_ID = "SAMPLE ID"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"

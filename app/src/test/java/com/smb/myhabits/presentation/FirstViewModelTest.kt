@@ -2,9 +2,8 @@ package com.smb.myhabits.presentation
 
 import com.smb.core.data.Result
 import com.smb.core.test.BaseViewModelUnitTest
-import com.smb.myhabits.domain.usecases.GetSampleDataUseCase
+import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
 import com.smb.myhabits.presentation.main.firstView.FirstViewModel
-import com.smb.myhabits.presentation.main.firstView.FirstViewState
 import com.smb.myhabits.presentation.main.firstView.FirstViewState.*
 import com.smb.myhabits.presentation.main.firstView.mapper.FirstFragmentMapper
 import com.smb.myhabits.presentation.mocks.presentationHabitListModelMock
