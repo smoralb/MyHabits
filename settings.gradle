@@ -2,3 +2,4 @@ rootProject.name = "MyHabits"
 include ':core', ':app'
 include ':ft_auth'
 include ':ft_main'
+include ':navigator'

@@ -2,7 +2,6 @@ package com.smb.myhabits.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.NavDirections
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.myhabits.BR
 import com.smb.myhabits.R
@@ -23,14 +22,10 @@ class MainFragment : BaseFragment<MainState, FragmentMainBinding, MainViewModel>
     }
 
     override fun checkViewState(state: MainState) {
-        when (state) {
-            is NavigateToMain -> goTo(MainFragmentDirections.navigateToMain())
-            is NavigateToLogin -> goTo(MainFragmentDirections.navigateToLogin())
-        }
-    }
-
-    private fun goTo(navigateToLogin: NavDirections) {
         binding.plLandingLoader.visibility = View.GONE
-        navigateTo(navigateToLogin)
+        when (state) {
+            is NavigateToMain -> navigateTo(MainFragmentDirections.navigateToMain())
+            is NavigateToLogin -> navigateTo(MainFragmentDirections.navigateToLogin())
+        }
     }
 }

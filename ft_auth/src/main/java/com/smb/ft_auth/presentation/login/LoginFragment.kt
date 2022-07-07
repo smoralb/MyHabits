@@ -26,7 +26,7 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
             is NavigateToSignUp -> navigateTo(LoginFragmentDirections.goToSignUp())
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
             is HideLoading -> binding.pILoading.visibility = GONE
-            is NavigateToMainView -> {/* When MainView is extracted to another module */ }
+            is NavigateToMainView -> viewModel.navigateToMainView(requireActivity())
             is ShowError -> showToastResult(state.errorMessage)
         }
     }

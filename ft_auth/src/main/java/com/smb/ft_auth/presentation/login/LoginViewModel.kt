@@ -1,5 +1,6 @@
 package com.smb.ft_auth.presentation.login
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
@@ -7,6 +8,7 @@ import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_auth.domain.usecase.LoginUseCase
 import com.smb.ft_auth.domain.usecase.RecoverPasswordUseCase
+import com.smb.ft_auth.navigation.AuthNavigator
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToMainView
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToSignUp
 import com.smb.ft_auth.presentation.login.LoginState.ShowError
@@ -16,7 +18,8 @@ import com.smb.ft_auth.presentation.login.mapper.LoginMapper
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val recoverPassword: RecoverPasswordUseCase,
-    private val mapper: LoginMapper
+    private val mapper: LoginMapper,
+    private val navigator: AuthNavigator
 ) : BaseViewModel<LoginState>() {
 
     val email: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
@@ -52,5 +55,9 @@ class LoginViewModel(
                 }
             )
         }
+    }
+
+    fun navigateToMainView(context: Context) {
+        navigator.navigateToMainScreen(context)
     }
 }

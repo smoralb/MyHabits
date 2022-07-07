@@ -13,7 +13,14 @@ val presentationAuthModule = module {
 
     single<LoginMapper> { LoginMapperImpl(context = androidContext()) }
 
-    factory<LoginViewModel> { LoginViewModel(loginUseCase = get(), mapper = get(), recoverPassword = get()) }
+    factory<LoginViewModel> {
+        LoginViewModel(
+            loginUseCase = get(),
+            mapper = get(),
+            recoverPassword = get(),
+            navigator = get()
+        )
+    }
 
     single<SignUpMapper> { SignUpMapperImpl(context = androidContext()) }
 

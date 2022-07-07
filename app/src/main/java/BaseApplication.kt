@@ -8,6 +8,7 @@ import com.smb.myhabits.com.smb.myhabits.domain.di.domainAppModule
 import com.smb.myhabits.com.smb.myhabits.presentation.di.presentationAppModule
 import com.smb.ft_main.data.di.sampleDataModule
 import com.smb.ft_main.domain.di.baseDomainModule
+import com.smb.myhabits.navigation.di.navigatorModule
 import com.smb.myhabits.presentation.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -30,7 +31,8 @@ class BaseApplication : Application() {
                     baseDomainModule,
                     presentationAuthModule,
                     domainAuthModule,
-                    dataAuthModule
+                    dataAuthModule,
+                    navigatorModule
                 )
             )
         }
