@@ -5,19 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentLanding">
 
-    <include app:graph="@navigation/auth_nav_graph" />
-    <include app:graph="@navigation/home_nav_graph" />
-
     <fragment
         android:id="@+id/fragmentLanding"
         android:name="com.smb.myhabits.presentation.MainFragment"
         android:label="@string/landing_fragment_name"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/navigateToLogin"
-            app:destination="@id/auth_nav_graph" />
-        <action
-            android:id="@+id/navigateToHome"
-            app:destination="@id/home_nav_graph" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
 </navigation>

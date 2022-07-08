@@ -1,14 +1,17 @@
 package com.smb.myhabits.presentation
 
+import android.content.Context
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_auth.navigation.AuthNavigator
 import com.smb.myhabits.com.smb.myhabits.domain.usecase.CheckSessionUseCase
+import com.smb.myhabits.presentation.MainState.NavigateToHome
 import com.smb.myhabits.presentation.MainState.NavigateToLogin
-import com.smb.myhabits.presentation.MainState.NavigateToMain
 
 class MainViewModel(
-    private val checkSessionUseCase: CheckSessionUseCase
+    private val checkSessionUseCase: CheckSessionUseCase,
+    private val authNavigator: AuthNavigator
 ) : BaseViewModel<MainState>() {
 
     fun checkUserSession() {
@@ -17,12 +20,20 @@ class MainViewModel(
                 handleError = {},
                 handleSuccess = { isLoggedIn ->
                     if (isLoggedIn) {
-                        _viewState update NavigateToMain
+                        _viewState update NavigateToHome
                     } else {
                         _viewState update NavigateToLogin
                     }
                 }
             )
         }
+    }
+
+    fun navigateToHome(context: Context) {
+        authNavigator.navigateToHomeScreen(context)
+    }
+
+    fun navigateToLogin(context: Context) {
+        authNavigator.navigateToLogin(context)
     }
 }
