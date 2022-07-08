@@ -7,7 +7,7 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project(':ft_auth')
-    implementation project(':ft_main')
+    implementation project(':ft_home')
     implementation basic.values()
     implementation koin.values()
     implementation navigation.values()
