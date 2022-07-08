@@ -1,11 +1,13 @@
 package com.smb.myhabits.presentation
 
 import com.smb.core.data.Result
+import com.smb.core.domain.LogOutUseCase
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
-import com.smb.myhabits.presentation.main.firstView.FirstViewModel
-import com.smb.myhabits.presentation.main.firstView.FirstViewState.*
-import com.smb.myhabits.presentation.main.firstView.mapper.FirstFragmentMapper
+import com.smb.ft_main.presentation.firstView.FirstViewModel
+import com.smb.ft_main.presentation.firstView.FirstViewState
+import com.smb.ft_main.presentation.firstView.FirstViewState.HideLoading
+import com.smb.ft_main.presentation.firstView.mapper.FirstFragmentMapper
 import com.smb.myhabits.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -26,13 +28,16 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
     private lateinit var getSampleDataUseCase: GetSampleDataUseCase
 
     @Mock
+    private lateinit var logOutUseCase: LogOutUseCase
+
+    @Mock
     private lateinit var mapper: FirstFragmentMapper
 
     private lateinit var viewModel: FirstViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = FirstViewModel(getSampleDataUseCase, mapper)
+        viewModel = FirstViewModel(getSampleDataUseCase, logOutUseCase, mapper)
     }
 
     @TestFactory
@@ -48,7 +53,7 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
 
                 if (testCase.isSuccess) {
                     verify(mapper).mapItems(any(), any())
-                } else if (testCase.isError){
+                } else if (testCase.isError) {
                     assertTrue(viewModel.firstViewModelText.value == "Error")
                 }
                 assertTrue(viewModel.viewState.value is HideLoading)
@@ -57,4 +62,22 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
         }
     }
 
+    @TestFactory
+    fun `logOut should sign out `() = listOf(
+        Result.Success(Unit),
+        Result.Error()
+    ).map { testCase ->
+        DynamicTest.dynamicTest("$testCase") {
+            runBlockingTest {
+                whenever(logOutUseCase(any())).thenReturn(testCase)
+
+                viewModel.signOut()
+
+                if (testCase.isSuccess) {
+                    assertTrue(viewModel.viewState.value is FirstViewState.NavigateUp)
+                }
+                clearInvocations(getSampleDataUseCase, mapper)
+            }
+        }
+    }
 }

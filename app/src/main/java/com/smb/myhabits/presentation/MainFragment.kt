@@ -6,8 +6,8 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.myhabits.BR
 import com.smb.myhabits.R
 import com.smb.myhabits.databinding.FragmentMainBinding
+import com.smb.myhabits.presentation.MainState.NavigateToHome
 import com.smb.myhabits.presentation.MainState.NavigateToLogin
-import com.smb.myhabits.presentation.MainState.NavigateToMain
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<MainState, FragmentMainBinding, MainViewModel>(
@@ -24,8 +24,8 @@ class MainFragment : BaseFragment<MainState, FragmentMainBinding, MainViewModel>
     override fun checkViewState(state: MainState) {
         binding.plLandingLoader.visibility = View.GONE
         when (state) {
-            is NavigateToMain -> navigateTo(MainFragmentDirections.navigateToHome())
-            is NavigateToLogin -> navigateTo(MainFragmentDirections.navigateToLogin())
+            is NavigateToHome -> viewModel.navigateToHome(requireContext())
+            is NavigateToLogin -> viewModel.navigateToLogin(requireContext())
         }
     }
 }

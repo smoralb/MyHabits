@@ -2,6 +2,7 @@ package com.smb.ft_main.presentation.firstView
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_main.R
 import com.smb.ft_main.databinding.FragmentFirstBinding
@@ -15,6 +16,13 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
 
     override val viewModel by viewModel<FirstViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            viewModel.signOut()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvBookList.adapter = FirstFragmentAdapter()
@@ -27,6 +35,7 @@ class FirstFragment : BaseFragment<FirstViewState, FragmentFirstBinding, FirstVi
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToSecondFragment ->
                 navigateTo(FirstFragmentDirections.toSecondFragment(state.isbn))
+            is NavigateUp -> requireActivity().finish()
         }
     }
 }

@@ -5,5 +5,5 @@ import com.smb.myhabits.presentation.MainViewModel
 import org.koin.dsl.module
 
 val presentationAppModule = module {
-    factory { MainViewModel(checkSessionUseCase = get()) }
+    factory { MainViewModel(checkSessionUseCase = get(), authNavigator = get()) }
 }

@@ -1,9 +1,8 @@
 package com.smb.myhabits.presentation
 
-import com.smb.myhabits.presentation.main.secondView.SecondViewModel
 import com.smb.core.test.BaseViewModelUnitTest
+import com.smb.ft_main.presentation.secondView.SecondViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.jupiter.api.BeforeEach
 
 @ExperimentalCoroutinesApi
 class SecondViewModelTest : BaseViewModelUnitTest() {
