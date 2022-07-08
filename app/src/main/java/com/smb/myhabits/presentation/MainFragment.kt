@@ -24,7 +24,7 @@ class MainFragment : BaseFragment<MainState, FragmentMainBinding, MainViewModel>
     override fun checkViewState(state: MainState) {
         binding.plLandingLoader.visibility = View.GONE
         when (state) {
-            is NavigateToMain -> navigateTo(MainFragmentDirections.navigateToMain())
+            is NavigateToMain -> navigateTo(MainFragmentDirections.navigateToHome())
             is NavigateToLogin -> navigateTo(MainFragmentDirections.navigateToLogin())
         }
     }

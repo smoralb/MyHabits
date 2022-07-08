@@ -6,7 +6,7 @@
     app:startDestination="@id/fragmentLanding">
 
     <include app:graph="@navigation/auth_nav_graph" />
-    <include app:graph="@navigation/main_nav_graph" />
+    <include app:graph="@navigation/home_nav_graph" />
 
     <fragment
         android:id="@+id/fragmentLanding"
@@ -17,7 +17,7 @@
             android:id="@+id/navigateToLogin"
             app:destination="@id/auth_nav_graph" />
         <action
-            android:id="@+id/navigateToMain"
-            app:destination="@id/main_nav_graph" />
+            android:id="@+id/navigateToHome"
+            app:destination="@id/home_nav_graph" />
     </fragment>
 </navigation>
