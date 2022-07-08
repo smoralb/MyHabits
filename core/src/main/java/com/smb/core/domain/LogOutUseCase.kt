@@ -1,8 +1,7 @@
-package com.smb.myhabits.com.smb.myhabits.domain.usecase
+package com.smb.core.domain
 
 import com.google.firebase.auth.FirebaseAuth
 import com.smb.core.data.Result
-import com.smb.core.domain.UseCase
 
 interface LogOutUseCase: UseCase<Unit, Unit>
 

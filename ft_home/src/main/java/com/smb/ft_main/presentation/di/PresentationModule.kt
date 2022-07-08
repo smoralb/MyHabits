@@ -1,4 +1,4 @@
-package com.smb.myhabits.presentation.di
+package com.smb.ft_main.presentation.di
 
 import com.smb.ft_main.presentation.firstView.FirstViewModel
 import com.smb.ft_main.presentation.firstView.mapper.FirstFragmentMapper
@@ -11,6 +11,12 @@ val presentationModule = module {
 
     factory<FirstFragmentMapper> { FirstFragmentMapperImpl() }
 
-    viewModel { FirstViewModel(get(), get()) }
+    viewModel {
+        FirstViewModel(
+            getSampleDataUseCase = get(),
+            logOutUseCase = get(),
+            mapper = get()
+        )
+    }
     viewModel { SecondViewModel(get()) }
 }

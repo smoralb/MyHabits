@@ -8,7 +8,7 @@ import com.smb.ft_main.data.di.sampleDataModule
 import com.smb.ft_main.domain.di.baseDomainModule
 import com.smb.myhabits.com.smb.myhabits.domain.di.domainAppModule
 import com.smb.myhabits.com.smb.myhabits.presentation.di.presentationAppModule
-import com.smb.myhabits.presentation.di.presentationModule
+import com.smb.ft_main.presentation.di.presentationModule
 import com.smb.navigator.di.navigation.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
