@@ -1,4 +1,4 @@
-package com.smb.myhabits.com.smb.myhabits.navigation
+package com.smb.navigator.di.navigation
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,8 @@ class AuthNavigatorImpl : AuthNavigator {
     override fun navigateToMainScreen(context: Context) {
         val activityNavigator = ActivityNavigator(context)
         activityNavigator.navigate(
-            activityNavigator.createDestination().setIntent(Intent(context, MainActivity::class.java)),
+            activityNavigator.createDestination()
+                .setIntent(Intent(context, MainActivity::class.java)),
             null,
             null,
             null

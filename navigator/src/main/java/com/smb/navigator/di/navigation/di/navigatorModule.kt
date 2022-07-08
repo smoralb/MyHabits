@@ -1,7 +1,7 @@
-package com.smb.myhabits.navigation.di
+package com.smb.navigator.di.navigation.di
 
 import com.smb.ft_auth.navigation.AuthNavigator
-import com.smb.myhabits.com.smb.myhabits.navigation.AuthNavigatorImpl
+import com.smb.navigator.di.navigation.AuthNavigatorImpl
 import org.koin.dsl.module
 
 val navigatorModule = module {
