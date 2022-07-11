@@ -5,6 +5,7 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import com.smb.core.extensions.hideKeyboard
 import com.smb.core.presentation.base.BaseFragment
+import com.smb.ft_auth.AuthActivity
 import com.smb.ft_auth.BR
 import com.smb.ft_auth.R
 import com.smb.ft_auth.databinding.FragmentLoginBinding
@@ -26,6 +27,8 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
             is NavigateToSignUp -> navigateTo(LoginFragmentDirections.goToSignUp())
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
             is HideLoading -> binding.pILoading.visibility = GONE
+            
+            // TODO: Pass Intent instead of Activity
             is NavigateToMainView -> viewModel.navigateToHomeView(requireContext())
             is ShowError -> showToastResult(state.errorMessage)
         }

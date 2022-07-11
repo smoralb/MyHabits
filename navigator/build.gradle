@@ -6,6 +6,7 @@ plugins {
 apply from: "$project.rootDir/base.gradle"
 
 dependencies {
+    implementation project(':core')
     implementation project(':ft_auth')
     implementation project(':ft_home')
     implementation basic.values()

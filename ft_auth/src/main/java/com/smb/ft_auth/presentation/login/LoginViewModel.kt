@@ -1,10 +1,13 @@
 package com.smb.ft_auth.presentation.login
 
+import android.app.Activity
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
+import com.smb.core.presentation.base.BaseActivity
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_auth.domain.usecase.LoginUseCase
 import com.smb.ft_auth.domain.usecase.RecoverPasswordUseCase
