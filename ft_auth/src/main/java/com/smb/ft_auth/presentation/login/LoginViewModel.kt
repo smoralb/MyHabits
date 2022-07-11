@@ -60,7 +60,7 @@ class LoginViewModel(
         }
     }
 
-    fun navigateToHomeView(context: Context) {
-        navigator.navigateToHomeScreen(context)
+    fun navigateToHomeView() {
+        navigator.navigateToHomeScreen()
     }
 }

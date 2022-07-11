@@ -1,6 +1,5 @@
 package com.smb.myhabits.presentation
 
-import android.content.Context
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
@@ -29,11 +28,11 @@ class MainViewModel(
         }
     }
 
-    fun navigateToHome(context: Context) {
-        authNavigator.navigateToHomeScreen(context)
+    fun navigateToHome() {
+        authNavigator.navigateToHomeScreen()
     }
 
-    fun navigateToLogin(context: Context) {
-        authNavigator.navigateToLogin(context)
+    fun navigateToLogin() {
+        authNavigator.navigateToLogin()
     }
 }

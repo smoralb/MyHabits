@@ -5,13 +5,15 @@ import com.smb.ft_auth.AuthActivity
 import com.smb.ft_auth.navigation.AuthNavigator
 import com.smb.ft_main.presentation.HomeActivity
 
-class AuthNavigatorImpl : AuthNavigator {
+class AuthNavigatorImpl(
+    private val context: Context
+) : AuthNavigator {
 
-    override fun navigateToHomeScreen(context: Context) {
+    override fun navigateToHomeScreen() {
         navigateClearTop(context, HomeActivity.newIntent(context))
     }
 
-    override fun navigateToLogin(context: Context) {
+    override fun navigateToLogin() {
         navigateClearTop(context, AuthActivity.newIntent(context))
     }
 }
