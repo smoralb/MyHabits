@@ -6,8 +6,6 @@ import com.smb.ft_auth.domain.di.domainAuthModule
 import com.smb.ft_auth.presentation.di.presentationAuthModule
 import com.smb.ft_main.data.di.sampleDataModule
 import com.smb.ft_main.domain.di.baseDomainModule
-import com.smb.myhabits.com.smb.myhabits.domain.di.domainAppModule
-import com.smb.myhabits.com.smb.myhabits.presentation.di.presentationAppModule
 import com.smb.ft_main.presentation.di.presentationModule
 import com.smb.navigator.di.navigation.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
@@ -24,8 +22,6 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
-                    presentationAppModule,
-                    domainAppModule,
                     presentationModule,
                     sampleDataModule,
                     baseDomainModule,

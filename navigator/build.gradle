@@ -6,7 +6,8 @@ plugins {
 apply from: "$project.rootDir/base.gradle"
 
 dependencies {
-    implementation project(':ft_auth')
+    implementation project(':core')
+    implementation project(':ft_landing')
     implementation project(':ft_home')
     implementation basic.values()
     implementation koin.values()
