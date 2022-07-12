@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text dimens -->
+    <dimen name="text_xs">8sp</dimen>
+    <dimen name="text_s">12sp</dimen>
+    <dimen name="text_m">14sp</dimen>
+    <dimen name="text_l">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Item sample data -->
+    <dimen name="margin_item_image_view">14dp</dimen>
+    <dimen name="margin_start_item_title">14dp</dimen>
+    <!-- Second fragment -->
+    <dimen name="margin_top_item_title">14dp</dimen>
+    <dimen name="margin_item_description">14dp</dimen>
+    <dimen name="margin_item_publisher">14dp</dimen>
+    <!-- Login -->
+    <dimen name="margin_top_login_title">40dp</dimen>
+    <dimen name="text_size_login_title">24sp</dimen>
+    <dimen name="margin_top_login_email">20dp</dimen>
+    <dimen name="margin_top_login_password">20dp</dimen>
+    <dimen name="margin_horizontal_login">20dp</dimen>
+    <dimen name="margin_top_login_button">40dp</dimen>
+    <dimen name="margin_top_create_account_link">20dp</dimen>
+    <dimen name="margin_top_forget_account_link">20dp</dimen>
+    <!-- Sign up -->
+    <dimen name="margin_top_sign_up_title">40dp</dimen>
+    <dimen name="text_size_sign_up_title">24sp</dimen>
+    <dimen name="margin_top_sign_up_email">24dp</dimen>
+    <dimen name="margin_horizontal_sign_up">20dp</dimen>
+    <dimen name="margin_top_sign_up_button">40dp</dimen>
+    <dimen name="margin_top_has_account">20dp</dimen>
+</resources>
