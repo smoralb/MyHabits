@@ -12,7 +12,7 @@ import org.koin.dsl.module
 
 val presentationAuthModule = module {
 
-    factory { LandingViewModel(checkSessionUseCase = get(), authNavigator = get()) }
+    factory { LandingViewModel(checkSessionUseCase = get(), landingNavigator = get()) }
 
     single<LoginMapper> { LoginMapperImpl(context = androidContext()) }
 
