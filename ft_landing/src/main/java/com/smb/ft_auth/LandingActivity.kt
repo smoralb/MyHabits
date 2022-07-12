@@ -20,7 +20,7 @@ class LandingActivity : BaseVmActivity<LandingState, LandingViewModel>(R.layout.
         when (state) {
             is LandingState.NavigateToHome -> viewModel.navigateToHome()
         }
-    }
+    }re
 
     companion object {
         fun newIntent(context: Context) = Intent(context, LandingActivity::class.java)

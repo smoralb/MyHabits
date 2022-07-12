@@ -43,6 +43,22 @@ For that, I have applied the Jacoco plugin in the `jacoco.gradle` file.
 - To see Jacoco reports -> build >>reports >> testDebugUnitTestCoverage >> html >> index.html
 
 
+##APP STRUCTURE
+
+The app has different modules that will be increased. At this moment exists common modules that all feature modules will depend.
+
+- core -> Has all the common code that will be used for the entire app. Included app, navigator and all the features modules.
+
+- app -> Is just the application module, has no logic.
+
+- navigator -> Contains the implementation for the navigation of each feature.
+
+- resources -> Core has a dependency of this module. That module contains all the common resources for the entire app. The resources that are specific for a module, will be declared in the res folder of this module.
+
+- ft_xxx -> The feature module contains the implementation of the feature that will be included in the app (ft_landing, ft_home, etc).
+
+
+![img.png](img.png)
 
 
 
