@@ -5,6 +5,7 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_auth.domain.usecase.LoginUseCase
 import com.smb.ft_auth.domain.usecase.RecoverPasswordUseCase
+import com.smb.ft_auth.navigation.LandingNavigator
 import com.smb.ft_auth.presentation.login.LoginState.HideLoading
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToMainView
 import com.smb.ft_auth.presentation.login.LoginState.NavigateToSignUp
@@ -36,6 +37,9 @@ class LoginViewModelTest : BaseViewModelUnitTest() {
     @Mock
     private lateinit var mapper: LoginMapper
 
+    @Mock
+    private lateinit var navigator: LandingNavigator
+
     private lateinit var viewModel: LoginViewModel
 
     @BeforeEach
@@ -44,7 +48,8 @@ class LoginViewModelTest : BaseViewModelUnitTest() {
             LoginViewModel(
                 loginUseCase = loginUseCase,
                 recoverPassword = recoverPasswordUseCase,
-                mapper = mapper
+                mapper = mapper,
+                navigator = navigator
             )
     }
 
