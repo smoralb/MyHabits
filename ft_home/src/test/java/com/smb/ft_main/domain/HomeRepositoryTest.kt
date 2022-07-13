@@ -2,10 +2,10 @@ package com.smb.ft_main.domain
 
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
-import com.smb.ft_main.data.repository.SampleDataRepositoryImpl
-import com.smb.ft_main.data.source.SampleDataRemoteSource
+import com.smb.ft_main.data.repository.HomeRepositoryImpl
+import com.smb.ft_main.data.source.HomeRemoteSource
 import com.smb.ft_main.domain.mocks.habitListModelMock
-import com.smb.ft_main.domain.repository.SampleDataRepository
+import com.smb.ft_main.domain.repository.HomeRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -19,16 +19,16 @@ import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class SampleDataRepositoryTest : BaseUnitTest() {
+class HomeRepositoryTest : BaseUnitTest() {
 
     @Mock
-    private lateinit var remoteSource: SampleDataRemoteSource
+    private lateinit var remoteSource: HomeRemoteSource
 
-    private lateinit var repository: SampleDataRepository
+    private lateinit var repository: HomeRepository
 
     @BeforeEach
     fun setUp() {
-        repository = SampleDataRepositoryImpl(remoteSource)
+        repository = HomeRepositoryImpl(remoteSource)
     }
 
     @TestFactory

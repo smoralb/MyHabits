@@ -1,4 +1,4 @@
-package com.smb.ft_main.presentation.firstView
+package com.smb.ft_main.presentation.home
 
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.LogOutUseCase
@@ -7,21 +7,21 @@ import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
-import com.smb.ft_main.presentation.firstView.FirstViewState.HideLoading
-import com.smb.ft_main.presentation.firstView.FirstViewState.Loading
-import com.smb.ft_main.presentation.firstView.FirstViewState.NavigateToSecondFragment
-import com.smb.ft_main.presentation.firstView.FirstViewState.NavigateUp
-import com.smb.ft_main.presentation.firstView.adapter.SampleDataItems
-import com.smb.ft_main.presentation.firstView.mapper.FirstFragmentMapper
+import com.smb.ft_main.presentation.home.HomeState.HideLoading
+import com.smb.ft_main.presentation.home.HomeState.Loading
+import com.smb.ft_main.presentation.home.HomeState.NavigateToSecondFragment
+import com.smb.ft_main.presentation.home.HomeState.NavigateUp
+import com.smb.ft_main.presentation.home.adapter.TaskDataItems
+import com.smb.ft_main.presentation.home.mapper.FirstFragmentMapper
 
-class FirstViewModel(
+class HomeViewModel(
     private val getSampleDataUseCase: GetSampleDataUseCase,
     private val logOutUseCase: LogOutUseCase,
     private val mapper: FirstFragmentMapper
-) : BaseViewModel<FirstViewState>() {
+) : BaseViewModel<HomeState>() {
 
     val firstViewModelText: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
-    val itemList: MutableLiveData<List<SampleDataItems.SampleDataItem>> =
+    val itemList: MutableLiveData<List<TaskDataItems.TaskDataItem>> =
         MutableLiveData(emptyList())
 
     private val onItemClickListener: (String) -> Unit = {

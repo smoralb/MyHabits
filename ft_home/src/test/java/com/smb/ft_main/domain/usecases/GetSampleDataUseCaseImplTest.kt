@@ -1,6 +1,6 @@
 package com.smb.ft_main.domain.usecases
 
-import com.smb.ft_main.domain.repository.SampleDataRepository
+import com.smb.ft_main.domain.repository.HomeRepository
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
 import com.smb.ft_main.domain.mocks.habitListModelMock
@@ -21,7 +21,7 @@ import org.mockito.kotlin.whenever
 class GetSampleDataUseCaseTest : BaseUnitTest() {
 
     @Mock
-    private lateinit var repositoryImpl: SampleDataRepository
+    private lateinit var repositoryImpl: HomeRepository
 
     private lateinit var useCase: GetSampleDataUseCase
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.smb.ft_main.presentation.firstView.FirstFragment"
+        android:name="com.smb.ft_main.presentation.home.HomeFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.smb.ft_main.presentation.secondView.SecondFragment"
+        android:name="com.smb.ft_main.presentation.detail.TaskDetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
         <action

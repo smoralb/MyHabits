@@ -5,7 +5,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.smb.ft_main.domain.model.HabitListModel
 import com.smb.ft_main.domain.model.HabitModel
 
-class SampleDataMapperImpl : SampleDataMapper {
+class HomeDataMapperImpl : HomeDataMapper {
 
     override fun toDomainModel(entity: QuerySnapshot): HabitListModel =
         HabitListModel(

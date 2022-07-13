@@ -1,19 +1,19 @@
-package com.smb.ft_main.presentation.firstView.mapper
+package com.smb.ft_main.presentation.home.mapper
 
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.ft_main.domain.model.HabitModel
-import com.smb.ft_main.presentation.firstView.adapter.SampleDataItems
+import com.smb.ft_main.presentation.home.adapter.TaskDataItems
 
 interface FirstFragmentMapper {
     fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit)
-            : List<SampleDataItems.SampleDataItem>
+            : List<TaskDataItems.TaskDataItem>
 }
 
-class FirstFragmentMapperImpl : FirstFragmentMapper {
+class HomeMapperImpl : FirstFragmentMapper {
 
     override fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit) =
         model.map {
-            SampleDataItems.SampleDataItem(
+            TaskDataItems.TaskDataItem(
                 isbn = EMPTY_STRING,
                 title = it.name ?: "NAME",
                 description = it.description ?: "DESCRIPTION",

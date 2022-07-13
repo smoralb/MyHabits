@@ -6,7 +6,7 @@ import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
 import com.smb.ft_main.domain.usecases.GetSampleDataUseCaseImpl
 import org.koin.dsl.module
 
-val baseDomainModule = module {
+val homeDomainModule = module {
     factory<LogOutUseCase> { LogOutUseCaseImpl(firebaseAuth = get()) }
     factory<GetSampleDataUseCase> { GetSampleDataUseCaseImpl(get()) }
 }

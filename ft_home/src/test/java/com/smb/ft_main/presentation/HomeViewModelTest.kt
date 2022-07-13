@@ -4,10 +4,10 @@ import com.smb.core.data.Result
 import com.smb.core.domain.LogOutUseCase
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
-import com.smb.ft_main.presentation.firstView.FirstViewModel
-import com.smb.ft_main.presentation.firstView.FirstViewState
-import com.smb.ft_main.presentation.firstView.FirstViewState.HideLoading
-import com.smb.ft_main.presentation.firstView.mapper.FirstFragmentMapper
+import com.smb.ft_main.presentation.home.HomeViewModel
+import com.smb.ft_main.presentation.home.HomeState
+import com.smb.ft_main.presentation.home.HomeState.HideLoading
+import com.smb.ft_main.presentation.home.mapper.FirstFragmentMapper
 import com.smb.ft_main.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -22,7 +22,7 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class FirstViewModelTest : BaseViewModelUnitTest() {
+class HomeViewModelTest : BaseViewModelUnitTest() {
 
     @Mock
     private lateinit var getSampleDataUseCase: GetSampleDataUseCase
@@ -33,11 +33,11 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
     @Mock
     private lateinit var mapper: FirstFragmentMapper
 
-    private lateinit var viewModel: FirstViewModel
+    private lateinit var viewModel: HomeViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = FirstViewModel(getSampleDataUseCase, logOutUseCase, mapper)
+        viewModel = HomeViewModel(getSampleDataUseCase, logOutUseCase, mapper)
     }
 
     @TestFactory
@@ -74,7 +74,7 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
                 viewModel.signOut()
 
                 if (testCase.isSuccess) {
-                    assertTrue(viewModel.viewState.value is FirstViewState.NavigateUp)
+                    assertTrue(viewModel.viewState.value is HomeState.NavigateUp)
                 }
                 clearInvocations(getSampleDataUseCase, mapper)
             }

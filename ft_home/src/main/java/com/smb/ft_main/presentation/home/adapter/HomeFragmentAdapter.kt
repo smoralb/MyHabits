@@ -1,4 +1,4 @@
-package com.smb.ft_main.presentation.firstView.adapter
+package com.smb.ft_main.presentation.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.smb.core.presentation.adapters.BaseAdapter
 import com.smb.core.presentation.adapters.BaseViewHolder
-import com.smb.ft_main.R
 import com.smb.ft_main.BR
+import com.smb.ft_main.R
 
-class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
+class HomeFragmentAdapter : BaseAdapter<TaskDataItems.TaskDataItem>() {
 
-    override fun updateData(newItems: List<SampleDataItems.SampleDataItem>) {
+    override fun updateData(newItems: List<TaskDataItems.TaskDataItem>) {
         items = newItems
     }
 
@@ -24,7 +24,7 @@ class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
 
     override fun getItemViewType(position: Int) =
         when (items[position]) {
-            is SampleDataItems.SampleDataItem -> ITEM_TYPE
+            is TaskDataItems.TaskDataItem -> ITEM_TYPE
             else -> throw IllegalArgumentException()
         }
 
@@ -39,7 +39,7 @@ class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
         )
 
     inner class FirstFragmentItemViewHolder(binding: ViewDataBinding) :
-        BaseViewHolder<SampleDataItems.SampleDataItem>(BR.item, binding)
+        BaseViewHolder<TaskDataItems.TaskDataItem>(BR.item, binding)
 
     companion object {
         const val ITEM_TYPE = 0
