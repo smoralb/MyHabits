@@ -1,11 +1,9 @@
-package com.smb.myhabits.domain.usecases
+package com.smb.ft_main.domain.usecases
 
 import com.smb.ft_main.domain.repository.SampleDataRepository
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
-import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
-import com.smb.ft_main.domain.usecases.GetSampleDataUseCaseImpl
-import com.smb.myhabits.domain.mocks.habitListModelMock
+import com.smb.ft_main.domain.mocks.habitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals

@@ -1,4 +1,4 @@
-package com.smb.myhabits.presentation.mocks
+package com.smb.ft_main.presentation.mocks
 
 import com.smb.ft_main.domain.model.HabitListModel
 import com.smb.ft_main.domain.model.HabitModel

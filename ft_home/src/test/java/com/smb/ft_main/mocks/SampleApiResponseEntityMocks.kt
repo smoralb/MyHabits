@@ -1,4 +1,4 @@
-package com.smb.myhabits.data.mocks
+package com.smb.ft_main.mocks
 
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.ft_main.domain.model.HabitListModel

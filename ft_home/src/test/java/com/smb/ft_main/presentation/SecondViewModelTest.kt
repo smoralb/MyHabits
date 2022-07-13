@@ -1,4 +1,4 @@
-package com.smb.myhabits.presentation
+package com.smb.ft_main.presentation
 
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_main.presentation.secondView.SecondViewModel

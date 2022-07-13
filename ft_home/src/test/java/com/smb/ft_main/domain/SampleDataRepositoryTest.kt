@@ -1,10 +1,10 @@
-package com.smb.myhabits.domain
+package com.smb.ft_main.domain
 
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
 import com.smb.ft_main.data.repository.SampleDataRepositoryImpl
 import com.smb.ft_main.data.source.SampleDataRemoteSource
-import com.smb.myhabits.domain.mocks.habitListModelMock
+import com.smb.ft_main.domain.mocks.habitListModelMock
 import com.smb.ft_main.domain.repository.SampleDataRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

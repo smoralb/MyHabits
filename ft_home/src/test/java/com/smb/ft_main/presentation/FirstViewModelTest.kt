@@ -1,4 +1,4 @@
-package com.smb.myhabits.presentation
+package com.smb.ft_main.presentation
 
 import com.smb.core.data.Result
 import com.smb.core.domain.LogOutUseCase
@@ -8,7 +8,7 @@ import com.smb.ft_main.presentation.firstView.FirstViewModel
 import com.smb.ft_main.presentation.firstView.FirstViewState
 import com.smb.ft_main.presentation.firstView.FirstViewState.HideLoading
 import com.smb.ft_main.presentation.firstView.mapper.FirstFragmentMapper
-import com.smb.myhabits.presentation.mocks.presentationHabitListModelMock
+import com.smb.ft_main.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertTrue
