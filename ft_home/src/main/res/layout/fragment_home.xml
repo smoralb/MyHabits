@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.ft_main.presentation.home.HomeViewModel" />
+            type="com.smb.ft_home.presentation.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

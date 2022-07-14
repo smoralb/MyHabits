@@ -1,14 +1,12 @@
 package com.smb.myhabits
 
 import android.app.Application
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import com.smb.ft_auth.data.di.dataAuthModule
 import com.smb.ft_auth.domain.di.domainAuthModule
 import com.smb.ft_auth.presentation.di.presentationAuthModule
-import com.smb.ft_main.data.di.homeDataModule
-import com.smb.ft_main.domain.di.homeDomainModule
-import com.smb.ft_main.presentation.di.homePresentationModule
+import com.smb.ft_home.data.di.homeDataModule
+import com.smb.ft_home.domain.di.homeDomainModule
+import com.smb.ft_home.presentation.di.homePresentationModule
 import com.smb.navigator.di.navigation.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

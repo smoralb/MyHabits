@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.smb.ft_main.presentation.home.adapter.TaskDataItems.TaskDataItem" />
+            type="com.smb.ft_home.presentation.home.adapter.TaskDataItems.TaskDataItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

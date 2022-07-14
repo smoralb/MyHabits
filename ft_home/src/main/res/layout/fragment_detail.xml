@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.ft_main.presentation.detail.TaskDetailViewModel" />
+            type="com.smb.ft_home.presentation.detail.TaskDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

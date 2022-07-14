@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.smb.ft_main">
+    package="com.smb.ft_home">
 
     <application>
         <activity
-            android:name="com.smb.ft_main.presentation.HomeActivity"/>
+            android:name="com.smb.ft_home.presentation.HomeActivity"/>
     </application>
 </manifest>
