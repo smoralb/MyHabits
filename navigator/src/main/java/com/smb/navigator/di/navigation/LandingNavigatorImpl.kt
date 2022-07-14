@@ -2,7 +2,7 @@ package com.smb.navigator.di.navigation
 
 import android.content.Context
 import com.smb.ft_auth.navigation.LandingNavigator
-import com.smb.ft_main.presentation.HomeActivity
+import com.smb.ft_home.presentation.HomeActivity
 
 class LandingNavigatorImpl(
     private val context: Context

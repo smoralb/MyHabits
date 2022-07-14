@@ -8,4 +8,8 @@
     <dimen name="margin_top_item_title">14dp</dimen>
     <dimen name="margin_item_description">14dp</dimen>
     <dimen name="margin_item_publisher">14dp</dimen>
+
+    <!-- Add task -->
+    <dimen name="margin_add_task">40dp</dimen>
+    <dimen name="margin_top_add_task_description">20dp</dimen>
 </resources>

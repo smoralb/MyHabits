@@ -4,9 +4,9 @@ import android.app.Application
 import com.smb.ft_auth.data.di.dataAuthModule
 import com.smb.ft_auth.domain.di.domainAuthModule
 import com.smb.ft_auth.presentation.di.presentationAuthModule
-import com.smb.ft_main.data.di.sampleDataModule
-import com.smb.ft_main.domain.di.baseDomainModule
-import com.smb.ft_main.presentation.di.presentationModule
+import com.smb.ft_home.data.di.homeDataModule
+import com.smb.ft_home.domain.di.homeDomainModule
+import com.smb.ft_home.presentation.di.homePresentationModule
 import com.smb.navigator.di.navigation.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -22,9 +22,9 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
-                    presentationModule,
-                    sampleDataModule,
-                    baseDomainModule,
+                    homePresentationModule,
+                    homeDomainModule,
+                    homeDataModule,
                     presentationAuthModule,
                     domainAuthModule,
                     dataAuthModule,
