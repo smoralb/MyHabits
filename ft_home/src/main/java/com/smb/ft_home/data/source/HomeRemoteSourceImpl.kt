@@ -32,8 +32,7 @@ class HomeRemoteSourceImpl(
             apiCall = {
                 fireStore
                     .collection(COLLECTION_DB)
-                    .document(firebaseAuth.uid!!)
-                    .set(task)
+                    .add(task)
             },
             mapper = {}
         )

@@ -7,10 +7,7 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
 import com.smb.ft_home.R
 import com.smb.ft_home.databinding.FragmentHomeBinding
-import com.smb.ft_home.presentation.home.HomeState.HideLoading
-import com.smb.ft_home.presentation.home.HomeState.Loading
-import com.smb.ft_home.presentation.home.HomeState.NavigateToSecondFragment
-import com.smb.ft_home.presentation.home.HomeState.NavigateUp
+import com.smb.ft_home.presentation.home.HomeState.*
 import com.smb.ft_home.presentation.home.adapter.HomeFragmentAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,6 +36,7 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
             is NavigateToSecondFragment ->
                 navigateTo(HomeFragmentDirections.toDetail(state.id))
             is NavigateUp -> requireActivity().finish()
+            is AddTask -> navigateTo(HomeFragmentDirections.toAddTask())
         }
     }
 }

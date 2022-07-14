@@ -6,9 +6,8 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_home.domain.model.CreateTaskModel
-import com.smb.ft_home.domain.usecases.CreateTaskUseCase
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
+import com.smb.ft_home.presentation.home.HomeState.AddTask
 import com.smb.ft_home.presentation.home.HomeState.HideLoading
 import com.smb.ft_home.presentation.home.HomeState.Loading
 import com.smb.ft_home.presentation.home.HomeState.NavigateToSecondFragment
@@ -18,7 +17,6 @@ import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 
 class HomeViewModel(
     private val getTasksUseCase: GetTasksUseCase,
-    private val createTaskUseCase: CreateTaskUseCase,
     private val logOutUseCase: LogOutUseCase,
     private val mapper: FirstFragmentMapper
 ) : BaseViewModel<HomeState>() {
@@ -36,22 +34,7 @@ class HomeViewModel(
     }
 
     fun createTask() {
-        _viewState update Loading
-        execute {
-            createTaskUseCase(
-                CreateTaskUseCase.Params(
-                    CreateTaskModel(
-                        name = "Alo",
-                        description = "Alo"
-                    )
-                )
-            ).fold(
-                handleSuccess = {
-                    getTasks()
-                },
-                handleError = {}
-            )
-        }
+        _viewState update AddTask
     }
 
     fun signOut() {

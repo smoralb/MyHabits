@@ -15,12 +15,11 @@ val homePresentationModule = module {
     viewModel {
         HomeViewModel(
             getTasksUseCase = get(),
-            createTaskUseCase = get(),
             logOutUseCase = get(),
             mapper = get()
         )
     }
-    viewModel { TaskDetailViewModel(get()) }
+    viewModel { TaskDetailViewModel(getTasksUseCase = get()) }
 
-    viewModel { AddTaskViewModel() }
+    viewModel { AddTaskViewModel(createTaskUseCase = get()) }
 }

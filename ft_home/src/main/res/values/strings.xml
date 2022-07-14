@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyHabits</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment</string>
-
-    <!-- Strings for item view -->
+    <!-- Item view -->
     <string name="item_view_sample_data_title">Sample data title</string>
+    <!-- Add task -->
+    <string name="fragment_add_task_title">Title</string>
+    <string name="fragment_add_task_description">Description</string>
+    <string name="fragment_add_task_add_button">Add Task</string>
 </resources>

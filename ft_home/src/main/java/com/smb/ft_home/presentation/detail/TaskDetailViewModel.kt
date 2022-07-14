@@ -8,7 +8,7 @@ import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
 
 class TaskDetailViewModel(
-    private val getSampleDataUseCase: GetTasksUseCase
+    private val getTasksUseCase: GetTasksUseCase
 ) : BaseViewModel<TaskDetailState>() {
 
     val title: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
@@ -21,7 +21,7 @@ class TaskDetailViewModel(
 
     fun init(habitId: String) {
         execute {
-            getSampleDataUseCase(Unit).fold(
+            getTasksUseCase(Unit).fold(
                 handleError = {},
                 handleSuccess = {
                     it.habitList.first() { habitModel ->

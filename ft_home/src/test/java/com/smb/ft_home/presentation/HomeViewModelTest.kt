@@ -3,9 +3,8 @@ package com.smb.ft_home.presentation
 import com.smb.core.data.Result
 import com.smb.core.domain.LogOutUseCase
 import com.smb.core.test.BaseViewModelUnitTest
-import com.smb.ft_home.domain.mocks.habitListModelMock
-import com.smb.ft_home.domain.usecases.CreateTaskUseCase
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
+import com.smb.ft_home.presentation.home.HomeState.AddTask
 import com.smb.ft_home.presentation.home.HomeState.HideLoading
 import com.smb.ft_home.presentation.home.HomeState.NavigateUp
 import com.smb.ft_home.presentation.home.HomeViewModel
@@ -13,9 +12,11 @@ import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 import com.smb.ft_home.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
 import org.mockito.kotlin.any
@@ -30,9 +31,6 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
     private lateinit var getTasksUseCase: GetTasksUseCase
 
     @Mock
-    private lateinit var createTaskUseCase: CreateTaskUseCase
-
-    @Mock
     private lateinit var logOutUseCase: LogOutUseCase
 
     @Mock
@@ -42,7 +40,7 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
 
     @BeforeEach
     fun setUp() {
-        viewModel = HomeViewModel(getTasksUseCase, createTaskUseCase, logOutUseCase, mapper)
+        viewModel = HomeViewModel(getTasksUseCase, logOutUseCase, mapper)
     }
 
     @TestFactory
@@ -67,25 +65,10 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
         }
     }
 
-    @TestFactory
-    fun `createTaskUseCase should return sample data `() = listOf(
-        Result.Success(Unit) to Result.Success(habitListModelMock),
-        Result.Error() to Result.Error()
-    ).map { testCase ->
-        DynamicTest.dynamicTest("$testCase") {
-            runBlockingTest {
-                if (testCase.first.isSuccess)
-                    whenever(getTasksUseCase(any())).thenReturn(testCase.second)
-                whenever(createTaskUseCase(any())).thenReturn(testCase.first)
-
-                viewModel.createTask()
-
-                if (testCase.first.isSuccess) {
-                    verify(mapper).mapItems(any(), any())
-                }
-            }
-            clearInvocations(createTaskUseCase, getTasksUseCase, mapper)
-        }
+    @Test
+    fun `create task will update state to AddTask`() {
+        viewModel.createTask()
+        assertEquals(viewModel.viewState.value, AddTask)
     }
 
     @TestFactory
