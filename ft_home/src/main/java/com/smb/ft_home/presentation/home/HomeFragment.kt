@@ -1,13 +1,19 @@
 package com.smb.ft_home.presentation.home
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
 import com.smb.ft_home.R
 import com.smb.ft_home.databinding.FragmentHomeBinding
-import com.smb.ft_home.presentation.home.HomeState.*
+import com.smb.ft_home.presentation.home.HomeState.AddTask
+import com.smb.ft_home.presentation.home.HomeState.HideLoading
+import com.smb.ft_home.presentation.home.HomeState.Loading
+import com.smb.ft_home.presentation.home.HomeState.NavigateToSecondFragment
+import com.smb.ft_home.presentation.home.HomeState.NavigateUp
 import com.smb.ft_home.presentation.home.adapter.HomeFragmentAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,6 +32,9 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvBookList.adapter = HomeFragmentAdapter()
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.getTasks()
+        }
         viewModel.initialize()
     }
 

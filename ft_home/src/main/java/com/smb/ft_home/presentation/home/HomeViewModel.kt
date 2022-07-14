@@ -48,7 +48,7 @@ class HomeViewModel(
         }
     }
 
-    private fun getTasks() {
+    internal fun getTasks() {
         _viewState update Loading
         execute {
             getTasksUseCase(Unit).fold(
