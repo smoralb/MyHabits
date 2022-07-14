@@ -13,7 +13,7 @@ val homeDataModule = module {
 
     single<HomeDataMapper> { HomeDataMapperImpl() }
 
-    single<HomeRemoteSource> { HomeRemoteSourceImpl(get(), get()) }
+    single<HomeRemoteSource> { HomeRemoteSourceImpl(get(), get(), get()) }
 
     single<HomeRepository> { HomeRepositoryImpl(get()) }
 

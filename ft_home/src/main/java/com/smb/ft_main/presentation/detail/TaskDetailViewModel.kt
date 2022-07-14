@@ -5,10 +5,10 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
+import com.smb.ft_main.domain.usecases.GetTasksUseCase
 
 class TaskDetailViewModel(
-    private val getSampleDataUseCase: GetSampleDataUseCase
+    private val getSampleDataUseCase: GetTasksUseCase
 ) : BaseViewModel<TaskDetailState>() {
 
     val title: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)

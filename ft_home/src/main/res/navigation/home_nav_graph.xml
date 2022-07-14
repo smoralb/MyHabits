@@ -9,7 +9,7 @@
         android:id="@+id/firstFragment"
         android:name="com.smb.ft_main.presentation.home.HomeFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/toSecondFragment"
             app:destination="@id/secondFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/secondFragment"
         android:name="com.smb.ft_main.presentation.detail.TaskDetailFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_detail">
         <action
             android:id="@+id/toFirstFragment"
             app:destination="@+id/auth_nav_graph" />

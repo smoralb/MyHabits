@@ -6,11 +6,11 @@ import androidx.navigation.fragment.navArgs
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_main.BR
 import com.smb.ft_main.R
-import com.smb.ft_main.databinding.FragmentSecondBinding
+import com.smb.ft_main.databinding.FragmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentSecondBinding, TaskDetailViewModel>
-    (R.layout.fragment_second, BR.viewModel) {
+class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, TaskDetailViewModel>
+    (R.layout.fragment_detail, BR.viewModel) {
 
     override val viewModel by viewModel<TaskDetailViewModel>()
     private val args: TaskDetailFragmentArgs by navArgs()

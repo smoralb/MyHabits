@@ -13,7 +13,8 @@ val homePresentationModule = module {
 
     viewModel {
         HomeViewModel(
-            getSampleDataUseCase = get(),
+            getTasksUseCase = get(),
+            createTaskUseCase = get(),
             logOutUseCase = get(),
             mapper = get()
         )

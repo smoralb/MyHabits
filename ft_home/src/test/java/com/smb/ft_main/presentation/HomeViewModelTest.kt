@@ -3,10 +3,12 @@ package com.smb.ft_main.presentation
 import com.smb.core.data.Result
 import com.smb.core.domain.LogOutUseCase
 import com.smb.core.test.BaseViewModelUnitTest
-import com.smb.ft_main.domain.usecases.GetSampleDataUseCase
-import com.smb.ft_main.presentation.home.HomeViewModel
-import com.smb.ft_main.presentation.home.HomeState
+import com.smb.ft_main.domain.mocks.habitListModelMock
+import com.smb.ft_main.domain.usecases.CreateTaskUseCase
+import com.smb.ft_main.domain.usecases.GetTasksUseCase
 import com.smb.ft_main.presentation.home.HomeState.HideLoading
+import com.smb.ft_main.presentation.home.HomeState.NavigateUp
+import com.smb.ft_main.presentation.home.HomeViewModel
 import com.smb.ft_main.presentation.home.mapper.FirstFragmentMapper
 import com.smb.ft_main.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,7 +27,10 @@ import org.mockito.kotlin.whenever
 class HomeViewModelTest : BaseViewModelUnitTest() {
 
     @Mock
-    private lateinit var getSampleDataUseCase: GetSampleDataUseCase
+    private lateinit var getTasksUseCase: GetTasksUseCase
+
+    @Mock
+    private lateinit var createTaskUseCase: CreateTaskUseCase
 
     @Mock
     private lateinit var logOutUseCase: LogOutUseCase
@@ -37,7 +42,7 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
 
     @BeforeEach
     fun setUp() {
-        viewModel = HomeViewModel(getSampleDataUseCase, logOutUseCase, mapper)
+        viewModel = HomeViewModel(getTasksUseCase, createTaskUseCase, logOutUseCase, mapper)
     }
 
     @TestFactory
@@ -47,7 +52,7 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {
             runBlockingTest {
-                whenever(getSampleDataUseCase(any())).thenReturn(testCase)
+                whenever(getTasksUseCase(any())).thenReturn(testCase)
 
                 viewModel.initialize()
 
@@ -58,7 +63,28 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
                 }
                 assertTrue(viewModel.viewState.value is HideLoading)
             }
-            clearInvocations(getSampleDataUseCase, mapper)
+            clearInvocations(getTasksUseCase, mapper)
+        }
+    }
+
+    @TestFactory
+    fun `createTaskUseCase should return sample data `() = listOf(
+        Result.Success(Unit) to Result.Success(habitListModelMock),
+        Result.Error() to Result.Error()
+    ).map { testCase ->
+        DynamicTest.dynamicTest("$testCase") {
+            runBlockingTest {
+                if (testCase.first.isSuccess)
+                    whenever(getTasksUseCase(any())).thenReturn(testCase.second)
+                whenever(createTaskUseCase(any())).thenReturn(testCase.first)
+
+                viewModel.createTask()
+
+                if (testCase.first.isSuccess) {
+                    verify(mapper).mapItems(any(), any())
+                }
+            }
+            clearInvocations(createTaskUseCase, getTasksUseCase, mapper)
         }
     }
 
@@ -74,9 +100,9 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
                 viewModel.signOut()
 
                 if (testCase.isSuccess) {
-                    assertTrue(viewModel.viewState.value is HomeState.NavigateUp)
+                    assertTrue(viewModel.viewState.value is NavigateUp)
                 }
-                clearInvocations(getSampleDataUseCase, mapper)
+                clearInvocations(getTasksUseCase, mapper)
             }
         }
     }

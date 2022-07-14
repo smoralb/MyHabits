@@ -37,8 +37,8 @@ class HomeRepositoryTest : BaseUnitTest() {
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase as result") {
             runBlockingTest {
-                whenever(remoteSource.getSampleData()).thenReturn(testCase)
-                val result = repository.getSampleData()
+                whenever(remoteSource.getTasks()).thenReturn(testCase)
+                val result = repository.getTasks()
 
                 assertTrue(result.isSuccess)
                 assertEquals((result as Result.Success).value, habitListModelMock)

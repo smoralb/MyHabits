@@ -1,9 +1,9 @@
 package com.smb.ft_main.domain.usecases
 
-import com.smb.ft_main.domain.repository.HomeRepository
 import com.smb.core.data.Result
 import com.smb.core.test.BaseUnitTest
 import com.smb.ft_main.domain.mocks.habitListModelMock
+import com.smb.ft_main.domain.repository.HomeRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -18,32 +18,32 @@ import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class GetSampleDataUseCaseTest : BaseUnitTest() {
+class GetTasksUseCaseTest : BaseUnitTest() {
 
     @Mock
     private lateinit var repositoryImpl: HomeRepository
 
-    private lateinit var useCase: GetSampleDataUseCase
+    private lateinit var useCase: GetTasksUseCase
 
     @BeforeEach
     fun setUp() {
-        useCase = GetSampleDataUseCaseImpl(repositoryImpl)
+        useCase = GetTasksUseCaseImpl(repositoryImpl)
     }
 
     @TestFactory
-    fun `GetSampleDataUseCase should return `() = listOf(
+    fun `GetTasksUseCase should return `() = listOf(
         Result.Success(habitListModelMock),
         Result.Error()
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase") {
             runBlockingTest {
-                whenever(repositoryImpl.getSampleData()).thenReturn(testCase)
+                whenever(repositoryImpl.getTasks()).thenReturn(testCase)
 
                 val result = useCase(Unit)
 
                 assertEquals(result.isError, testCase.isError)
                 assertEquals(result.isSuccess, testCase.isSuccess)
-                verify(repositoryImpl, times(1)).getSampleData()
+                verify(repositoryImpl, times(1)).getTasks()
                 verifyNoMoreInteractions(repositoryImpl)
                 clearInvocations(repositoryImpl)
             }

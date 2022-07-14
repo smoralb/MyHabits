@@ -1,6 +1,7 @@
 package com.smb.ft_main.domain.mocks
 
 import com.smb.core.extensions.EMPTY_STRING
+import com.smb.ft_main.domain.model.CreateTaskModel
 import com.smb.ft_main.domain.model.HabitListModel
 import com.smb.ft_main.domain.model.HabitModel
 
@@ -23,6 +24,11 @@ internal val habitModelMock =
 
 internal val habitListModelMock = HabitListModel(
     habitList = listOf(habitModelMock)
+)
+
+internal val taskModelMock = CreateTaskModel(
+    name = "Test Name",
+    description = "Test description"
 )
 
 //endregion
