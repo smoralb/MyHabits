@@ -6,7 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import android.view.MotionEvent
+import android.view.MotionEvent.*
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper.LEFT
 import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
+import com.smb.core.presentation.adapters.ButtonsState.*
 import kotlin.math.max
 import kotlin.math.min
 
@@ -30,7 +31,7 @@ internal enum class ButtonsState {
 abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val context: Context) :
     Callback() {
     private var swipeBack = false
-    private var buttonShowedState = ButtonsState.GONE
+    private var buttonShowedState = GONE
     private var buttonInstance: RectF? = null
     private var currentItemViewHolder: RecyclerView.ViewHolder? = null
     private var buttonsActions: SwipeControllerActions? = null
@@ -56,7 +57,7 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
 
     override fun convertToAbsoluteDirection(flags: Int, layoutDirection: Int): Int {
         if (swipeBack) {
-            swipeBack = buttonShowedState != ButtonsState.GONE
+            swipeBack = buttonShowedState != GONE
             return 0
         }
         return super.convertToAbsoluteDirection(flags, layoutDirection)
@@ -71,16 +72,19 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
-        var dX = dX
+        var buttonPosition = dX
         if (actionState == ACTION_STATE_SWIPE) {
-            if (buttonShowedState != ButtonsState.GONE) {
-                if (buttonShowedState == ButtonsState.LEFT_VISIBLE) dX = max(dX, buttonWidth)
-                if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) dX = min(dX, -buttonWidth)
+            if (buttonShowedState != GONE) {
+                buttonPosition = when (buttonShowedState) {
+                    LEFT_VISIBLE -> max(dX, buttonWidth)
+                    RIGHT_VISIBLE -> min(dX, -buttonWidth)
+                    else -> 0f
+                }
                 super.onChildDraw(
                     c,
                     recyclerView,
                     viewHolder,
-                    dX,
+                    buttonPosition,
                     dY,
                     actionState,
                     isCurrentlyActive
@@ -90,20 +94,18 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
                     c,
                     recyclerView,
                     viewHolder,
-                    dX,
+                    buttonPosition,
                     dY,
                     actionState,
                     isCurrentlyActive
                 )
             }
         }
-        if (buttonShowedState == ButtonsState.GONE) {
+        if (buttonShowedState == GONE) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         }
         currentItemViewHolder = viewHolder
-        if (currentItemViewHolder != null) {
-            drawButtons(c, currentItemViewHolder!!)
-        }
+        currentItemViewHolder?.let { drawButtons(c, it) }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -117,13 +119,12 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
         isCurrentlyActive: Boolean
     ) {
         recyclerView.setOnTouchListener { _, event ->
-            swipeBack =
-                event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
+            swipeBack = event.action == ACTION_CANCEL || event.action == ACTION_UP
             if (swipeBack) {
                 if (dX < -buttonWidth) buttonShowedState =
-                    ButtonsState.RIGHT_VISIBLE else if (dX > buttonWidth) buttonShowedState =
-                    ButtonsState.LEFT_VISIBLE
-                if (buttonShowedState != ButtonsState.GONE) {
+                    RIGHT_VISIBLE else if (dX > buttonWidth) buttonShowedState =
+                    LEFT_VISIBLE
+                if (buttonShowedState != GONE) {
                     setTouchDownListener(
                         c,
                         recyclerView,
@@ -151,7 +152,7 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
         isCurrentlyActive: Boolean
     ) {
         recyclerView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
+            if (event.action == ACTION_DOWN) {
                 setTouchUpListener(
                     c,
                     recyclerView,
@@ -177,7 +178,7 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
         isCurrentlyActive: Boolean
     ) {
         recyclerView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_UP) {
+            if (event.action == ACTION_UP) {
                 super@SwipeControllerAlt.onChildDraw(
                     c,
                     recyclerView,
@@ -195,13 +196,13 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
                         event.y
                     )
                 ) {
-                    if (buttonShowedState == ButtonsState.LEFT_VISIBLE) {
+                    if (buttonShowedState == LEFT_VISIBLE) {
                         buttonsActions!!.onLeftClicked(viewHolder.adapterPosition)
-                    } else if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
+                    } else if (buttonShowedState == RIGHT_VISIBLE) {
                         buttonsActions!!.onRightClicked(viewHolder.adapterPosition)
                     }
                 }
-                buttonShowedState = ButtonsState.GONE
+                buttonShowedState = GONE
                 currentItemViewHolder = null
             }
             false
@@ -226,7 +227,7 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
             itemView.bottom.toFloat()
         )
 
-        drawButton(c, leftButton, p, Color.BLUE)
+        drawButton(c, leftButton, p, Color.BLUE, R.drawable.ic_edit)
 
         val rightButton = RectF(
             itemView.right.toFloat() - buttonWidthWithoutPadding,
@@ -235,30 +236,31 @@ abstract class SwipeControllerAlt(buttonsActions: SwipeControllerActions?, val c
             itemView.bottom.toFloat()
         )
 
-        drawButton(c, rightButton, p, Color.RED)
+        drawButton(c, rightButton, p, Color.RED, R.drawable.ic_delete)
 
-        buttonInstance = null
-
-        if (buttonShowedState == ButtonsState.LEFT_VISIBLE) {
-            buttonInstance = leftButton
-        } else if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
-            buttonInstance = rightButton
+        buttonInstance = when (buttonShowedState) {
+            LEFT_VISIBLE -> leftButton
+            RIGHT_VISIBLE -> rightButton
+            else -> null
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun drawButton(c: Canvas, button: RectF, p: Paint, color: Int) {
-        val wrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.ic_delete)
+    private fun drawButton(c: Canvas, button: RectF, p: Paint, color: Int, icon: Int) {
+        val wrappedDrawable = AppCompatResources.getDrawable(context, icon)
         val unwrappedDrawable = DrawableCompat.wrap(wrappedDrawable!!)
         DrawableCompat.setTint(unwrappedDrawable, Color.WHITE)
 
         p.color = color
-        c.drawRoundRect(button, 0f, 0f, p)
-        c.drawBitmap(
-            unwrappedDrawable.toBitmap(),
-            button.centerX() - (unwrappedDrawable.toBitmap().width / 2),
-            button.centerY() - (unwrappedDrawable.toBitmap().height / 2),
-            null
-        )
+        c.apply {
+            drawRoundRect(button, 0f, 0f, p)
+            drawBitmap(
+                unwrappedDrawable.toBitmap(),
+                button.centerX() - (unwrappedDrawable.toBitmap().width / 2),
+                button.centerY() - (unwrappedDrawable.toBitmap().height / 2),
+                null
+            )
+        }
+
     }
 }
