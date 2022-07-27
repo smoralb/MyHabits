@@ -3,11 +3,13 @@ package com.smb.ft_home.presentation
 import com.smb.core.data.Result
 import com.smb.core.domain.LogOutUseCase
 import com.smb.core.test.BaseViewModelUnitTest
+import com.smb.ft_home.domain.usecases.DeleteTaskUseCase
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
 import com.smb.ft_home.presentation.home.HomeState.AddTask
 import com.smb.ft_home.presentation.home.HomeState.HideLoading
 import com.smb.ft_home.presentation.home.HomeState.NavigateUp
 import com.smb.ft_home.presentation.home.HomeViewModel
+import com.smb.ft_home.presentation.home.adapter.TaskDataItems
 import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 import com.smb.ft_home.presentation.mocks.presentationHabitListModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,6 +24,7 @@ import org.mockito.Mock
 import org.mockito.kotlin.any
 import org.mockito.kotlin.clearInvocations
 import org.mockito.kotlin.verify
+import org.mockito.kotlin.verifyZeroInteractions
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -34,13 +37,16 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
     private lateinit var logOutUseCase: LogOutUseCase
 
     @Mock
+    private lateinit var deleteTaskUseCase: DeleteTaskUseCase
+
+    @Mock
     private lateinit var mapper: FirstFragmentMapper
 
     private lateinit var viewModel: HomeViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = HomeViewModel(getTasksUseCase, logOutUseCase, mapper)
+        viewModel = HomeViewModel(getTasksUseCase, logOutUseCase, deleteTaskUseCase, mapper)
     }
 
     @TestFactory
@@ -84,6 +90,38 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
 
                 if (testCase.isSuccess) {
                     assertTrue(viewModel.viewState.value is NavigateUp)
+                }
+                clearInvocations(getTasksUseCase, mapper)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `delete task should delete any item `() = listOf(
+        Result.Success(Unit) to Result.Success(presentationHabitListModelMock),
+        Result.Error() to Result.Error()
+    ).map { testCase ->
+        DynamicTest.dynamicTest("$testCase") {
+            runBlockingTest {
+                whenever(deleteTaskUseCase(any())).thenReturn(testCase.first)
+                if (testCase.first.isSuccess)
+                    whenever(getTasksUseCase(any())).thenReturn(testCase.second)
+
+                viewModel.itemList.value = mutableListOf(
+                    TaskDataItems.TaskDataItem(
+                        id = "id",
+                        title = "title",
+                        description = "description",
+                        publisher = "publisher"
+                    ) {}
+                )
+
+                viewModel.deleteTask(0)
+
+                if (testCase.first.isSuccess) {
+                    verify(mapper).mapItems(any(), any())
+                } else {
+                    verifyZeroInteractions(mapper)
                 }
                 clearInvocations(getTasksUseCase, mapper)
             }

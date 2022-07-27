@@ -55,8 +55,8 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
 
         val itemTouchHelper = ItemTouchHelper(object : SwipeControllerAlt(
             object : SwipeControllerActions {
-                override fun onRightClicked(position: Int) {
-                    viewModel.deleteTask(position)
+                override fun onRightClicked(itemPosition: Int) {
+                    viewModel.deleteTask(itemPosition)
                 }
             }, requireContext()) {})
         itemTouchHelper.attachToRecyclerView(binding.rvBookList)

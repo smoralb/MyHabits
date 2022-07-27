@@ -2,7 +2,7 @@ package com.smb.core.presentation.adapters
 
 interface SwipeControllerActions {
 
-    fun onLeftClicked(position: Int) {}
+    fun onLeftClicked(itemPosition: Int) {}
 
-    fun onRightClicked(position: Int) {}
+    fun onRightClicked(itemPosition: Int) {}
 }

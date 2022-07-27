@@ -67,13 +67,11 @@ class HomeViewModel(
         }
     }
 
-    internal fun deleteTask(documentId: Int) {
+    internal fun deleteTask(itemPosition: Int) {
         _viewState update Loading
         execute {
-            deleteTaskUseCase(Params(itemList.value!![documentId].id)).fold(
-                handleSuccess = {
-                    getTasks()
-                },
+            deleteTaskUseCase(Params(itemList.value!![itemPosition].id)).fold(
+                handleSuccess = { getTasks() },
                 handleError = {}
             )
         }

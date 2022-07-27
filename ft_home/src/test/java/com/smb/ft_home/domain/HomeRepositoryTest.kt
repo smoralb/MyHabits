@@ -1,10 +1,12 @@
 package com.smb.ft_home.domain
 
 import com.smb.core.data.Result
+import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
 import com.smb.ft_home.data.repository.HomeRepositoryImpl
 import com.smb.ft_home.data.source.HomeRemoteSource
 import com.smb.ft_home.domain.mocks.habitListModelMock
+import com.smb.ft_home.domain.mocks.taskModelMock
 import com.smb.ft_home.domain.repository.HomeRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
+import org.mockito.kotlin.any
 import org.mockito.kotlin.clearInvocations
 import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
@@ -32,7 +35,7 @@ class HomeRepositoryTest : BaseUnitTest() {
     }
 
     @TestFactory
-    fun `repository should call remote source and return `() = listOf(
+    fun `repository should call get tasks and return `() = listOf(
         Result.Success(habitListModelMock)
     ).map { testCase ->
         DynamicTest.dynamicTest("$testCase as result") {
@@ -42,6 +45,38 @@ class HomeRepositoryTest : BaseUnitTest() {
 
                 assertTrue(result.isSuccess)
                 assertEquals((result as Result.Success).value, habitListModelMock)
+                verifyNoMoreInteractions(remoteSource)
+                clearInvocations(remoteSource)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `repository should call create task and return `() = listOf(
+        Result.Success(Unit)
+    ).map { testCase ->
+        DynamicTest.dynamicTest("$testCase as result") {
+            runBlockingTest {
+                whenever(remoteSource.createTask(taskModelMock)).thenReturn(testCase)
+                val result = repository.createTask(taskModelMock)
+
+                assertTrue(result.isSuccess)
+                verifyNoMoreInteractions(remoteSource)
+                clearInvocations(remoteSource)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `repository should call delete task and return `() = listOf(
+        Result.Success(Unit)
+    ).map { testCase ->
+        DynamicTest.dynamicTest("$testCase as result") {
+            runBlockingTest {
+                whenever(remoteSource.deleteTask(any())).thenReturn(testCase)
+                val result = repository.deleteTask(EMPTY_STRING)
+
+                assertTrue(result.isSuccess)
                 verifyNoMoreInteractions(remoteSource)
                 clearInvocations(remoteSource)
             }
