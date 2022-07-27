@@ -1,10 +1,12 @@
 package com.smb.ft_home.presentation.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.smb.core.presentation.adapters.SwipeControllerActions
+import com.smb.core.presentation.adapters.SwipeControllerAlt
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
 import com.smb.ft_home.R
@@ -16,6 +18,7 @@ import com.smb.ft_home.presentation.home.HomeState.NavigateToSecondFragment
 import com.smb.ft_home.presentation.home.HomeState.NavigateUp
 import com.smb.ft_home.presentation.home.adapter.HomeFragmentAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
     (R.layout.fragment_home, BR.viewModel) {
@@ -32,9 +35,7 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvBookList.adapter = HomeFragmentAdapter()
-        binding.swipeContainer.setOnRefreshListener {
-            viewModel.getTasks()
-        }
+        setUpSwipeRecyclerView()
         viewModel.initialize()
     }
 
@@ -47,5 +48,17 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
             is NavigateUp -> requireActivity().finish()
             is AddTask -> navigateTo(HomeFragmentDirections.toAddTask())
         }
+    }
+
+    private fun setUpSwipeRecyclerView() {
+        binding.srLayout.setOnRefreshListener { viewModel.getTasks() }
+
+        val itemTouchHelper = ItemTouchHelper(object : SwipeControllerAlt(
+            object : SwipeControllerActions {
+                override fun onRightClicked(itemPosition: Int) {
+                    viewModel.deleteTask(itemPosition)
+                }
+            }, requireContext()) {})
+        itemTouchHelper.attachToRecyclerView(binding.rvBookList)
     }
 }

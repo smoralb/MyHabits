@@ -6,6 +6,8 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_home.domain.usecases.DeleteTaskUseCase
+import com.smb.ft_home.domain.usecases.DeleteTaskUseCase.Params
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
 import com.smb.ft_home.presentation.home.HomeState.AddTask
 import com.smb.ft_home.presentation.home.HomeState.HideLoading
@@ -18,6 +20,7 @@ import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 class HomeViewModel(
     private val getTasksUseCase: GetTasksUseCase,
     private val logOutUseCase: LogOutUseCase,
+    private val deleteTaskUseCase: DeleteTaskUseCase,
     private val mapper: FirstFragmentMapper
 ) : BaseViewModel<HomeState>() {
 
@@ -60,6 +63,16 @@ class HomeViewModel(
                     firstViewModelText update "Error"
                     _viewState update HideLoading
                 }
+            )
+        }
+    }
+
+    internal fun deleteTask(itemPosition: Int) {
+        _viewState update Loading
+        execute {
+            deleteTaskUseCase(Params(itemList.value!![itemPosition].id)).fold(
+                handleSuccess = { getTasks() },
+                handleError = {}
             )
         }
     }

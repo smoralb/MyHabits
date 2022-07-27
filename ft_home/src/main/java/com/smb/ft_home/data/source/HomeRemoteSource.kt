@@ -8,4 +8,5 @@ interface HomeRemoteSource {
 
     suspend fun getTasks(): Result<HabitListModel>
     suspend fun createTask(task: CreateTaskModel): Result<Unit>
+    suspend fun deleteTask(documentId: String): Result<Unit>
 }
