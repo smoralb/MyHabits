@@ -2,6 +2,7 @@ package com.smb.ft_home.presentation.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.smb.core.presentation.adapters.SwipeControllerActions
@@ -55,10 +56,9 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
         val itemTouchHelper = ItemTouchHelper(object : SwipeControllerAlt(
             object : SwipeControllerActions {
                 override fun onRightClicked(position: Int) {
-                    super.onRightClicked(position)
+                    viewModel.deleteTask(position)
                 }
-            }
-        , requireContext()){})
+            }, requireContext()) {})
         itemTouchHelper.attachToRecyclerView(binding.rvBookList)
     }
 }

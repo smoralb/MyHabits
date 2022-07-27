@@ -1,6 +1,5 @@
 package com.smb.ft_home.data.source
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.smb.core.data.Result
 import com.smb.core.data.safeApiCall
@@ -12,8 +11,7 @@ private const val COLLECTION_DB = "habits"
 
 class HomeRemoteSourceImpl(
     private val mapper: HomeDataMapper,
-    private val fireStore: FirebaseFirestore,
-    private val firebaseAuth: FirebaseAuth
+    private val fireStore: FirebaseFirestore
 ) : HomeRemoteSource {
 
     override suspend fun getTasks(): Result<HabitListModel> =
@@ -33,6 +31,17 @@ class HomeRemoteSourceImpl(
                 fireStore
                     .collection(COLLECTION_DB)
                     .add(task)
+            },
+            mapper = {}
+        )
+
+    override suspend fun deleteTask(documentId: String): Result<Unit> =
+        safeApiCall(
+            apiCall = {
+                fireStore
+                    .collection(COLLECTION_DB)
+                    .document(documentId)
+                    .delete()
             },
             mapper = {}
         )

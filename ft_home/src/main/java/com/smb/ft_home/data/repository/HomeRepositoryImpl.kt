@@ -12,5 +12,9 @@ class HomeRepositoryImpl(
 
     override suspend fun getTasks(): Result<HabitListModel> = remoteSource.getTasks()
 
-    override suspend fun createTask(task: CreateTaskModel): Result<Unit> = remoteSource.createTask(task)
+    override suspend fun createTask(task: CreateTaskModel): Result<Unit> =
+        remoteSource.createTask(task)
+
+    override suspend fun deleteTask(documentId: String): Result<Unit> =
+        remoteSource.deleteTask(documentId)
 }

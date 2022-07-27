@@ -16,7 +16,8 @@ val homePresentationModule = module {
         HomeViewModel(
             getTasksUseCase = get(),
             logOutUseCase = get(),
-            mapper = get()
+            mapper = get(),
+            deleteTaskUseCase = get()
         )
     }
     viewModel { TaskDetailViewModel(getTasksUseCase = get()) }

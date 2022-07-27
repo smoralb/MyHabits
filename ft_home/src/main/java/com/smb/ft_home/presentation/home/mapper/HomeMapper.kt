@@ -14,7 +14,7 @@ class HomeMapperImpl : FirstFragmentMapper {
     override fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit) =
         model.map {
             TaskDataItems.TaskDataItem(
-                isbn = EMPTY_STRING,
+                id = it.id ?: EMPTY_STRING,
                 title = it.name ?: "NAME",
                 description = it.description ?: "DESCRIPTION",
                 publisher = it.description ?: "DESCRIPTION",
