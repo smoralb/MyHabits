@@ -8,6 +8,8 @@ import com.smb.ft_home.domain.usecases.DeleteTaskUseCase
 import com.smb.ft_home.domain.usecases.DeleteTaskUseCaseImpl
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
 import com.smb.ft_home.domain.usecases.GetTasksUseCaseImpl
+import com.smb.ft_home.domain.usecases.UpdateTaskUseCase
+import com.smb.ft_home.domain.usecases.UpdateTaskUseCaseImpl
 import org.koin.dsl.module
 
 val homeDomainModule = module {
@@ -15,4 +17,5 @@ val homeDomainModule = module {
     factory<GetTasksUseCase> { GetTasksUseCaseImpl(get()) }
     factory<CreateTaskUseCase> { CreateTaskUseCaseImpl(get()) }
     factory<DeleteTaskUseCase> { DeleteTaskUseCaseImpl(get()) }
+    factory<UpdateTaskUseCase> { UpdateTaskUseCaseImpl(get()) }
 }

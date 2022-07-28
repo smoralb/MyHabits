@@ -67,6 +67,11 @@ The app has different modules that will be increased. At this moment exists comm
     - Add Sonar/Codecov and Bitrise.
     - Improve documentation
     - Check if there are unused dependencies.
+
+## TODO
+    - Remove toolbar in item detail view and use activity's toolbar
+    - Fix crash when rotate device
+    - Fix crash when toolbar back button clicked in item detail view
   
 References:
 
