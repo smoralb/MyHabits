@@ -1,7 +1,9 @@
 package com.smb.ft_home.presentation.mocks
 
+import com.smb.core.extensions.EMPTY_STRING
 import com.smb.ft_home.domain.model.HabitListModel
 import com.smb.ft_home.domain.model.HabitModel
+import com.smb.ft_home.domain.model.UpdateTaskModel
 
 const val SAMPLE_ID = "SAMPLE ID"
 private const val SAMPLE_DESCRIPTION = "SAMPLE DESCRIPTION"
@@ -21,6 +23,12 @@ internal val presentationHabitModelMock = HabitModel(
 
 internal val presentationHabitListModelMock = HabitListModel(
     habitList = listOf(presentationHabitModelMock)
+)
+
+internal val updateTaskModelMock = UpdateTaskModel(
+    id = EMPTY_STRING,
+    name = EMPTY_STRING,
+    description = EMPTY_STRING
 )
 
 //endregion

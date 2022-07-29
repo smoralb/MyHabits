@@ -13,4 +13,8 @@
     <string name="fragment_add_task_title">Title</string>
     <string name="fragment_add_task_description">Description</string>
     <string name="fragment_add_task_add_button">Add Task</string>
+    <!-- Edit task -->
+    <string name="fragment_edit_task_title">Title</string>
+    <string name="fragment_edit_task_description">Description</string>
+    <string name="fragment_edit_task_add_button">Edit Task</string>
 </resources>

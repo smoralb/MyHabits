@@ -6,6 +6,7 @@ import com.smb.core.data.safeApiCall
 import com.smb.ft_home.data.repository.mapper.HomeDataMapper
 import com.smb.ft_home.domain.model.CreateTaskModel
 import com.smb.ft_home.domain.model.HabitListModel
+import com.smb.ft_home.domain.model.UpdateTaskModel
 
 private const val COLLECTION_DB = "habits"
 
@@ -42,6 +43,17 @@ class HomeRemoteSourceImpl(
                     .collection(COLLECTION_DB)
                     .document(documentId)
                     .delete()
+            },
+            mapper = {}
+        )
+
+    override suspend fun updateTask(task: UpdateTaskModel): Result<Unit> =
+        safeApiCall(
+            apiCall = {
+                fireStore
+                    .collection(COLLECTION_DB)
+                    .document(task.id)
+                    .set(task)
             },
             mapper = {}
         )

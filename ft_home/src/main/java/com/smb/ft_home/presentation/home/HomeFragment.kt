@@ -2,7 +2,6 @@ package com.smb.ft_home.presentation.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.smb.core.presentation.adapters.SwipeControllerActions
@@ -58,7 +57,14 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
                 override fun onRightClicked(itemPosition: Int) {
                     viewModel.deleteTask(itemPosition)
                 }
-            }, requireContext()) {})
+
+                override fun onLeftClicked(itemPosition: Int) {
+                    navigateTo(
+                        HomeFragmentDirections.toEdit(viewModel.itemList.value!![itemPosition].id)
+                    )
+                }
+            }, requireContext()
+        ) {})
         itemTouchHelper.attachToRecyclerView(binding.rvBookList)
     }
 }

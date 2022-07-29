@@ -15,7 +15,14 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/toAddTask"
-            app:destination="@+id/addFragment"/>
+            app:destination="@+id/addFragment" />
+        <action
+            android:id="@+id/toEdit"
+            app:destination="@id/editFragment" >
+            <argument
+                android:name="id"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -35,6 +42,10 @@
         tools:layout="@layout/fragment_add">
         <action
             android:id="@+id/toHomeFragment"
-            app:destination="@+id/homeFragment"/>
+            app:destination="@+id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.smb.ft_home.presentation.edit.EditTaskFragment"
+        tools:layout="@layout/fragment_edit" />
 </navigation>
