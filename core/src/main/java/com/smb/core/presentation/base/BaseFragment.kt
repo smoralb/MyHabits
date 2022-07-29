@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedDispatcher
-import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -29,7 +27,9 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.viewState.observeForever { checkViewState(it) }
+        viewModel.viewState.observe(this, {
+            checkViewState(it)
+        })
     }
 
     override fun onCreateView(
@@ -46,7 +46,6 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        viewModel.viewState.removeObservers(this)
     }
 
     fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
