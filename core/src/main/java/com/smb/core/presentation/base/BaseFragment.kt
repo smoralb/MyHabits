@@ -52,6 +52,6 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
 
     fun navigateUp() = requireActivity().onBackPressed()
 
-    abstract fun checkViewState(state: S)
+    open fun checkViewState(state: S) {}
 
 }
