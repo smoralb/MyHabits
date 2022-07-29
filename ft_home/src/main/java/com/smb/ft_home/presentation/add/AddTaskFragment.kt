@@ -21,7 +21,7 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
         when (state) {
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is ShowError -> Toast.makeText(activity, state.message, Toast.LENGTH_SHORT).show()
-            is NavigateUp -> requireActivity().onBackPressed()
+            is NavigateUp -> navigateUp()
         }
     }
 }

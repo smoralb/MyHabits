@@ -50,6 +50,8 @@ abstract class BaseFragment<S : BaseState, DB : ViewDataBinding, out VM : BaseVi
 
     fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
 
+    fun navigateUp() = requireActivity().onBackPressed()
+
     abstract fun checkViewState(state: S)
 
 }

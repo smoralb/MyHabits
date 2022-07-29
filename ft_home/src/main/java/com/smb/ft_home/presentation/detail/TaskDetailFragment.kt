@@ -19,9 +19,7 @@ class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, 
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(args.id)
 
-        binding.tbHeader.setNavigationOnClickListener {
-            requireActivity().onBackPressed()
-        }
+        binding.tbHeader.setNavigationOnClickListener { navigateUp() }
     }
 
     override fun checkViewState(state: TaskDetailState) {
