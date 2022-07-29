@@ -70,6 +70,8 @@ The app has different modules that will be increased. At this moment exists comm
     - Add Biometric to login
     - Store login data with biometrics
     - Add back arrow toolbar
+    - Add push notification
+    - Add reminder
 
 ## TODO
     - Loader always visible when swipe down
