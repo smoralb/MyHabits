@@ -29,9 +29,6 @@
         android:name="com.smb.ft_home.presentation.detail.TaskDetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_detail">
-        <action
-            android:id="@+id/toHomeFragment"
-            app:destination="@+id/auth_nav_graph" />
         <argument
             android:name="id"
             app:argType="string" />
@@ -40,9 +37,6 @@
         android:id="@+id/addFragment"
         android:name="com.smb.ft_home.presentation.add.AddTaskFragment"
         tools:layout="@layout/fragment_add">
-        <action
-            android:id="@+id/toHomeFragment"
-            app:destination="@+id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"

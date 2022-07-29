@@ -20,7 +20,7 @@ class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, 
         viewModel.init(args.id)
 
         binding.tbHeader.setNavigationOnClickListener {
-            navigateTo(TaskDetailFragmentDirections.toHomeFragment())
+            requireActivity().onBackPressed()
         }
     }
 
