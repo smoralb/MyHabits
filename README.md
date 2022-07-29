@@ -73,7 +73,6 @@ The app has different modules that will be increased. At this moment exists comm
 
 ## TODO
     - Remove toolbar in item detail view and use activity's toolbar
-    - Fix crash when rotate device
     - Fix crash when toolbar back button clicked in item detail view
     - Loader always visible when swipe down
   
