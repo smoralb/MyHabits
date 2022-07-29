@@ -2,6 +2,9 @@ package com.smb.ft_home.presentation.di
 
 import com.smb.ft_home.presentation.add.AddTaskViewModel
 import com.smb.ft_home.presentation.detail.TaskDetailViewModel
+import com.smb.ft_home.presentation.edit.EditTaskMapper
+import com.smb.ft_home.presentation.edit.EditTaskMapperImpl
+import com.smb.ft_home.presentation.edit.EditTaskViewModel
 import com.smb.ft_home.presentation.home.HomeViewModel
 import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 import com.smb.ft_home.presentation.home.mapper.HomeMapperImpl
@@ -23,4 +26,8 @@ val homePresentationModule = module {
     viewModel { TaskDetailViewModel(getTasksUseCase = get()) }
 
     viewModel { AddTaskViewModel(createTaskUseCase = get()) }
+
+    factory<EditTaskMapper> { EditTaskMapperImpl() }
+
+    viewModel { EditTaskViewModel(updateTaskUseCase = get(), mapper = get()) }
 }

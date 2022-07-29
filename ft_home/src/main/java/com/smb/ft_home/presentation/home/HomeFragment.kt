@@ -59,7 +59,9 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
                 }
 
                 override fun onLeftClicked(itemPosition: Int) {
-
+                    navigateTo(
+                        HomeFragmentDirections.toEdit(viewModel.itemList.value!![itemPosition].id)
+                    )
                 }
             }, requireContext()
         ) {})
