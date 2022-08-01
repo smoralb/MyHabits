@@ -18,6 +18,7 @@ class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(args.id)
+        binding.tbDetail.setNavigationOnClickListener { navigateUp() }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.smb.ft_home.presentation.add
 
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.smb.core.presentation.base.BaseFragment
@@ -16,6 +17,11 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
 ) {
 
     override val viewModel: AddTaskViewModel by viewModel()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tbAdd.setNavigationOnClickListener { navigateUp() }
+    }
 
     override fun checkViewState(state: AddTaskState) {
         when (state) {

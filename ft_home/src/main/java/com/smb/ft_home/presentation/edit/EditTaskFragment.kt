@@ -25,6 +25,7 @@ class EditTaskFragment : BaseFragment<EditTaskState, FragmentEditBinding, EditTa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.initialize(args.id)
+        binding.tbEdit.setNavigationOnClickListener { navigateUp() }
     }
 
     override fun checkViewState(state: EditTaskState) {
