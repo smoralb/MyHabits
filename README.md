@@ -58,7 +58,7 @@ The app has different modules that will be increased. At this moment exists comm
 - ft_xxx -> The feature module contains the implementation of the feature that will be included in the app (ft_landing, ft_home, etc).
 
 
-![img.png](img.png)
+![img.png](app_structure.JPG)
 
 
 
