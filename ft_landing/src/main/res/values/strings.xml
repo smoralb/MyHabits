@@ -8,6 +8,7 @@
     <string name="login_text">Login</string>
     <string name="login_create_account">Do not have an account? Create one</string>
     <string name="login_forget_password">Forget password?</string>
+    <string name="login_remember_me">Remember me</string>
     <!-- Sign up fragment -->
     <string name="signup_fragment_name">SignUpFragment</string>
     <string name="sign_up_title">Sign up</string>

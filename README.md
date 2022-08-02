@@ -66,17 +66,18 @@ The app has different modules that will be increased. At this moment exists comm
 
     - Add Sonar/Codecov and Bitrise.
     - Improve documentation
+    - Migrate to JetPack Compose
 
 ## FEATURES
-    - Remember user ans password
+    - Remember user and password
     - Add Biometric to login
     - Add push notification
     - Add reminder
 
 ## BUGS / REFACTOR
     - Loader always visible when swipe down
-    - Refactor action bar to create a custom toolbar to be used inside every fragment
-    - Check if there are unused dependencies.
+    - Check if there are unused dependencies
+    - Review all TextView styles and unify
   
 References:
 

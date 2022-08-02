@@ -26,8 +26,6 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
             is NavigateToSignUp -> navigateTo(LoginFragmentDirections.goToSignUp())
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
             is HideLoading -> binding.pILoading.visibility = GONE
-            
-            // TODO: Pass Intent instead of Activity
             is NavigateToMainView -> viewModel.navigateToHomeView()
             is ShowError -> showToastResult(state.errorMessage)
         }
