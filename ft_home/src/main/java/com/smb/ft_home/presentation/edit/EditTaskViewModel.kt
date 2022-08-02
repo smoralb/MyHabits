@@ -5,6 +5,7 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_home.R
 import com.smb.ft_home.domain.usecases.UpdateTaskUseCase
 import com.smb.ft_home.presentation.edit.EditTaskState.Loading
 import com.smb.ft_home.presentation.edit.EditTaskState.NavigateUp
@@ -40,5 +41,9 @@ class EditTaskViewModel(
                 handleError = {}
             )
         }
+    }
+
+    fun navigateUp() {
+        _viewState update NavigateUp
     }
 }

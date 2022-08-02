@@ -15,6 +15,17 @@
         android:layout_height="match_parent"
         tools:context=".presentation.detail.TaskDetailFragment">
 
+        <com.smb.components.MHHeader
+            android:id="@+id/detailToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:headerNavigationIcon="@{viewModel.headerIcon}"
+            app:headerTitle="@{viewModel.headerTitle}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIconClickListener="@{() -> viewModel.navigateUp()}" />
+
         <TextView
             android:id="@+id/tvTitle"
             style="@style/TextHeading.Bold"
@@ -24,7 +35,7 @@
             android:text="@{viewModel.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailToolbar"
             tools:text="@string/hello_second_fragment" />
 
         <TextView

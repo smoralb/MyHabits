@@ -7,6 +7,7 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project(':core')
+    implementation project(':components')
     implementation basic.values()
     implementation koin.values()
     implementation navigation.values()

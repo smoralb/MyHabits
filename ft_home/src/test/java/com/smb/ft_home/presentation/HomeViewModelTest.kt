@@ -50,7 +50,7 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
     }
 
     @TestFactory
-    fun `getSampleData should return sample data `() = listOf(
+    fun `getTasks should return sample data `() = listOf(
         Result.Success(presentationHabitListModelMock),
         Result.Error()
     ).map { testCase ->

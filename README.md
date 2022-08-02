@@ -66,15 +66,18 @@ The app has different modules that will be increased. At this moment exists comm
 
     - Add Sonar/Codecov and Bitrise.
     - Improve documentation
-    - Check if there are unused dependencies.
+
+## FEATURES
+    - Remember user ans password
     - Add Biometric to login
-    - Store login data with biometrics
     - Add back arrow toolbar
     - Add push notification
     - Add reminder
 
-## TODO
+## BUGS / REFACTOR
     - Loader always visible when swipe down
+    - Refactor action bar to create a custom toolbar to be used inside every fragment
+    - Check if there are unused dependencies.
   
 References:
 

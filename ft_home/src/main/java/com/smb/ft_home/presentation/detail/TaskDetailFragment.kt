@@ -7,6 +7,7 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
 import com.smb.ft_home.R
 import com.smb.ft_home.databinding.FragmentDetailBinding
+import com.smb.ft_home.presentation.detail.TaskDetailState.NavigateUp
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, TaskDetailViewModel>
@@ -18,6 +19,10 @@ class TaskDetailFragment : BaseFragment<TaskDetailState, FragmentDetailBinding, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init(args.id)
+    }
+
+    override fun checkViewState(state: TaskDetailState) {
+        if (state is NavigateUp) navigateUp()
     }
 
 }

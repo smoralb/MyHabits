@@ -10,10 +10,11 @@
     <dimen name="margin_item_publisher">14dp</dimen>
 
     <!-- Add task -->
-    <dimen name="margin_add_task">40dp</dimen>
+    <dimen name="padding_add_task">20dp</dimen>
+    <dimen name="padding_bottom_task">40dp</dimen>
     <dimen name="margin_top_add_task_description">20dp</dimen>
 
     <!-- Edit task -->
-    <dimen name="margin_edit_task">40dp</dimen>
+    <dimen name="padding_edit_task">20dp</dimen>
     <dimen name="margin_top_edit_task_description">20dp</dimen>
 </resources>
