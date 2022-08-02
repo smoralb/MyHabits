@@ -12,6 +12,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
 import org.mockito.kotlin.any
@@ -51,5 +52,11 @@ class AddTaskViewModelTest : BaseViewModelUnitTest() {
             }
             clearInvocations(createTaskUseCase)
         }
+    }
+
+    @Test
+    fun `navigate up should update viewModel state`() {
+        viewModel.navigateUp()
+        assertTrue(viewModel.viewState.value is NavigateUp)
     }
 }

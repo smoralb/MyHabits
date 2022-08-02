@@ -5,11 +5,13 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_home.R
 import com.smb.ft_home.domain.model.CreateTaskModel
 import com.smb.ft_home.domain.usecases.CreateTaskUseCase
 import com.smb.ft_home.presentation.add.AddTaskState.Loading
 import com.smb.ft_home.presentation.add.AddTaskState.NavigateUp
 import com.smb.ft_home.presentation.add.AddTaskState.ShowError
+import com.smb.ft_home.presentation.edit.EditTaskState
 
 class AddTaskViewModel(
     private val createTaskUseCase: CreateTaskUseCase
@@ -39,4 +41,7 @@ class AddTaskViewModel(
         }
     }
 
+    fun navigateUp() {
+        _viewState update NavigateUp
+    }
 }

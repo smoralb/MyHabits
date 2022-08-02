@@ -4,15 +4,16 @@ import com.smb.core.data.Result
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_home.domain.usecases.UpdateTaskUseCase
 import com.smb.ft_home.presentation.edit.EditTaskMapper
-import com.smb.ft_home.presentation.edit.EditTaskState
-import com.smb.ft_home.presentation.edit.EditTaskState.*
+import com.smb.ft_home.presentation.edit.EditTaskState.NavigateUp
 import com.smb.ft_home.presentation.edit.EditTaskViewModel
 import com.smb.ft_home.presentation.mocks.updateTaskModelMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
 import org.mockito.kotlin.any
@@ -54,5 +55,11 @@ class EditTaskViewModelTest : BaseViewModelUnitTest() {
             }
             clearInvocations(updateTaskUseCase)
         }
+    }
+
+    @Test
+    fun `navigate up should update viewModel state`() {
+        viewModel.navigateUp()
+        Assertions.assertTrue(viewModel.viewState.value is NavigateUp)
     }
 }

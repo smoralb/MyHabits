@@ -6,6 +6,7 @@ import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
+import com.smb.ft_home.presentation.detail.TaskDetailState.NavigateUp
 
 class TaskDetailViewModel(
     private val getTasksUseCase: GetTasksUseCase
@@ -14,10 +15,6 @@ class TaskDetailViewModel(
     val title: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val description: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val publisher: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
-
-    val onClickListener: () -> Unit = {
-
-    }
 
     fun init(habitId: String) {
         execute {
@@ -35,4 +32,9 @@ class TaskDetailViewModel(
             )
         }
     }
+
+    fun navigateUp() {
+        _viewState update NavigateUp
+    }
+
 }
