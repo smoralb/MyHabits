@@ -26,6 +26,12 @@ class MHHeader(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         binding.toolbar.setNavigationOnClickListener { clickListener() }
     }
 
+    fun setNavigationToolbarVisibility(isVisible: Boolean) {
+        if (!isVisible) {
+            binding.toolbar.navigationIcon = null
+        }
+    }
+
     companion object {
 
         @JvmStatic
@@ -45,6 +51,12 @@ class MHHeader(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         @BindingAdapter("navigationIconClickListener")
         fun setNavigationIconListener(view: MHHeader, action: () -> Unit) {
             view.setNavigationIconClickListener { action() }
+        }
+
+        @JvmStatic
+        @BindingAdapter("showNavigationToolbar")
+        fun setNavigationToolbarVisibility(view: MHHeader, isVisible: Boolean) {
+            view.setNavigationToolbarVisibility(isVisible)
         }
     }
 }

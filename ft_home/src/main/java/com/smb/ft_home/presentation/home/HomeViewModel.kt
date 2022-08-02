@@ -9,6 +9,7 @@ import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_home.domain.usecases.DeleteTaskUseCase
 import com.smb.ft_home.domain.usecases.DeleteTaskUseCase.Params
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
+import com.smb.ft_home.presentation.detail.TaskDetailState
 import com.smb.ft_home.presentation.home.HomeState.AddTask
 import com.smb.ft_home.presentation.home.HomeState.HideLoading
 import com.smb.ft_home.presentation.home.HomeState.Loading
@@ -75,5 +76,9 @@ class HomeViewModel(
                 handleError = {}
             )
         }
+    }
+
+    fun navigateUp() {
+        _viewState update NavigateUp
     }
 }

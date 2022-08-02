@@ -70,7 +70,6 @@ The app has different modules that will be increased. At this moment exists comm
 ## FEATURES
     - Remember user ans password
     - Add Biometric to login
-    - Add back arrow toolbar
     - Add push notification
     - Add reminder
 

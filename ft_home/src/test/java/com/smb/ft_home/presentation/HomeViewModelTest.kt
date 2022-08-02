@@ -127,4 +127,10 @@ class HomeViewModelTest : BaseViewModelUnitTest() {
             }
         }
     }
+
+    @Test
+    fun `navigate up should update viewModel state`() {
+        viewModel.navigateUp()
+        assertTrue(viewModel.viewState.value is NavigateUp)
+    }
 }
