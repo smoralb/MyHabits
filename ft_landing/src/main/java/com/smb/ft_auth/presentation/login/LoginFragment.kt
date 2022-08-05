@@ -3,6 +3,7 @@ package com.smb.ft_auth.presentation.login
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -10,6 +11,8 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.smb.core.extensions.CryptographyManager
+import com.smb.core.extensions.createBiometricPrompt
+import com.smb.core.extensions.createPromptInfo
 import com.smb.core.extensions.hideKeyboard
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseFragment
@@ -36,10 +39,15 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
     private lateinit var initializationVector: ByteArray
     override val viewModel: LoginViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        biometricPrompt = createBiometricPrompt()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        biometricPrompt = createBiometricPrompt(
+            onAuthenticationSucceeded = {
+                processData(it.cryptoObject)
+            }
+        )
         promptInfo = createPromptInfo()
+        authenticateToEncrypt()
     }
 
     override fun checkViewState(state: LoginState) {
@@ -97,48 +105,5 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
             messageId,
             Toast.LENGTH_LONG
         ).show()
-    }
-
-    private fun createPromptInfo(): BiometricPrompt.PromptInfo {
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            // e.g. "Sign in"
-            .setTitle("prompt_info_title")
-            // e.g. "Biometric for My App"
-            .setSubtitle("R.string.prompt_info_subtitle")
-            // e.g. "Confirm biometric to continue"
-            .setDescription("R.string.prompt_info_description")
-            .setConfirmationRequired(false)
-            .setNegativeButtonText("R.string.prompt_info_use_app_password")
-            // .setDeviceCredentialAllowed(true) // Allow PIN/pattern/password authentication.
-            // Also note that setDeviceCredentialAllowed and setNegativeButtonText are
-            // incompatible so that if you uncomment one you must comment out the other
-            .build()
-        return promptInfo
-    }
-
-    private fun createBiometricPrompt(): BiometricPrompt {
-        val executor = ContextCompat.getMainExecutor(requireContext())
-
-        val callback = object : BiometricPrompt.AuthenticationCallback() {
-            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                super.onAuthenticationError(errorCode, errString)
-                Log.d(TAG, "$errorCode :: $errString")
-            }
-
-            override fun onAuthenticationFailed() {
-                super.onAuthenticationFailed()
-                Log.d(TAG, "Authentication failed for an unknown reason")
-            }
-
-            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
-                Log.d(TAG, "Authentication was successful")
-                processData(result.cryptoObject)
-            }
-        }
-
-        //The API requires the client/Activity context for displaying the prompt
-        val biometricPrompt = BiometricPrompt(this, executor, callback)
-        return biometricPrompt
     }
 }
