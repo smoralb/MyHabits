@@ -67,8 +67,11 @@ The app has different modules that will be increased. At this moment exists comm
     - Add Sonar/Codecov and Bitrise.
     - Improve documentation
     - Migrate to JetPack Compose
+    - Add localization for strings
+    - Use Android 12 Splash Screen instead of using themes
 
 ## FEATURES
+    - Separate db for each user that has an account
     - Remember user and password
     - Add Biometric to login
     - Add push notification
@@ -78,6 +81,7 @@ The app has different modules that will be increased. At this moment exists comm
     - Loader always visible when swipe down
     - Check if there are unused dependencies
     - Review all TextView styles and unify
+    - Show buttons above the keyboard (e.g add task)
   
 References:
 
