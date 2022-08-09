@@ -1,55 +1,60 @@
 package com.smb.core.extensions
 
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
+import android.content.Context
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.core.R
+
+const val SHARED_PREFERENCES = "Shared Preferences"
+const val USER_NAME = "USER_NAME"
+const val USER_PASSWORD = "USER_PASSWORD"
+const val USER_REMEMBERED = "USER_REMEMBERED"
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
 }
 
-fun Fragment.hasBiometricCapability() = BiometricManager.from(this.requireContext())
-    .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
-
-fun Fragment.isBiometricReady() =
-    this.hasBiometricCapability() == BiometricManager.BIOMETRIC_SUCCESS
-
-fun Fragment.createPromptInfo(
-    title: String? = null,
-    description: String? = null,
-    subtitle: String? = null,
-    negativeButtonText: String? = null
-) = BiometricPrompt.PromptInfo.Builder()
-    .setTitle(title ?: "This is the title")
-    .setDescription(description ?: "This is the description")
-    .setSubtitle(subtitle ?: "This is the subtitle")
-    .setNegativeButtonText(negativeButtonText ?: "Cancel")
-    .build()
-
-fun Fragment.createBiometricPrompt(
-    onAuthenticationError: () -> Unit = {},
-    onAuthenticationFailed: () -> Unit = {},
-    onAuthenticationSucceeded: (BiometricPrompt.AuthenticationResult) -> Unit
-): BiometricPrompt {
-    val executor = ContextCompat.getMainExecutor(this.requireContext())
-
-    val callback = object : BiometricPrompt.AuthenticationCallback() {
-        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-            super.onAuthenticationError(errorCode, errString)
-            onAuthenticationError()
-        }
-
-        override fun onAuthenticationFailed() {
-            super.onAuthenticationFailed()
-            onAuthenticationFailed()
-        }
-
-        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-            super.onAuthenticationSucceeded(result)
-            onAuthenticationSucceeded(result)
-        }
-    }
-
-    return BiometricPrompt(this, executor, callback)
+fun Fragment.showDialogFragment(
+    message: Int = R.string.login_dialog_message,
+    positiveButton: Int = R.string.login_dialog_positive,
+    negativeButton: Int = R.string.login_dialog_negative,
+    onPositiveButtonClicked: () -> Unit,
+    onNegativeButtonClicked: () -> Unit
+) {
+    AlertDialog.Builder(this.requireContext())
+        .setMessage(message)
+        .setPositiveButton(positiveButton) { _, _ -> onPositiveButtonClicked() }
+        .setNegativeButton(negativeButton) { _, _ -> onNegativeButtonClicked() }
+        .create()
+        .show()
 }
+
+
+fun Fragment.storeInSharedPreferences(userName: String, password: String) {
+    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        .edit().apply {
+            putString(USER_NAME, userName)
+            putString(USER_PASSWORD, password)
+            putBoolean(USER_REMEMBERED, true)
+        }.apply()
+}
+
+fun Fragment.getUserName() =
+    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        .getString(USER_NAME, EMPTY_STRING)
+
+fun Fragment.getUserPassword() =
+    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        .getString(USER_PASSWORD, EMPTY_STRING)
+
+fun Fragment.isUserRemembered() =
+    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        .getBoolean(USER_REMEMBERED, false)
+
+fun Fragment.clearUserdata() =
+    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE).edit()
+        .apply {
+            remove(USER_NAME)
+            remove(USER_PASSWORD)
+            remove(USER_REMEMBERED)
+        }.apply()
