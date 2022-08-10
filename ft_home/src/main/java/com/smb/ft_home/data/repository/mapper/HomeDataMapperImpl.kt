@@ -16,11 +16,11 @@ class HomeDataMapperImpl : HomeDataMapper {
         )
 
     private fun toHabitModel(documentSnapshot: MutableList<DocumentSnapshot>): List<HabitModel> =
-        documentSnapshot.map { doc ->
+        documentSnapshot.map {
             HabitModel(
-                id = doc.id,
-                name = doc[NAME].toString(),
-                description = doc[DESCRIPTION].toString()
+                id = it.id,
+                name = it.get(NAME) as? String,
+                description = it[DESCRIPTION] as? String,
             )
         }
 }

@@ -125,16 +125,14 @@ fun Fragment.clearUserdata() =
 This method may be replaced by **JetPack DataStore** (after further investigation).
 
 ##FUTURE WORK
-
     - Add Sonar/Codecov and Bitrise.
-    - Improve documentationfr
+    - Improve documentation
     - Migrate to JetPack Compose
     - Add localization for strings
     - Use Android 12 Splash Screen instead of using themes
     - Investigate and implement JetPack DataStore to store user authentication data.
 
 ## FEATURES
-    - Separate db for each user that has an account
     - Add Biometric to login
     - Add push notification
     - Add reminder
