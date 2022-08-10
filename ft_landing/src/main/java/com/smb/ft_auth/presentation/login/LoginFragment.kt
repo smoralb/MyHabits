@@ -6,11 +6,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import com.smb.core.extensions.clearUserdata
-import com.smb.core.extensions.getUserName
+import com.smb.core.extensions.encryptUserData
+import com.smb.core.extensions.getUserEmail
 import com.smb.core.extensions.getUserPassword
 import com.smb.core.extensions.hideKeyboard
 import com.smb.core.extensions.isUserRemembered
-import com.smb.core.extensions.storeInSharedPreferences
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_auth.BR
@@ -49,16 +49,18 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
     }
 
     private fun loadUserData() {
-        if (!getUserName().isNullOrBlank() && !getUserPassword().isNullOrBlank()) {
-            viewModel.email update getUserName() as String
-            viewModel.password update getUserPassword() as String
-            viewModel.isRememberChecked update isUserRemembered()
+        if (!getUserEmail().isNullOrBlank() && !getUserPassword().isNullOrBlank()) {
+            with(viewModel) {
+                email update getUserEmail() as String
+                password update getUserPassword() as String
+                isRememberChecked update isUserRemembered()
+            }
         }
     }
 
     private fun manageSharedPreferences() {
         if (viewModel.isRememberChecked.value!!) {
-            storeInSharedPreferences(viewModel.email.value!!, viewModel.password.value!!)
+            encryptUserData(viewModel.email.value!!, viewModel.password.value!!)
         } else clearUserdata()
     }
 

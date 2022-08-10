@@ -1,8 +1,13 @@
 package com.smb.core.extensions
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV
+import androidx.security.crypto.EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+import androidx.security.crypto.MasterKeys
 import com.example.core.R
 
 const val SHARED_PREFERENCES = "Shared Preferences"
@@ -29,32 +34,38 @@ fun Fragment.showDialogFragment(
         .show()
 }
 
-
-fun Fragment.storeInSharedPreferences(userName: String, password: String) {
-    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
-        .edit().apply {
-            putString(USER_NAME, userName)
-            putString(USER_PASSWORD, password)
-            putBoolean(USER_REMEMBERED, true)
-        }.apply()
+fun Fragment.encryptUserData(userName: String, password: String) {
+    with(getSharedPreferences(requireContext()).edit()) {
+        putString(USER_NAME, userName)
+        putString(USER_PASSWORD, password)
+        putBoolean(USER_REMEMBERED, true)
+        apply()
+    }
 }
 
-fun Fragment.getUserName() =
-    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
-        .getString(USER_NAME, EMPTY_STRING)
+fun Fragment.getUserEmail() =
+    getSharedPreferences(requireContext()).getString(USER_NAME, EMPTY_STRING)
 
 fun Fragment.getUserPassword() =
-    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
-        .getString(USER_PASSWORD, EMPTY_STRING)
+    getSharedPreferences(requireContext()).getString(USER_PASSWORD, EMPTY_STRING)
 
 fun Fragment.isUserRemembered() =
-    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
-        .getBoolean(USER_REMEMBERED, false)
+    getSharedPreferences(requireContext()).getBoolean(USER_REMEMBERED, false)
 
 fun Fragment.clearUserdata() =
-    requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE).edit()
+    getSharedPreferences(requireContext()).edit()
         .apply {
             remove(USER_NAME)
             remove(USER_PASSWORD)
             remove(USER_REMEMBERED)
         }.apply()
+
+
+private fun getSharedPreferences(context: Context): SharedPreferences =
+    EncryptedSharedPreferences.create(
+        SHARED_PREFERENCES,
+        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
+        context,
+        AES256_SIV,
+        AES256_GCM
+    )
