@@ -4,6 +4,7 @@
 
     <application>
         <activity
-            android:name="com.smb.ft_home.presentation.HomeActivity"/>
+            android:name="com.smb.ft_home.presentation.HomeActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
