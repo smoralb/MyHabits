@@ -3,7 +3,6 @@ apply from: "$project.rootDir/jacoco.gradle"
 apply from: "$project.rootDir/base.gradle"
 
 dependencies {
-    implementation project (':resources')
     implementation project (':components')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation basic.values()
@@ -13,4 +12,5 @@ dependencies {
     implementation testing.values()
     implementation platform (firebase_bom.get("firebase_bom"))
     implementation firebase_apps.values()
+    implementation security.values()
 }

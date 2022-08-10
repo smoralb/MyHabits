@@ -1,4 +1,4 @@
-package com.smb.navigator.di.navigation
+package com.smb.navigator
 
 import android.content.Context
 import com.smb.ft_auth.navigation.LandingNavigator

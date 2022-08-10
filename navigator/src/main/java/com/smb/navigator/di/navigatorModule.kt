@@ -1,7 +1,7 @@
-package com.smb.navigator.di.navigation.di
+package com.smb.navigator.di
 
 import com.smb.ft_auth.navigation.LandingNavigator
-import com.smb.navigator.di.navigation.LandingNavigatorImpl
+import com.smb.navigator.LandingNavigatorImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

@@ -7,6 +7,7 @@
     <dimen name="margin_top_login_password">20dp</dimen>
     <dimen name="margin_horizontal_login">20dp</dimen>
     <dimen name="margin_top_login_button">40dp</dimen>
+    <dimen name="margin_top_remember_me">20dp</dimen>
     <dimen name="margin_top_create_account_link">20dp</dimen>
     <dimen name="margin_top_forget_account_link">20dp</dimen>
     <!-- Sign up -->

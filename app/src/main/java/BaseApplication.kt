@@ -7,7 +7,7 @@ import com.smb.ft_auth.presentation.di.presentationAuthModule
 import com.smb.ft_home.data.di.homeDataModule
 import com.smb.ft_home.domain.di.homeDomainModule
 import com.smb.ft_home.presentation.di.homePresentationModule
-import com.smb.navigator.di.navigation.di.navigatorModule
+import com.smb.navigator.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

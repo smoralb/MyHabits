@@ -21,8 +21,9 @@ class LoginViewModel(
     private val navigator: LandingNavigator
 ) : BaseViewModel<LoginState>() {
 
-    val email: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
-    val password: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val email: MutableLiveData<String> = MutableLiveData()
+    val password: MutableLiveData<String> = MutableLiveData()
+    val isRememberChecked: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun navigateToSignUp() {
         _viewState update NavigateToSignUp

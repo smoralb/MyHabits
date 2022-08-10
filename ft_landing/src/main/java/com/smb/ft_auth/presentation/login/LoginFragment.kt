@@ -1,9 +1,17 @@
 package com.smb.ft_auth.presentation.login
 
+import android.os.Bundle
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
+import com.smb.core.extensions.clearUserdata
+import com.smb.core.extensions.encryptUserData
+import com.smb.core.extensions.getUserEmail
+import com.smb.core.extensions.getUserPassword
 import com.smb.core.extensions.hideKeyboard
+import com.smb.core.extensions.isUserRemembered
+import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_auth.BR
 import com.smb.ft_auth.R
@@ -21,16 +29,39 @@ class LoginFragment : BaseFragment<LoginState, FragmentLoginBinding, LoginViewMo
 
     override val viewModel: LoginViewModel by viewModel()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadUserData()
+    }
+
     override fun checkViewState(state: LoginState) {
+        hideKeyboard()
         when (state) {
             is NavigateToSignUp -> navigateTo(LoginFragmentDirections.goToSignUp())
             is ShowLoading -> binding.pILoading.visibility = VISIBLE
             is HideLoading -> binding.pILoading.visibility = GONE
-            
-            // TODO: Pass Intent instead of Activity
-            is NavigateToMainView -> viewModel.navigateToHomeView()
+            is NavigateToMainView -> {
+                manageSharedPreferences()
+                viewModel.navigateToHomeView()
+            }
             is ShowError -> showToastResult(state.errorMessage)
         }
+    }
+
+    private fun loadUserData() {
+        if (!getUserEmail().isNullOrBlank() && !getUserPassword().isNullOrBlank()) {
+            with(viewModel) {
+                email update getUserEmail() as String
+                password update getUserPassword() as String
+                isRememberChecked update isUserRemembered()
+            }
+        }
+    }
+
+    private fun manageSharedPreferences() {
+        if (viewModel.isRememberChecked.value!!) {
+            encryptUserData(viewModel.email.value!!, viewModel.password.value!!)
+        } else clearUserdata()
     }
 
     private fun showToastResult(messageId: String) {
