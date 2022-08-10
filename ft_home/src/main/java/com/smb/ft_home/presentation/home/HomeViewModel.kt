@@ -33,10 +33,6 @@ class HomeViewModel(
         _viewState update NavigateToSecondFragment(id = it)
     }
 
-    internal fun initialize() {
-        getTasks()
-    }
-
     fun createTask() {
         _viewState update AddTask
     }
@@ -47,6 +43,20 @@ class HomeViewModel(
                 handleSuccess = {
                     _viewState update NavigateUp
                 },
+                handleError = {}
+            )
+        }
+    }
+
+    internal fun initialize() {
+        getTasks()
+    }
+
+    internal fun deleteTask(itemPosition: Int) {
+        _viewState update Loading
+        execute {
+            deleteTaskUseCase(Params(itemList.value!![itemPosition].id)).fold(
+                handleSuccess = { getTasks() },
                 handleError = {}
             )
         }
@@ -64,16 +74,6 @@ class HomeViewModel(
                     firstViewModelText update "Error"
                     _viewState update HideLoading
                 }
-            )
-        }
-    }
-
-    internal fun deleteTask(itemPosition: Int) {
-        _viewState update Loading
-        execute {
-            deleteTaskUseCase(Params(itemList.value!![itemPosition].id)).fold(
-                handleSuccess = { getTasks() },
-                handleError = {}
             )
         }
     }
