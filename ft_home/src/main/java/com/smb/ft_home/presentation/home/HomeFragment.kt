@@ -41,7 +41,10 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
     override fun checkViewState(state: HomeState) {
         when (state) {
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
-            is HideLoading -> binding.plItemsLoader.visibility = View.GONE
+            is HideLoading -> {
+                binding.srLayout.isRefreshing = false
+                binding.plItemsLoader.visibility = View.GONE
+            }
             is NavigateToSecondFragment ->
                 navigateTo(HomeFragmentDirections.toDetail(state.id))
             is NavigateUp -> requireActivity().finish()
@@ -50,7 +53,7 @@ class HomeFragment : BaseFragment<HomeState, FragmentHomeBinding, HomeViewModel>
     }
 
     private fun setUpSwipeRecyclerView() {
-        binding.srLayout.setOnRefreshListener { viewModel.getTasks() }
+        binding.srLayout.setOnRefreshListener { viewModel.getTasks(showLoader = false) }
 
         val itemTouchHelper = ItemTouchHelper(object : SwipeControllerAlt(
             object : SwipeControllerActions {

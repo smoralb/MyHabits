@@ -52,8 +52,8 @@ class HomeViewModel(
         }
     }
 
-    internal fun getTasks() {
-        _viewState update Loading
+    internal fun getTasks(showLoader: Boolean = true) {
+        _viewState update if (showLoader) Loading else HideLoading
         execute {
             getTasksUseCase(Unit).fold(
                 handleSuccess = { habitList ->

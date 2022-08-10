@@ -127,7 +127,7 @@ This method may be replaced by **JetPack DataStore** (after further investigatio
 ##FUTURE WORK
 
     - Add Sonar/Codecov and Bitrise.
-    - Improve documentation
+    - Improve documentationfr
     - Migrate to JetPack Compose
     - Add localization for strings
     - Use Android 12 Splash Screen instead of using themes
@@ -140,11 +140,9 @@ This method may be replaced by **JetPack DataStore** (after further investigatio
     - Add reminder
 
 ## BUGS / REFACTOR
-    - Loader always visible when swipe down
     - Check if there are unused dependencies
     - Review all TextView styles and unify
     - Show buttons above the keyboard (e.g add task)
-    - Fix orientation to vertical
   
 References:
 
