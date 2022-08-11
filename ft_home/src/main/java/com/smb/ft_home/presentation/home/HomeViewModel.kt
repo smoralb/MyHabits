@@ -10,11 +10,7 @@ import com.smb.ft_home.domain.usecases.DeleteTaskUseCase
 import com.smb.ft_home.domain.usecases.DeleteTaskUseCase.Params
 import com.smb.ft_home.domain.usecases.GetTasksUseCase
 import com.smb.ft_home.presentation.detail.TaskDetailState
-import com.smb.ft_home.presentation.home.HomeState.AddTask
-import com.smb.ft_home.presentation.home.HomeState.HideLoading
-import com.smb.ft_home.presentation.home.HomeState.Loading
-import com.smb.ft_home.presentation.home.HomeState.NavigateToSecondFragment
-import com.smb.ft_home.presentation.home.HomeState.NavigateUp
+import com.smb.ft_home.presentation.home.HomeState.*
 import com.smb.ft_home.presentation.home.adapter.TaskDataItems
 import com.smb.ft_home.presentation.home.mapper.FirstFragmentMapper
 
@@ -67,8 +63,13 @@ class HomeViewModel(
         execute {
             getTasksUseCase(Unit).fold(
                 handleSuccess = { habitList ->
-                    itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
-                    _viewState update HideLoading
+                    if (habitList.habitList.isEmpty()) {
+                        _viewState update EmptyState
+                        itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
+                    } else {
+                        _viewState update HideLoading
+                        itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
+                    }
                 },
                 handleError = {
                     firstViewModelText update "Error"

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_tasks">You don\'t have any task yet.</string>
+    <string name="no_tasks_add">Try to add new tasks</string>
+</resources>
