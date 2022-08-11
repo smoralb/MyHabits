@@ -65,6 +65,7 @@ class HomeViewModel(
                 handleSuccess = { habitList ->
                     if (habitList.habitList.isEmpty()) {
                         _viewState update EmptyState
+                        itemList update mapper.mapItems(habitList.habitList, onItemClickListener)
                     } else {
                         _viewState update HideLoading
                         itemList update mapper.mapItems(habitList.habitList, onItemClickListener)

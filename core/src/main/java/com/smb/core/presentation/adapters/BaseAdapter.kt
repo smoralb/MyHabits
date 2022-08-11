@@ -3,15 +3,14 @@ package com.smb.core.presentation.adapters
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+
 @SuppressLint("NotifyDataSetChanged")
-abstract class BaseAdapter<T: BaseItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<T : BaseItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<T>()
         set(value) {
-            if (value.isNotEmpty()) {
-                field = value
-                notifyDataSetChanged()
-            }
+            field = value
+            notifyDataSetChanged()
         }
 
     abstract fun updateData(newItems: List<T>)
@@ -24,7 +23,8 @@ abstract class BaseAdapter<T: BaseItem> : RecyclerView.Adapter<RecyclerView.View
 
 open class BaseViewHolder<T>(
     private val itemVariableId: Int,
-    private val binding: ViewDataBinding) :
+    private val binding: ViewDataBinding
+) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: T) {
         binding.setVariable(itemVariableId, item)

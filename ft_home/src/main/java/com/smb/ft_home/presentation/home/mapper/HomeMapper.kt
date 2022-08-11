@@ -11,14 +11,17 @@ interface FirstFragmentMapper {
 
 class HomeMapperImpl : FirstFragmentMapper {
 
-    override fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit) =
-        model.map {
-            TaskDataItems.TaskDataItem(
-                id = it.id ?: EMPTY_STRING,
-                title = it.name ?: "NAME",
-                description = it.description ?: "DESCRIPTION",
-                publisher = it.description ?: "DESCRIPTION",
-                onItemClickListener = itemClickListener
-            )
-        }
+    override fun mapItems(model: List<HabitModel>, itemClickListener: (String) -> Unit): List<TaskDataItems.TaskDataItem> {
+        return if (model.isNotEmpty()) {
+            model.map {
+                TaskDataItems.TaskDataItem(
+                    id = it.id ?: EMPTY_STRING,
+                    title = it.name ?: "NAME",
+                    description = it.description ?: "DESCRIPTION",
+                    publisher = it.description ?: "DESCRIPTION",
+                    onItemClickListener = itemClickListener
+                )
+            }
+        } else emptyList()
+    }
 }
