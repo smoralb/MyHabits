@@ -8,6 +8,7 @@ dependencies {
     implementation project (':ft_landing')
     implementation project (':ft_home')
     implementation project (':navigator')
+    implementation project (':ft_notifications')
     implementation basic.values()
     implementation navigation.values()
     implementation koin.values()

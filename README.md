@@ -124,6 +124,105 @@ fun Fragment.clearUserdata() =
 
 This method may be replaced by **JetPack DataStore** (after further investigation).
 
+## PUSH NOTIFICATIONS
+
+In order to receive notifications as a reminder, the app is going to use the FCM (Firebase Cloud Messaging). The steps to add the library will be:
+
+1. Add FCM dependency. As I am using the Firebase Boom, I don't have to specify the version, so it will be something like this
+
+``` firebase_messaging: 'com.google.firebase:firebase-messaging' ```
+
+2. Create a receiver that is going to inherit the FirebaseMessagingService class and override the onMessageReceived method. This method is
+triggered when the app receive a notification.
+
+```
+class FirebaseReceiver: FirebaseMessagingService() {
+
+    override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
+        // All the logic to create and show the notification push
+    }
+}
+```
+
+The onMessageReceived is necessary if you want to retrieve some data that comes from Firebase or any other remote entity.method
+
+3. Add the receiver to the app manifest.
+
+```
+<service android:name=".FirebaseMessageReceiver">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+			</intent-filter>
+</service>
+```
+
+4. Also add the INTERNET permission
+
+```<uses-permission android:name=”android.permission.INTERNET” />```
+
+5. Google brings the methods to create an standard push notification but there is also the possibility to create a push notification with a custom layout. for this case, I am going to use
+a custom layout.
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/linear_layout"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:padding="20dp">
+
+	<!-- Parent Layout of ImageView -->
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<!--Image to be displayed beside the notification text-->
+		<ImageView
+			android:id="@+id/icon"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:padding="5dp"
+			android:src="@drawable/gfg" />
+	</LinearLayout>
+
+	<!-- Parent layout for holding the Title and the Body-->
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:orientation="vertical"
+		android:padding="5dp">
+
+		<!-- TextView for Title -->
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Title"
+			android:textColor="#000"
+			android:textStyle="bold" />
+
+		<!-- TextView for Body -->
+		<TextView
+			android:id="@+id/message"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Message"
+			android:textSize="15sp" />
+
+	</LinearLayout>
+
+</LinearLayout>
+```
+
+**This is just a sample**
+
+
+
+
 ##FUTURE WORK
     - Add Sonar/Codecov and Bitrise.
     - Improve documentation
