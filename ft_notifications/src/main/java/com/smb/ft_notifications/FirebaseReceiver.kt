@@ -4,19 +4,42 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
+import android.app.PendingIntent.getActivity
 import android.content.Intent
-import android.widget.RemoteViews
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.smb.core.extensions.EMPTY_STRING
 import com.smb.ft_home.presentation.HomeActivity
 
-const val channel_id = "notification_channel"
+const val CHANNEL_ID = "${BuildConfig.LIBRARY_PACKAGE_NAME}_channel_mh"
+const val CHANNEL_NAME = "Reminders"
+const val NOTIFICATION_ID = 101
 
 @SuppressLint("MissingFirebaseInstanceTokenRefresh")
 class FirebaseReceiver : FirebaseMessagingService() {
+
+    private val intent: Intent
+        get() {
+            return HomeActivity.newIntentFlags(
+                applicationContext,
+                FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+            )
+        }
+
+    private val pendingIntent: PendingIntent
+        @SuppressLint("UnspecifiedImmutableFlag")
+        get() {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                getActivity(this, 0, intent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE)
+            } else {
+                getActivity(this, 0, intent, FLAG_UPDATE_CURRENT)
+            }
+        }
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
@@ -24,40 +47,35 @@ class FirebaseReceiver : FirebaseMessagingService() {
             showNotification(message)
     }
 
+
     private fun showNotification(message: RemoteMessage) {
-        val intent = Intent(applicationContext, HomeActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_UPDATE_CURRENT)
-
-        val builder = NotificationCompat.Builder(applicationContext, channel_id)
-            .setSmallIcon(R.drawable.ic_arrow)
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .setContent(
-                getCustomView(
-                    message.notification?.title ?: EMPTY_STRING,
-                    message.notification?.body ?: EMPTY_STRING
-                )
-            )
-
+        val notificationBuilder = createNotification(pendingIntent, message)
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notificationChannel = NotificationChannel(
-            channel_id, "web_app",
-            NotificationManager.IMPORTANCE_HIGH
-        )
-        notificationManager.createNotificationChannel(
-            notificationChannel
-        )
-        notificationManager.notify(0, builder.build())
+
+        createNotificationChannel(notificationManager)
+
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
-    private fun getCustomView(title: String, message: String) =
-        RemoteViews(applicationContext.packageName, R.layout.custom_notification).apply {
-            setTextViewText(R.id.title, title)
-            setTextViewText(R.id.message, message)
-            setImageViewResource(R.id.icon, R.drawable.ic_arrow)
-        }
+    private fun createNotification(pendingIntent: PendingIntent, message: RemoteMessage) =
+        NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle(
+                message.notification?.title ?: applicationContext.getString(R.string.app_name)
+            )
+            .setContentText(
+                message.notification?.body
+                    ?: applicationContext.getString(R.string.default_notification_message)
+            )
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
+    private fun createNotificationChannel(notificationManager: NotificationManager) {
+        val notificationChannel = NotificationChannel(
+            CHANNEL_ID, CHANNEL_NAME,
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        notificationManager.createNotificationChannel(notificationChannel)
+    }
 }

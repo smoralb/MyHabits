@@ -16,5 +16,9 @@ class HomeActivity : BaseActivity(
 
     companion object {
         fun newIntent(context: Context) = Intent(context, HomeActivity::class.java)
+        fun newIntentFlags(context: Context, flags: Int) =
+            Intent(context, HomeActivity::class.java).apply {
+                this.flags = flags
+            }
     }
 }
