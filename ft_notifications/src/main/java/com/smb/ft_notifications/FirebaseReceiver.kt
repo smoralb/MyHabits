@@ -76,6 +76,8 @@ class FirebaseReceiver : FirebaseMessagingService() {
             CHANNEL_ID, CHANNEL_NAME,
             NotificationManager.IMPORTANCE_DEFAULT
         )
+        notificationChannel.description =
+            applicationContext.getString(R.string.notification_channel_description)
         notificationManager.createNotificationChannel(notificationChannel)
     }
 }
