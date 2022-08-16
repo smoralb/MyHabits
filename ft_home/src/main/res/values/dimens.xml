@@ -13,6 +13,8 @@
     <dimen name="padding_add_task">20dp</dimen>
     <dimen name="padding_bottom_task">40dp</dimen>
     <dimen name="margin_top_add_task_description">20dp</dimen>
+    <dimen name="margin_top_time_selector">40dp</dimen>
+    <dimen name="margin_top_time_picker">20dp</dimen>
 
     <!-- Edit task -->
     <dimen name="padding_edit_task">20dp</dimen>

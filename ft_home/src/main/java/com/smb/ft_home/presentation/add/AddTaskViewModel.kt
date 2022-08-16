@@ -17,8 +17,10 @@ class AddTaskViewModel(
     private val createTaskUseCase: CreateTaskUseCase
 ) : BaseViewModel<AddTaskState>() {
 
-    val title: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
-    val description: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val title: MutableLiveData<String> = MutableLiveData()
+    val description: MutableLiveData<String> = MutableLiveData()
+    val hour: MutableLiveData<Int> = MutableLiveData()
+    val minutes: MutableLiveData<Int> = MutableLiveData()
 
     fun createNewTask() {
         _viewState update Loading
@@ -27,7 +29,9 @@ class AddTaskViewModel(
                 CreateTaskUseCase.Params(
                     CreateTaskModel(
                         name = title.value!!,
-                        description = description.value!!
+                        description = description.value!!,
+                        hour = hour.value!!.toString(),
+                        min = minutes.value!!.toString()
                     )
                 )
             ).fold(

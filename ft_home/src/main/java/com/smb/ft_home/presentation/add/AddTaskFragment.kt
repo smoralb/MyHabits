@@ -3,6 +3,7 @@ package com.smb.ft_home.presentation.add
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
 import com.smb.ft_home.R
@@ -18,11 +19,29 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
 
     override val viewModel: AddTaskViewModel by viewModel()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpNumberPicker()
+    }
+
     override fun checkViewState(state: AddTaskState) {
         when (state) {
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is ShowError -> Toast.makeText(activity, state.message, Toast.LENGTH_SHORT).show()
             is NavigateUp -> navigateUp()
+        }
+    }
+
+    private fun setUpNumberPicker() {
+        binding.npHours.apply {
+            minValue = 0
+            maxValue = 23
+            setOnValueChangedListener { _, _, newValue -> viewModel.hour update newValue }
+        }
+        binding.npMinutes.apply {
+            minValue = 0
+            maxValue = 59
+            setOnValueChangedListener { _, _, newValue -> viewModel.minutes update newValue }
         }
     }
 }
