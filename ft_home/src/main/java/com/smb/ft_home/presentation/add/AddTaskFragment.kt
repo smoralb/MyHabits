@@ -12,11 +12,13 @@ import com.smb.ft_home.presentation.add.AddTaskState.Loading
 import com.smb.ft_home.presentation.add.AddTaskState.NavigateUp
 import com.smb.ft_home.presentation.add.AddTaskState.ShowError
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Calendar
 
 class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskViewModel>(
     R.layout.fragment_add, BR.viewModel
 ) {
 
+    private val calendar: Calendar = Calendar.getInstance()
     override val viewModel: AddTaskViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,11 +38,13 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
         binding.npHours.apply {
             minValue = 0
             maxValue = 23
+            value = calendar.get(Calendar.HOUR_OF_DAY)
             setOnValueChangedListener { _, _, newValue -> viewModel.hour update newValue }
         }
         binding.npMinutes.apply {
             minValue = 0
             maxValue = 59
+            value = calendar.get(Calendar.MINUTE)
             setOnValueChangedListener { _, _, newValue -> viewModel.minutes update newValue }
         }
     }
