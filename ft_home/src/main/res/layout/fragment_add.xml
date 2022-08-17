@@ -96,7 +96,6 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="@{viewModel.buttonClickable}"
                 android:onClick="@{() -> viewModel.createNewTask()}"
                 android:text="@string/fragment_add_task_add_button"
                 app:layout_constraintBottom_toBottomOf="parent"

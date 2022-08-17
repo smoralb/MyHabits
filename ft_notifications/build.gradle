@@ -7,7 +7,6 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project(':core')
-    implementation project(':ft_home')
     implementation basic.values()
     implementation koin.values()
     implementation platform (firebase_bom.get("firebase_bom"))

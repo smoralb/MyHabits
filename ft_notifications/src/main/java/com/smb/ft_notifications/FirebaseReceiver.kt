@@ -4,17 +4,10 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_IMMUTABLE
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
-import android.app.PendingIntent.getActivity
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.os.Build
+import android.content.Context
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.smb.ft_home.presentation.HomeActivity
 
 const val CHANNEL_ID = "${BuildConfig.LIBRARY_PACKAGE_NAME}_channel_mh"
 const val CHANNEL_NAME = "Reminders"
@@ -23,61 +16,41 @@ const val NOTIFICATION_ID = 101
 @SuppressLint("MissingFirebaseInstanceTokenRefresh")
 class FirebaseReceiver : FirebaseMessagingService() {
 
-    private val intent: Intent
-        get() {
-            return HomeActivity.newIntentFlags(
-                applicationContext,
-                FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
-            )
-        }
-
-    private val pendingIntent: PendingIntent
-        @SuppressLint("UnspecifiedImmutableFlag")
-        get() {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                getActivity(this, 0, intent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE)
-            } else {
-                getActivity(this, 0, intent, FLAG_UPDATE_CURRENT)
-            }
-        }
-
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
-        if (message.notification != null)
-            showNotification(message)
     }
 
+    fun showNotification(context: Context, title: String?, message: String?, intent: PendingIntent) {
+        val notificationBuilder = createNotification(context, intent, title, message)
+        val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-    private fun showNotification(message: RemoteMessage) {
-        val notificationBuilder = createNotification(pendingIntent, message)
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-        createNotificationChannel(notificationManager)
+        createNotificationChannel(context, notificationManager)
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
-    private fun createNotification(pendingIntent: PendingIntent, message: RemoteMessage) =
-        NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+    private fun createNotification(
+        context: Context,
+        pendingIntent: PendingIntent,
+        title: String?,
+        message: String?
+    ) = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(
-                message.notification?.title ?: applicationContext.getString(R.string.app_name)
-            )
+            .setContentTitle(title ?: context.getString(R.string.app_name))
             .setContentText(
-                message.notification?.body
-                    ?: applicationContext.getString(R.string.default_notification_message)
+                message ?: context.getString(R.string.default_notification_message)
             )
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-    private fun createNotificationChannel(notificationManager: NotificationManager) {
+    private fun createNotificationChannel(context: Context, notificationManager: NotificationManager) {
         val notificationChannel = NotificationChannel(
             CHANNEL_ID, CHANNEL_NAME,
             NotificationManager.IMPORTANCE_DEFAULT
         )
         notificationChannel.description =
-            applicationContext.getString(R.string.notification_channel_description)
+            context.getString(R.string.notification_channel_description)
         notificationManager.createNotificationChannel(notificationChannel)
     }
 }
