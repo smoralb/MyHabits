@@ -6,12 +6,14 @@ import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_home.domain.model.CreateTaskModel
 import com.smb.ft_home.domain.usecases.CreateTaskUseCase
+import com.smb.ft_home.presentation.add.AddTaskState.AddNewTask
 import com.smb.ft_home.presentation.add.AddTaskState.Loading
 import com.smb.ft_home.presentation.add.AddTaskState.NavigateUp
 import com.smb.ft_home.presentation.add.AddTaskState.ShowError
 
 class AddTaskViewModel(
-    private val createTaskUseCase: CreateTaskUseCase
+    private val createTaskUseCase: CreateTaskUseCase,
+    private val mapper: AddTaskMapper
 ) : BaseViewModel<AddTaskState>() {
 
     val title: MutableLiveData<String> = MutableLiveData()
@@ -30,13 +32,18 @@ class AddTaskViewModel(
                     CreateTaskModel(
                         name = title.value!!,
                         description = description.value!!,
-                        hour = hour.value!!.toString(),
-                        min = minutes.value!!.toString()
+                        hour = hour.value!!,
+                        min = minutes.value!!
                     )
                 )
             ).fold(
                 handleSuccess = {
-                    _viewState update NavigateUp
+                    _viewState update AddNewTask(
+                        mapper.mapTimeToMillis(
+                            hour.value!!,
+                            minutes.value!!
+                        )
+                    )
                 },
                 handleError = {
                     _viewState update ShowError(it.error)

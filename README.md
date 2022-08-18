@@ -224,9 +224,10 @@ a custom layout.
 
 
 ##FUTURE WORK
-    - Add Sonar/Codecov and Bitrise.
+    - Add Sonar/Codecov and Bitrise
     - Improve documentation
     - Migrate to JetPack Compose
+    - Migrate to Flow
     - Add localization for strings
     - Use Android 12 Splash Screen instead of using themes
     - Investigate and implement JetPack DataStore to store user authentication data.
@@ -240,6 +241,7 @@ a custom layout.
     - Check if there are unused dependencies
     - Review all TextView styles and unify
     - Show buttons above the keyboard (e.g add task)
+    - Don't let user to delete another task while one is already removing.
   
 References:
 

@@ -22,9 +22,15 @@ class FirebaseReceiver : FirebaseMessagingService() {
         super.onMessageReceived(message)
     }
 
-    fun showNotification(context: Context, title: String?, message: String?, intent: PendingIntent) {
+    fun showNotification(
+        context: Context,
+        title: String?,
+        message: String?,
+        intent: PendingIntent
+    ) {
         val notificationBuilder = createNotification(context, intent, title, message)
-        val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         createNotificationChannel(context, notificationManager)
 
@@ -37,16 +43,19 @@ class FirebaseReceiver : FirebaseMessagingService() {
         title: String?,
         message: String?
     ) = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(title ?: context.getString(R.string.app_name))
-            .setContentText(
-                message ?: context.getString(R.string.default_notification_message)
-            )
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .setPriority(PRIORITY_HIGH)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setContentTitle(title ?: context.getString(R.string.app_name))
+        .setContentText(
+            message ?: context.getString(R.string.default_notification_message)
+        )
+        .setContentIntent(pendingIntent)
+        .setAutoCancel(true)
+        .setPriority(PRIORITY_HIGH)
 
-    private fun createNotificationChannel(context: Context, notificationManager: NotificationManager) {
+    private fun createNotificationChannel(
+        context: Context,
+        notificationManager: NotificationManager
+    ) {
         val notificationChannel = NotificationChannel(
             CHANNEL_ID, CHANNEL_NAME,
             NotificationManager.IMPORTANCE_HIGH
