@@ -6,6 +6,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.PRIORITY_HIGH
+import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -42,15 +44,16 @@ class FirebaseReceiver : FirebaseMessagingService() {
             )
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(PRIORITY_HIGH)
 
     private fun createNotificationChannel(context: Context, notificationManager: NotificationManager) {
         val notificationChannel = NotificationChannel(
             CHANNEL_ID, CHANNEL_NAME,
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_HIGH
         )
         notificationChannel.description =
             context.getString(R.string.notification_channel_description)
+        notificationChannel.lockscreenVisibility = VISIBILITY_PUBLIC
         notificationManager.createNotificationChannel(notificationChannel)
     }
 }

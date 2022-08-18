@@ -1,7 +1,10 @@
 package com.smb.ft_home.presentation.add
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.AlarmManager.*
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +23,7 @@ import com.smb.ft_notifications.AlarmBroadcastReceiver
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
+@SuppressLint("UnspecifiedImmutableFlag")
 class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskViewModel>(
     R.layout.fragment_add, BR.viewModel
 ) {
@@ -37,7 +41,7 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
             context,
             102,
             alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            FLAG_UPDATE_CURRENT
         )
         setUpNumberPicker()
     }
@@ -47,9 +51,10 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is ShowError -> Toast.makeText(activity, state.message, Toast.LENGTH_SHORT).show()
             is NavigateUp -> {
-                alarmMgr?.set(
-                    AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                alarmMgr?.setRepeating(
+                    RTC_WAKEUP,
                     SystemClock.elapsedRealtime() + 10 * 1000,
+                    INTERVAL_DAY,
                     pendingIntent
                 )
                 navigateUp()
