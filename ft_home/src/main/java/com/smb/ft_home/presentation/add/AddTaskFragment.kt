@@ -11,6 +11,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.smb.core.extensions.changeBatterySaverMode
+import com.smb.core.extensions.isIgnoringBatteryOptimizations
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_home.BR
@@ -54,6 +56,9 @@ class AddTaskFragment : BaseFragment<AddTaskState, FragmentAddBinding, AddTaskVi
             is ShowError -> Toast.makeText(activity, state.message, Toast.LENGTH_SHORT).show()
             is NavigateUp -> navigateUp()
             is AddNewTask -> {
+                context?.isIgnoringBatteryOptimizations()?.let {
+                    if (!it) context?.changeBatterySaverMode()
+                }
                 setUpAlarm(state.timeInMillis)
                 navigateUp()
             }

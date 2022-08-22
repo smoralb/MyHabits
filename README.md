@@ -231,6 +231,8 @@ a custom layout.
     - Add localization for strings
     - Use Android 12 Splash Screen instead of using themes
     - Investigate and implement JetPack DataStore to store user authentication data.
+    - Show push notification personalized for each habit
+    - Add Firebase Remote config to show update dialogs
 
 ## FEATURES
     - Add Biometric to login

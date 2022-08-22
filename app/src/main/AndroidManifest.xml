@@ -3,6 +3,7 @@
     package="com.smb.myhabits">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission  android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <application
         android:name="com.smb.myhabits.BaseApplication"
@@ -19,7 +20,9 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <receiver android:name="com.smb.ft_notifications.AlarmBroadcastReceiver"/>
+        <receiver android:name="com.smb.ft_notifications.AlarmBroadcastReceiver"
+            android:exported="false">
+        </receiver>
     </application>
 
 </manifest>
